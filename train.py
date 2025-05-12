@@ -132,21 +132,21 @@ if __name__ == "__main__":
 
 
     # 데이터셋과 데이터로더 생성
-    image_dir = "data/train/image"
-    mask_dir = "data/train/mask"
+    image_dir = "train/data"
+    mask_dir = "train/mask"
     dataset = SegmentationDataset(image_dir=image_dir, mask_dir=mask_dir, transform= train_transform)
     # sampler = RandomSampler(dataset, replacement=True, num_samples=len(dataset) * 10)
-    data_loader = DataLoader(dataset, batch_size=8, num_workers=1, pin_memory=True, shuffle=True, drop_last = True)
+    data_loader = DataLoader(dataset, batch_size=2, num_workers=1, pin_memory=True, shuffle=True, drop_last = True)
     # data_loader = DataLoader(dataset, batch_size=config['batch_size'], sampler=sampler)
 
     # test_image_dir = "/content/data/test"
     # test_mask_dir = "/content/data_masked/test"
-    valid_image_dir = "data/valid/image"
-    valid_mask_dir = "data/valid/mask"
+    valid_image_dir = "valid/data"
+    valid_mask_dir = "valid/mask"
 
     valid_dataset = SegmentationDataset(image_dir=valid_image_dir, mask_dir=valid_mask_dir, transform= test_transform)
     # valid_sampler = RandomSampler(valid_dataset, replacement=True, num_samples = len(valid_dataset) * 1)
-    valid_data_loader = DataLoader(valid_dataset, batch_size=8, num_workers=1, pin_memory=True, drop_last = False)
+    valid_data_loader = DataLoader(valid_dataset, batch_size=1, num_workers=1, pin_memory=True, drop_last = False)
     # valid_data_loader = DataLoader(valid_dataset, batch_size=config['batch_size'], sampler=valid_sampler)
 
     num_classes = 2
@@ -192,6 +192,7 @@ if __name__ == "__main__":
     image_show_flag3 = True
 
     for epoch in range(num_epochs):
+        model_list = []
         if es == 1500:
             print(f"[train.py] Train Early Stopped")
             break
@@ -283,7 +284,7 @@ if __name__ == "__main__":
                     v_outputs = torch.softmax(v_outputs_logit, 1)
                 # valid_focal_loss = focal_loss(v_outputs, v_masks)
                 if image_show_flag and image_show_flag2:
-                    show_image_plt(f"epoch{epoch+1}", (torch.argmax(v_outputs, dim=1).cpu().detach().squeeze().numpy()[0] * 127).astype(np.uint8))
+                    show_image_plt(f"epoch{epoch+1}", (torch.argmax(v_outputs, dim=1).cpu().detach().squeeze().numpy() * 127).astype(np.uint8))
 
                     image_show_flag2 = False
                 valid_loss1 = dice_loss(v_outputs, v_masks_onehot)
@@ -298,19 +299,27 @@ if __name__ == "__main__":
 
         val_loss = running_valid_loss / len(valid_dataset)
 
-        if val_loss < min_val_loss or (epoch+1) % 10 == 0:
+        # if val_loss < min_val_loss or (epoch+1) % 10 == 0:
+        if val_loss < min_val_loss:
             isNewMinvalid = ""
             if val_loss < min_val_loss:
                 es = 0
                 isNewMinvalid = "_best"
                 min_val_loss = val_loss
-            else: es += 1
-            torch.save({
-                'epoch': epoch+1,
-                'model_state_dict': model.state_dict(),
-                'optimizer_state_dict': optimizer.state_dict(),
-                'loss': loss.item()
-            }, f"models/{start_time}/epoch{epoch+1}{isNewMinvalid}.pth")
+                torch.save({
+                    'epoch': epoch+1,
+                    'model_state_dict': model.state_dict(),
+                    'optimizer_state_dict': optimizer.state_dict(),
+                    'loss': loss.item()
+                }, f"models/{start_time}/epoch{epoch+1:05d}{isNewMinvalid}.pth")
+                model_list = os.listdir(f"models/{start_time}")
+                if len(model_list) > 5:
+                    model_list.sort()
+                    oldest_model_filename = model_list[0]
+                    os.remove(f'models/{start_time}/{oldest_model_filename}')
+
+            else:
+                es += 1
             tqdm.write(f"[train.py] train mean : {mean}, train std: {std}")
             tqdm.write(f"[train.py] [{epoch + 1}/{num_epochs}],Train Loss: {epoch_loss}, Loss: {val_loss:.8f}")
             tqdm.write(f"[train.py] New Checkpoint Saved {datetime.datetime.now().strftime('%Y%m%d_%H%M%S')}")

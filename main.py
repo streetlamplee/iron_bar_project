@@ -1,11 +1,8 @@
 import gc
-
 import matplotlib
 import os
 import json
-
 from tqdm import tqdm
-
 import getDisplayCoordinate
 from n_brute_force_gpu import brute_force_best_warp
 from n_randomseed import randomseed

@@ -33,11 +33,12 @@ def warp_perspective_torch(img, M):
 
 
 # --- MAIN BRUTE-FORCE WARPING ---
-def brute_force_best_warp(img_np, basis_np, _2d_point_np, offset=2, i=0):
+def brute_force_best_warp(img_np, iron_img_np, basis_np, _2d_point_np, offset=2, i=0):
     device = "cuda" if torch.cuda.is_available() else "cpu"
 
     # 준비: 이미지 및 기준점
     img_tensor = torch.from_numpy(img_np).unsqueeze(0).unsqueeze(0).float().to(device)  # [1, 1, H, W]
+    iron_img_tensor = torch.from_numpy(iron_img_np).unsqueeze(0).unsqueeze(0).float().to(device)
     _2d_point = torch.from_numpy(_2d_point_np).to(device).float()
     basis_image = torch.from_numpy(basis_np).to(device).float()
 
@@ -48,6 +49,7 @@ def brute_force_best_warp(img_np, basis_np, _2d_point_np, offset=2, i=0):
     max_num_255 = -1
     best_M = None
     best_warped = None
+    best_iron_warped = None
 
     for combo in tqdm(combos, desc="Searching"):
         offset_arr = torch.tensor(combo, dtype=torch.float32, device=device).view(4, 2)
@@ -61,6 +63,7 @@ def brute_force_best_warp(img_np, basis_np, _2d_point_np, offset=2, i=0):
         startpoint = dst_points.int().tolist()
         endpoint = [[0,0],[1024,0],[1024,1024],[0,1024]]
         warped = VF.perspective(img_tensor, startpoint, endpoint)
+        warped_iron = VF.perspective(iron_img_tensor, startpoint, endpoint)
         warped = F.interpolate(warped, size = (1024, 1024), mode = 'bilinear', align_corners=False)
         # cv2.imshow('',warped.squeeze(0).squeeze(0).detach().cpu().numpy())
         # cv2.waitKey(0)
@@ -75,6 +78,7 @@ def brute_force_best_warp(img_np, basis_np, _2d_point_np, offset=2, i=0):
             max_num_255 = num_255
             best_M = M
             best_warped = warped
+            best_iron_warped = warped_iron
             # best_warped_np = best_warped.detach().cpu().view(1080, 1440).numpy().astype(np.uint8)
             # cv2.imshow('test', best_warped_np)
             # cv2.waitKey(0)
@@ -97,4 +101,4 @@ def brute_force_best_warp(img_np, basis_np, _2d_point_np, offset=2, i=0):
     #
     # plt.show()
 
-    return best_M, best_warped
+    return best_M, best_warped, best_iron_warped

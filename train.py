@@ -90,8 +90,12 @@ def show_image_plt(title, image):
     # plt.show(block=False)
     plt.pause(2)
 
+def training(image_dir = "train/data",
+             mask_dir = "train/mask",
+             valid_image_dir="valid/data",
+             valid_mask_dir = "valid/mask"
 
-if __name__ == "__main__":
+):
     plt.ion()
     os.makedirs("models", exist_ok=True)
     parser = argparse.ArgumentParser()
@@ -132,8 +136,6 @@ if __name__ == "__main__":
 
 
     # 데이터셋과 데이터로더 생성
-    image_dir = "train/data"
-    mask_dir = "train/mask"
     dataset = SegmentationDataset(image_dir=image_dir, mask_dir=mask_dir, transform= train_transform)
     # sampler = RandomSampler(dataset, replacement=True, num_samples=len(dataset) * 10)
     data_loader = DataLoader(dataset, batch_size=2, num_workers=1, pin_memory=True, shuffle=True, drop_last = True)
@@ -141,9 +143,6 @@ if __name__ == "__main__":
 
     # test_image_dir = "/content/data/test"
     # test_mask_dir = "/content/data_masked/test"
-    valid_image_dir = "valid/data"
-    valid_mask_dir = "valid/mask"
-
     valid_dataset = SegmentationDataset(image_dir=valid_image_dir, mask_dir=valid_mask_dir, transform= test_transform)
     # valid_sampler = RandomSampler(valid_dataset, replacement=True, num_samples = len(valid_dataset) * 1)
     valid_data_loader = DataLoader(valid_dataset, batch_size=1, num_workers=1, pin_memory=True, drop_last = False)
@@ -338,4 +337,7 @@ if __name__ == "__main__":
         #     "es": es
         # }, step= epoch)
 
+    return True
 
+if __name__ == "__main__":
+    training()

@@ -246,6 +246,7 @@ if __name__ == "__main__":
     ], dtype = np.float32)
 
     basis_image = None
+    basis_iron_image = None
     for i, (r, t) in enumerate(zip(rvec_list, tvec_list)):
         gc.collect()
         torch.cuda.empty_cache()
@@ -253,9 +254,12 @@ if __name__ == "__main__":
         _2d_point = getDisplayCoordinate.get_display_coordinate(cam, r, t, target_3d)
 
 
-        img = cv2.imread(f'data/image_seg/{i+1}.png')
+        img = cv2.imread(f'model_outputs/{i+1}.png')
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         img = cv2.resize(img, (1440, 1080))
+        iron_img = cv2.imread(f'data/image_seg/{i+1}.png')
+        iron_img = cv2.cvtColor(iron_img, cv2.COLOR_BGR2GRAY)
+        iron_img = cv2.resize(iron_img, (1440, 1080))
         # colormap = [(255,0,0), (0,255,0), (0,0,255), (255,255,0)]
         # for i, point in enumerate(_2d_point):
         #     x, y = int(point[0]), int(point[1])
@@ -270,15 +274,19 @@ if __name__ == "__main__":
             warped = warp_perspective(img, _2d_point)
             basis_image = warped
             basis_image = np.astype(basis_image, np.float32)
+            iron_warped = warp_perspective(iron_img, _2d_point)
+            basis_iron_image = iron_warped
+            basis_iron_image = np.astype(basis_iron_image, np.float32)
             continue
 
-        best_M, best_warped = brute_force_best_warp(img, basis_image, _2d_point, offset = 3, i = i)
+        best_M, best_warped, best_iron_warped= brute_force_best_warp(img, iron_img, basis_image, _2d_point, offset = 2, i = i)
+
 
 
 
         # 기준 이미지와 best warped 이미지 블렌딩
-        basis_image = basis_image / 2. + torch.reshape(best_warped,(1024,1024)).detach().cpu().numpy() / 2.
-
+        basis_image = basis_image * i / (i + 1) + torch.reshape(best_warped,(1024,1024)).detach().cpu().numpy() * 1. / (i + 1)
+        basis_iron_image = basis_iron_image * i / (i + 1)  + torch.reshape(best_iron_warped, (1024, 1024)).detach().cpu().numpy() * 1 / (i + 1)
         # 결과 시각화
         import matplotlib.pyplot as plt
 
@@ -288,15 +296,19 @@ if __name__ == "__main__":
         # plt.show()
 
     basis_image = np.astype(basis_image, np.uint8)
-    cv2.imshow("result", basis_image)
-    cv2.waitKey(10000)
-    cv2.destroyWindow("result")
-    cv2.imwrite("res.png", basis_image)
+    # cv2.imshow("result", basis_image)
+    # cv2.waitKey(10000)
+    # cv2.destroyWindow("result")
+    cv2.imwrite("res_point.png", basis_image)
+
+    basis_iron_image = np.astype(basis_iron_image, np.uint8)
+
+    cv2.imwrite('res_iron_pointwise.png', basis_iron_image)
 
     thres = np.where(basis_image >= 254. * (0.875), 255, 0)
     thres = thres.astype(np.uint8)
 
-    cv2.imshow("thres", thres)
-    cv2.waitKey(10000)
-    cv2.destroyWindow("thres")
-    cv2.imwrite('res_thres.png', thres)
+    # cv2.imshow("thres", thres)
+    # cv2.waitKey(10000)
+    # cv2.destroyWindow("thres")
+    cv2.imwrite('res_point_thres.png', thres)

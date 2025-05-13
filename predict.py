@@ -1,24 +1,21 @@
 import os.path
-
 import torch
-from torch.utils.checkpoint import checkpoint
 
+from extension import get_latest_pth_file
 from  model_architecture import get_model
 import cv2
 from torchvision.transforms import v2
+import os
+
+
 
 
 def predict(model=None,test_data="data/image/5.jpg", recent=True):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     if model == None and recent:
-        model_folder = os.listdir('models')
-        model_folder.sort()
-        model_folder = model_folder[-1]
-        model_filename = os.listdir(f'models/{model_folder}')
-        model_filename.sort()
-        model_filename = model_filename[-1]
-        checkpoint = torch.load(f"models/{model_folder}/{model_filename}", map_location=torch.device(device))
-        print(f'[predict.py] ready to predict with model "models/{model_folder}/{model_filename}"')
+        model_path = get_latest_pth_file('models','.pth')
+        checkpoint = torch.load(f"models/{model_path}", map_location=torch.device(device))
+        print(f'[predict.py] ready to predict with model "models/{model_path}"')
     elif model != None:
         checkpoint = torch.load(model, map_locatioin=torch.device(device))
     else:

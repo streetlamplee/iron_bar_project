@@ -8,7 +8,7 @@ import cv2
 from torchvision.transforms import v2
 
 
-def predict(model=None,test_data="data/image/1.jpg", recent=True):
+def predict(model=None,test_data="data/image/5.jpg", recent=True):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     if model == None and recent:
         model_folder = os.listdir('models')
@@ -43,7 +43,7 @@ def predict(model=None,test_data="data/image/1.jpg", recent=True):
     res = output.squeeze(0).cpu().detach().numpy()*255
     if not os.path.exists('model_outputs'):
         os.mkdir('model_outputs')
-    cnt = len(os.listdir('model_outputs'))
+    cnt = len(os.listdir('model_outputs'))+1
     cv2.imwrite(f'model_outputs/{cnt}.png', res)
     # cv2.imshow('',res)
     # cv2.waitKey(0)

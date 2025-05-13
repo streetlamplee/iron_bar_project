@@ -306,7 +306,5 @@ pyrightconfig.json
 
 model/
 models/
-data/
+*.png
 del/
-train/
-valid/

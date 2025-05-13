@@ -353,7 +353,7 @@ class DiceLoss(nn.Module):
 #         hf = self.hf(lf)
 #         return self.head(lf, hf)
 
-def get_model(num_classes, norm):
+def get_model(num_classes, norm='bn'):
     model = DeepLabv3Plus(num_classes)
     # model = SegmentationModel()
     if norm == "gn":

@@ -4,6 +4,7 @@ import os
 import json
 from tqdm import tqdm
 import getDisplayCoordinate
+from n_blur import custom_blur
 from n_brute_force_gpu import brute_force_best_warp
 from n_randomseed import randomseed
 from n_camera import Camera
@@ -77,16 +78,12 @@ randomseed(42)
 # chess_board_center = (-500, -500, 0)
 # chess_board_plane = pv.Plane(center = chess_board_center, i_size= num_cell*cell_size, j_size = num_cell*cell_size)
 # plotter.add_mesh(chess_board_plane, texture = texture_chess_board, ambient=1.0, diffuse=0.0, specular = 0.0)
-clicked_points = []
-def click_event_warp(event, x, y, flags, param):
-    if event == cv2.EVENT_LBUTTONDOWN:
-        if len(clicked_points) < 4:
-            clicked_points.append((x,y))
+
 
 clicked_points_pnp = []
 def click_event_pnp(event, x, y, flags, param):
     if event == cv2.EVENT_LBUTTONDOWN:
-        if len(clicked_points) < 4:
+        if len(clicked_points_pnp) < 4:
             clicked_points_pnp.append([x,y])
 
 # =====================================
@@ -192,10 +189,14 @@ if __name__ == "__main__":
     PnP data 없으면 PnP 실행 >> rvec 과 tvec 구하기
     '''
     _3d_coordinate = np.array([
-        [843, -840, 100],
-        [420, -830, 100],
-        [420, -415, 100],
-        [843, -412, 100],
+        [1170, -1210, 100],
+        [0, -1185, 100],
+        [0, 0, 100],
+        [1227, 0, 100],
+        # [843, -840, 100],
+        # [420, -830, 100],
+        # [420, -415, 100],
+        # [843, -412, 100],
     ], dtype = np.float32)          ## 사진 순서 : 첫 사진 기준 좌상 > 우상 > 우하 > 좌하 ## 하부근 z 축 값 12, 상부근 z 축 값 100
     if os.path.exists('cache/pnp.json'):
         with open('cache/pnp.json', 'r') as f:
@@ -235,59 +236,101 @@ if __name__ == "__main__":
     '''
 
     target_3d = np.array([
-        # [1200, -1200, 100],
-        # [0, -1200, 100],
-        # [0, 0, 100],
-        # [1200, 0, 100],
-        [843, -840, 100],
-        [420, -830, 100],
-        [420, -415, 100],
-        [843, -412, 100],
+        [1170, -1210, 100],
+        [0, -1185, 100],
+        [0, 0, 100],
+        [1227, 0, 100],
+        # [843, -840, 100],
+        # [420, -830, 100],
+        # [420, -415, 100],
+        # [843, -412, 100],
     ], dtype = np.float32)
 
     basis_image = None
-    basis_iron_image = None
+    basis_seg_image = None
     for i, (r, t) in enumerate(zip(rvec_list, tvec_list)):
         gc.collect()
         torch.cuda.empty_cache()
         os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+
+        # this is for auto mode
         _2d_point = getDisplayCoordinate.get_display_coordinate(cam, r, t, target_3d)
 
-
+        # this is for manual mode
+        _2d_point = _2d_coordinate[f'{i}']
+        _2d_point = np.array(_2d_point, dtype = np.float32)
         img = cv2.imread(f'model_outputs/{i+1}.png')
         img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
-        img = cv2.resize(img, (1440, 1080))
+        img = cv2.resize(img, (1360, 1020))
         iron_img = cv2.imread(f'data/image_seg/{i+1}.png')
         iron_img = cv2.cvtColor(iron_img, cv2.COLOR_BGR2GRAY)
-        iron_img = cv2.resize(iron_img, (1440, 1080))
-        # colormap = [(255,0,0), (0,255,0), (0,0,255), (255,255,0)]
-        # for i, point in enumerate(_2d_point):
-        #     x, y = int(point[0]), int(point[1])
-        #     cv2.circle(img, (x,y), radius=3, thickness = -1, color=colormap[i])
-        # cv2.imshow('img',img)
-        # cv2.waitKey(0)
-        # cv2.destroyWindow('img')
+        iron_img = cv2.resize(iron_img, (1360, 1020))
+
+
+        '''
+        250514 test code
+        '''
+        for p in range(len(_2d_point)):
+            point = _2d_point[p].astype(np.int32)
+            cv2.circle(iron_img, point, radius=5, thickness=-1, color=(255, 255, 255))
+
+        cv2.imwrite(f'250514/{i+1}.png', iron_img)
+        # warp_image = warp_perspective(iron_img, _2d_point)
+        # cv2.imwrite(f'warp_image/{i+1}.png', warp_image)
+        #
+        # continue
+
         '''
         x, y offset을 이용한 brutal force
         '''
         if i == 0:
             warped = warp_perspective(img, _2d_point)
+            warped = custom_blur(warped)
             basis_image = warped
             basis_image = np.astype(basis_image, np.float32)
             iron_warped = warp_perspective(iron_img, _2d_point)
-            basis_iron_image = iron_warped
-            basis_iron_image = np.astype(basis_iron_image, np.float32)
+            iron_warped = custom_blur(iron_warped)
+            basis_seg_image = iron_warped
+            basis_seg_image = np.astype(basis_seg_image, np.float32)
+            '''
+            250514 확인용 코드
+            '''
+            if not os.path.exists('250514'):
+                os.mkdir('250514')
+                os.mkdir('250514/iter_point')
+                os.mkdir('250514/iter_line')
+
+            cv2.imwrite(f'250514/iter_point/{i + 1}.png', np.reshape(warped, (1024, 1024)).astype(np.uint8))
+            cv2.imwrite(f'250514/iter_line/{i + 1}.png', np.reshape(iron_warped, (1024, 1024)).astype(np.uint8))
+            cv2.imwrite(f'250514/iter_{i + 1}_basis_image.png', basis_image.astype(np.uint8))
+            cv2.imwrite(f'250514/iter_{i + 1}_basis_seg_image.png', basis_seg_image.astype(np.uint8))
+
             continue
 
-        best_M, best_warped, best_iron_warped= brute_force_best_warp(img, iron_img, basis_image, _2d_point, offset = 2, i = i)
+
+        best_warped, best_seg_warped, _= brute_force_best_warp(img, iron_img, basis_image, _2d_point, offset = 8, i = i)
 
 
 
 
         # 기준 이미지와 best warped 이미지 블렌딩
-        basis_image = basis_image * i / (i + 1) + torch.reshape(best_warped,(1024,1024)).detach().cpu().numpy() * 1. / (i + 1)
-        basis_iron_image = basis_iron_image * i / (i + 1)  + torch.reshape(best_iron_warped, (1024, 1024)).detach().cpu().numpy() * 1 / (i + 1)
+        basis_image = basis_image * i / (i + 1) + np.reshape(best_warped,(1024,1024)) * 1. / (i + 1)
+        basis_seg_image = basis_seg_image * i / (i + 1) + np.reshape(best_seg_warped, (1024, 1024)) * 1 / (i + 1)
         # 결과 시각화
+        '''
+        250514 확인용 코드
+        '''
+        if not os.path.exists('250514'):
+            os.mkdir('250514')
+            os.mkdir('250514/iter_point')
+            os.mkdir('250514/iter_line')
+
+        cv2.imwrite(f'250514/iter_point/{i+1}.png', np.reshape(best_warped,(1024,1024)).astype(np.uint8))
+        cv2.imwrite(f'250514/iter_line/{i+1}.png', np.reshape(best_seg_warped, (1024, 1024)).astype(np.uint8))
+        cv2.imwrite(f'250514/iter_{i+1}_basis_image.png', basis_image.astype(np.uint8))
+        cv2.imwrite(f'250514/iter_{i+1}_basis_seg_image.png', basis_seg_image.astype(np.uint8))
+
+
         import matplotlib.pyplot as plt
 
         # plt.imshow(basis_image.astype(np.uint8), cmap='gray')
@@ -301,14 +344,18 @@ if __name__ == "__main__":
     # cv2.destroyWindow("result")
     cv2.imwrite("res_point.png", basis_image)
 
-    basis_iron_image = np.astype(basis_iron_image, np.uint8)
+    basis_seg_image = np.astype(basis_seg_image, np.uint8)
 
-    cv2.imwrite('res_iron_pointwise.png', basis_iron_image)
+    cv2.imwrite('res_iron_pointwise.png', basis_seg_image)
 
-    thres = np.where(basis_image >= 254. * (0.875), 255, 0)
+    thres = np.where(basis_image >= 254. * 0.875, 255, 0)
+    thres_seg = np.where(basis_seg_image >= 254. * 0.875, 255, 0)
+
     thres = thres.astype(np.uint8)
+    thres_seg = thres_seg.astype(np.uint8)
 
     # cv2.imshow("thres", thres)
     # cv2.waitKey(10000)
     # cv2.destroyWindow("thres")
     cv2.imwrite('res_point_thres.png', thres)
+    cv2.imwrite('res_iron_pointwise_thres.png', thres_seg)

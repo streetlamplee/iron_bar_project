@@ -1,3 +1,5 @@
+import random
+from collections import deque
 import torch
 import torch.nn.functional as F
 import torchvision.transforms.functional as VF
@@ -7,34 +9,35 @@ import cv2
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 
-
-def get_perspective_grid(M, out_h, out_w):
-    device = M.device
-    ys, xs = torch.meshgrid(
-        torch.arange(out_h, device=device),
-        torch.arange(out_w, device=device),
-        indexing='ij'
-    )
-    ones = torch.ones_like(xs)
-    coords = torch.stack([xs, ys, ones], dim=-1).reshape(-1, 3).T  # [3, H*W]
-    coords = coords.float()
-    warped = M @ coords  # [3, H*W]
-    warped = warped[:2] / warped[2:]  # normalize
-    warped = warped.T.reshape(out_h, out_w, 2)
-    warped[..., 0] = (warped[..., 0] / (out_w - 1)) * 2 - 1
-    warped[..., 1] = (warped[..., 1] / (out_h - 1)) * 2 - 1
-    return warped.unsqueeze(0)  # [1, H, W, 2]
-
-
-def warp_perspective_torch(img, M):
-    _, _, H, W = img.shape
-    grid = get_perspective_grid(M, H, W)
-    return F.grid_sample(img, grid, align_corners=True)
+from n_blur import custom_blur
+from n_warp import warp_perspective
 
 
 # --- MAIN BRUTE-FORCE WARPING ---
-def brute_force_best_warp(img_np, iron_img_np, basis_np, _2d_point_np, offset=2, i=0):
+def brute_force_best_warp(img_np:np.ndarray, iron_img_np:np.ndarray, basis_np, _2d_point_np, offset:int=2, i=0, best_score = -1):
+    offset_test = offset
+    while offset_test > 1.:
+        offset_test /= 2.
+    if offset_test != 1.:
+        raise "The 'offset' argument must be a power of 2."
+
+    top_k = 3
+    top_k_queue = deque()
+    best_warp = None
+    best_seg_warp = None
     device = "cuda" if torch.cuda.is_available() else "cpu"
+
+    # img_np_copy = cv2.cvtColor(img_np, cv2.COLOR_GRAY2BGR)
+    # iron_img_np_copy = cv2.cvtColor(iron_img_np, cv2.COLOR_GRAY2BGR)
+    #
+    # for p in range(len(_2d_point_np)):
+    #     cv2.circle(img_np_copy, _2d_point_np[p].astype(np.int32).tolist(), radius=5, thickness=-1, color=(0, 0, 255))
+    #     cv2.circle(iron_img_np_copy, _2d_point_np[p].astype(np.int32).tolist(), radius=5, thickness=-1, color=(0, 0, 255))
+    #
+    # cv2.imshow('point_img', img_np_copy)
+    # cv2.imshow('line_img', iron_img_np_copy)
+    # cv2.waitKey(0)
+    # cv2.destroyAllWindows()
 
     # 준비: 이미지 및 기준점
     img_tensor = torch.from_numpy(img_np).unsqueeze(0).unsqueeze(0).float().to(device)  # [1, 1, H, W]
@@ -42,63 +45,76 @@ def brute_force_best_warp(img_np, iron_img_np, basis_np, _2d_point_np, offset=2,
     _2d_point = torch.from_numpy(_2d_point_np).to(device).float()
     basis_image = torch.from_numpy(basis_np).to(device).float()
 
-    r = range(-offset, offset + 1)
-    combos = list(itertools.product(r, repeat=8))
-    print(f"Total combos: {len(combos)}")
+    '''
+    250514 blur 처리해서 해보기
+    '''
+    k_size = 5
+    img_np = custom_blur(img_np)
+    iron_img_np = custom_blur(iron_img_np)
 
-    max_num_255 = -1
-    best_M = None
+    r = range(-offset, offset + 1, offset)
+    cand_combos = list(itertools.product(r, repeat=8))
+    combos = random.sample(cand_combos, int(len(cand_combos) / 4))
+
     best_warped = None
-    best_iron_warped = None
+    best_seg_warped = None
+    best_combo = None
+    for combo in tqdm(combos, desc=f"{"Searching with offset " + str(offset) :^30} | {"Start with Best Score: " + str(best_score):^30}"):
+        offset_tensor = torch.tensor(combo, dtype=torch.float32, device=device).view(4, 2)
+        _2d_point_iter = _2d_point + offset_tensor
 
-    for combo in tqdm(combos, desc="Searching"):
-        offset_arr = torch.tensor(combo, dtype=torch.float32, device=device).view(4, 2)
-        dst_points = _2d_point + offset_arr
+        # startpoint = _2d_point_iter.int().tolist()
+        # endpoint = [[0,0],[1024,0],[1024,1024],[0,1024]]
+        # warped = VF.perspective(img_tensor, startpoint, endpoint)
+        # warped_iron = VF.perspective(iron_img_tensor, startpoint, endpoint)
+        #
+        #
+        # #this iter warped point image
+        # warped = F.interpolate(warped, size = (1024, 1024), mode = 'bilinear', align_corners=False)
+        #
+        # #this iter warped segment image
+        # warped_iron = F.interpolate(warped_iron, size= (1024, 1024), mode = 'bilinear', align_corners=False)
 
-        # Perspective transform 행렬 (NumPy로 계산 후 변환)
-        M_np = cv2.getPerspectiveTransform(_2d_point.cpu().numpy().astype(np.float32),
-                                           dst_points.cpu().numpy().astype(np.float32))
-        M = torch.from_numpy(M_np).float().to(device)
+        warped = warp_perspective(img_np, _2d_point_iter.float().detach().cpu().numpy())
+        warped_iron = warp_perspective(iron_img_np, _2d_point_iter.float().detach().cpu().numpy())
 
-        startpoint = dst_points.int().tolist()
-        endpoint = [[0,0],[1024,0],[1024,1024],[0,1024]]
-        warped = VF.perspective(img_tensor, startpoint, endpoint)
-        warped_iron = VF.perspective(iron_img_tensor, startpoint, endpoint)
-        warped = F.interpolate(warped, size = (1024, 1024), mode = 'bilinear', align_corners=False)
-        # cv2.imshow('',warped.squeeze(0).squeeze(0).detach().cpu().numpy())
-        # cv2.waitKey(0)
-        # cv2.destroyWindow('')
-        basis_iter = basis_image * i / (i + 1)
+        basis_iter = basis_np * i / (i + 1)
         warped_scaled = warped * 1. / (i + 1)
         target_iter = basis_iter + warped_scaled
 
-        num_255 = torch.count_nonzero(target_iter >= 255.).item()
+        score = np.count_nonzero(target_iter >= 255. / 2 * 1)
 
-        if num_255 > max_num_255:
-            max_num_255 = num_255
-            best_M = M
+        next_target_2d_point = _2d_point_iter.detach().cpu().numpy()
+        if offset != 1 and score > best_score:
+            top_k_queue.appendleft((img_np, iron_img_np, basis_np, next_target_2d_point, int(offset/2), i, score))
+            if len(top_k_queue) > top_k:
+                top_k_queue.pop()
+        if score > best_score:
             best_warped = warped
-            best_iron_warped = warped_iron
-            # best_warped_np = best_warped.detach().cpu().view(1080, 1440).numpy().astype(np.uint8)
-            # cv2.imshow('test', best_warped_np)
-            # cv2.waitKey(0)
-            # cv2.destroyWindow('test')
-            # print(f'')
-    # 최종 블렌딩
-    # basis_image = basis_image / 2. + best_warped / 2.
+            best_seg_warped = warped_iron
+            best_combo = combo
+            best_score = score
 
-    # # 시각화
-    # plt.figure(figsize=(20, 10))
-    # plt.subplot(1, 2, 1)
-    # plt.imshow(basis_image.squeeze().detach().cpu().numpy().astype(np.uint8), cmap='gray')
-    # plt.axis('off')
-    # plt.title("Blended Image")
-    #
-    # plt.subplot(1, 2, 2)
-    # plt.imshow(best_warped.squeeze().detach().cpu().numpy().astype(np.uint8), cmap='gray')
-    # plt.axis('off')
-    # plt.title("Best Warped")
-    #
-    # plt.show()
 
-    return best_M, best_warped, best_iron_warped
+    tqdm.write(f"In this Recursive, best score is {best_score}")
+
+
+    if offset == 1:
+        if best_warped is not None and best_seg_warped is not None:
+            return best_warped, best_seg_warped, best_score
+        else:
+            return None, None, -1
+
+    else:
+        while top_k_queue:
+            args = top_k_queue.pop()
+            cand_warp, cand_seg_warp, cand_score = brute_force_best_warp(*args)
+
+            if cand_score > best_score:
+                best_warped = cand_warp
+                best_seg_warped = cand_seg_warp
+                best_score = cand_score
+
+        return best_warped, best_seg_warped, best_score
+
+

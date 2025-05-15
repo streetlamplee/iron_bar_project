@@ -1,5 +1,7 @@
 import os
 
+import cv2
+
 
 def get_latest_pth_file(base_dir, extension):
     latest_path = None
@@ -17,3 +19,8 @@ def get_latest_pth_file(base_dir, extension):
     if latest_path:
         return os.path.relpath(latest_path, base_dir)  # 상대경로로 반환
     return None
+
+def image_show(title='', image = None, delay = 0):
+    cv2.imshow(title, image)
+    cv2.waitKey(delay)
+    cv2.destroyWindow(title)

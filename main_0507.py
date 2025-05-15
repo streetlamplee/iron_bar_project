@@ -170,7 +170,8 @@ if __name__ == "__main__":
     '''
     rvec과 tvec을 알고 있으니, 3D >> 2D 좌표로 변환가능  
     '''
-    z_offset = [z for z in range(-10, 11)]
+    # z_offset = [z for z in range(-10, 11)]
+    z_offset = [0]
     z_result = []
     z_warp = []
     for z in z_offset:

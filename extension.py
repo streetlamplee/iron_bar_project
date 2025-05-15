@@ -20,7 +20,7 @@ def get_latest_pth_file(base_dir, extension):
         return os.path.relpath(latest_path, base_dir)  # 상대경로로 반환
     return None
 
-def image_show(title='', image = None, delay = 0):
+def image_show(image, title='',  delay = 0):
     cv2.imshow(title, image)
     cv2.waitKey(delay)
     cv2.destroyWindow(title)

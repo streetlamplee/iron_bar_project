@@ -13,7 +13,7 @@ import os
 def predict(model=None,test_data="data/image/5.jpg", recent=True):
     device = "cuda" if torch.cuda.is_available() else "cpu"
     if model == None and recent:
-        model_path = get_latest_pth_file('models','.pth')
+        model_path = get_latest_pth_file('../models', '.pth')
         checkpoint = torch.load(f"models/{model_path}", map_location=torch.device(device))
         print(f'[predict.py] ready to predict with model "models/{model_path}"')
     elif model != None:
@@ -38,9 +38,9 @@ def predict(model=None,test_data="data/image/5.jpg", recent=True):
         output = torch.softmax(output, 1)
         output = torch.argmax(output, dim=1)
     res = output.squeeze(0).cpu().detach().numpy()*255
-    if not os.path.exists('model_outputs'):
-        os.mkdir('model_outputs')
-    cnt = len(os.listdir('model_outputs'))+1
+    if not os.path.exists('../model_outputs'):
+        os.mkdir('../model_outputs')
+    cnt = len(os.listdir('../model_outputs')) + 1
     cv2.imwrite(f'model_outputs/{cnt}.png', res)
     # cv2.imshow('',res)
     # cv2.waitKey(0)

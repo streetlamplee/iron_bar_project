@@ -1,16 +1,15 @@
-import cv2
-import numpy as np
+import json
 
-img = cv2.imread('250514/iter_5_basis_seg_image.png')
+with open('find-cross-point-model/valid/data.json', 'r') as f:
+    j = json.load(f)
 
-img = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+l_ = 0
 
-threshold_value = np.sum(np.where(img > 255 / 2, img, 0)) / np.count_nonzero(img > 255 / 2)
-print(threshold_value)
+for item in j.values():
+    l = len(item['mask'])
+    l_ += l
 
-img = np.where(img > threshold_value, 255, 0)
-img = img.astype(np.uint8)
+j['len'] = l_
 
-cv2.imshow('',img)
-cv2.waitKey(0)
-cv2.destroyWindow('')
+with open('find-cross-point-model/valid/data.json', 'w') as f:
+    json.dump(j, f, indent=1)

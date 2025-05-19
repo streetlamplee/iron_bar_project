@@ -1,13 +1,13 @@
 import argparse
 import numpy as np
-from PIL import Image, ImageDraw
+from PIL import Image
 import os
 import torch
 from torch import autocast
 from torch.amp import GradScaler
 from torch.utils.data import Dataset
 from torchvision.transforms import v2
-from torch.utils.data import DataLoader, RandomSampler, WeightedRandomSampler
+from torch.utils.data import DataLoader
 import torch.optim as optim
 import gc
 from tqdm import tqdm
@@ -16,16 +16,11 @@ import matplotlib
 import matplotlib.pyplot as plt
 # from DataProcessing import compute_mean_std
 from torchvision.transforms.functional import InterpolationMode
-import random
+
+import extension
 import model_architecture
 import warnings
-import threading
-from torchvision.transforms import functional as F
-import torchvision.tv_tensors
-import albumentations as A
-from albumentations.pytorch import ToTensorV2
-from torchvision.transforms import ToPILImage
-import cv2
+
 # import wandb
 # from wandb.apis.importers.internals.util import for_each
 matplotlib.use('TkAgg')
@@ -33,14 +28,7 @@ matplotlib.use('TkAgg')
 warnings.filterwarnings("ignore")
 warnings.filterwarnings("ignore", category=UserWarning)
 
-def set_seed(seed: int = 42):
-    random.seed(seed)  # Python random seed 설정
-    np.random.seed(seed)  # NumPy random seed 설정
-    torch.manual_seed(seed)  # PyTorch CPU 시드 설정
-    torch.cuda.manual_seed(seed)  # PyTorch GPU 시드 설정 (한 개의 GPU 사용 시)
-    torch.cuda.manual_seed_all(seed)  # PyTorch 다중 GPU 사용 시 모든 GPU에 같은 seed 설정
-    torch.backends.cudnn.deterministic = True  # CuDNN deterministic 설정
-    torch.backends.cudnn.benchmark = False  # 성능보다 재현성을 우선할 경우 False로 설정
+
 
 class SegmentationDataset(Dataset):
     def __init__(self, image_dir, mask_dir, transform = None):
@@ -97,7 +85,7 @@ def training(image_dir = "train/data",
 
 ):
     plt.ion()
-    os.makedirs("models", exist_ok=True)
+    os.makedirs("../models", exist_ok=True)
     parser = argparse.ArgumentParser()
     parser.add_argument("--norm", type=str)
     parser.add_argument("--model", type=str, help="Choose Model to Train")
@@ -105,7 +93,7 @@ def training(image_dir = "train/data",
 
     img_size = 512
 
-    set_seed(42)
+    extension.set_seed(42)
 
     # 사용 예시
     img_dir = 'data/train/image'  # 철근 사진 폴더 경로

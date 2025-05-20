@@ -2,7 +2,7 @@ import os
 from torchvision import transforms
 import numpy as np
 import extension
-from model import pointFindingModel
+from find_cross_point_model.model import pointFindingModel
 import torch
 import cv2
 
@@ -60,15 +60,18 @@ def main():
             output = model(t_image)
             print(output.shape)
             output = torch.sigmoid(output)
-            keypoints = extract_keypoints_from_tensor(output, 1024, 4, 0.5)
+            keypoints = extract_keypoints_from_tensor(output, 256, 4, 0.5)
         res = cv2.imread(os.path.join(test_image_folder, test_image))
         for keypoint in keypoints:
             h, w, o = keypoint
             h = int(h)
             w = int(w)
-            if o >= 0.1:
+            if o >= .5:
                 cv2.circle(res, (h,w), 2, (0,0,255), -1)
+        os.makedirs('result', exist_ok=True)
+        cv2.imwrite(os.path.join('result', test_image), res)
         extension.image_show(res, title=test_image)
+
 
 
 

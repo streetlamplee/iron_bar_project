@@ -4,8 +4,6 @@ import os
 from PIL import Image
 from torchvision import transforms
 import json
-import numpy as np
-from predict import extract_keypoints_from_tensor
 
 def caculate_tensor(image_size, grid_size, keypoint):
     """
@@ -38,6 +36,8 @@ def caculate_tensor(image_size, grid_size, keypoint):
 
 def calculate_tensor(image_size, grid_size, keypoints, max_points_per_cell=4):
     stride = image_size // grid_size
+    grid_size = int(grid_size)
+    stride = int(stride)
     target = torch.zeros((grid_size, grid_size, max_points_per_cell * 3), dtype=torch.float32)
 
     for x, y in keypoints:
@@ -78,16 +78,12 @@ class PointDataset(Dataset):
         data = self.data_json[f'{original_idx}']
         image_path = data['filename']
 
-
-
-
         # 이미지와 마스크 로드
         image = Image.open(image_path).convert("RGB")
         points = data['mask']
 
-
         if self.transform :
-            image, points = self.transform(image, points)
+            image = self.transform(image)
             Normalization = transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
             image = Normalization(image)
 
@@ -95,5 +91,6 @@ class PointDataset(Dataset):
 
         size = int(self.input_size / 32)
         mask = calculate_tensor(256, size, points)
+        mask = mask.permute(2,0,1)
         # test = extract_keypoints_from_tensor(mask.unsqueeze(0).permute(0,3,1,2), 256)
         return image, mask

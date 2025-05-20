@@ -65,8 +65,8 @@ def main():
     '''
     데이터 로더 만들기
     '''
-    train_loader = DataLoader(train_dataset, batch_size=2, num_workers=1, pin_memory=True, shuffle=True, drop_last=True)
-    valid_loader = DataLoader(valid_dataset, batch_size=1, num_workers=1, pin_memory=True, shuffle=False, drop_last=False)
+    train_loader = DataLoader(train_dataset, batch_size=4, num_workers=1, pin_memory=True, shuffle=True, drop_last=True)
+    valid_loader = DataLoader(valid_dataset, batch_size=4, num_workers=1, pin_memory=True, shuffle=False, drop_last=False)
 
     '''
     학습에 필요한 요소 선언
@@ -82,7 +82,7 @@ def main():
 
     target_epochs = 99999
     min_val_loss = float('inf')
-    es = EarlyStopping(patience=1000, mode='min', delta=1e-7)
+    es = EarlyStopping(patience=1999, mode='min', delta=1e-7)
     print_with(f'device: {device}')
 
     '''
@@ -105,14 +105,14 @@ def main():
 
         for image, target in tqdm(train_loader, desc=str_with(f"Epoch {epoch}/{target_epochs}")):
             image = image.to(device)
-            target = target.permute(0,3,1,2).to(device)
+            target = target.to(device)
 
             optimizer.zero_grad()
             with autocast(device_type='cuda'):
                 output_logit = model(image)
                 # output = torch.sigmoid(output_logit) # class가 1이 아닌 경우, softmax로 변경할 것
-                output = torch.sigmoid(output_logit)
-                loss, _, _ = criterion(output, output_logit, target)
+                # output = torch.sigmoid(output_logit)
+                loss, _, _ = criterion(output_logit, target)
 
             if not torch.isfinite(loss):
                 print_with("Loss NaN or Inf")
@@ -131,10 +131,10 @@ def main():
 
         with torch.no_grad():
             for v_image, v_target in tqdm(valid_loader, desc = str_with(f"Validation")):
-                v_image, v_target = v_image.to(device), v_target.permute(0,3,1,2).to(device)
+                v_image, v_target = v_image.to(device), v_target.to(device)
                 v_output_logit = model(v_image)
-                v_output = torch.sigmoid(v_output_logit)
-                v_loss, _, _ = criterion(v_output, v_output_logit, v_target)
+                # v_output = torch.sigmoid(v_output_logit)
+                v_loss, _, _ = criterion(v_output_logit, v_target)
 
                 valid_loss += v_loss.item() * v_image.size(0)
 

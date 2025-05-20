@@ -10,7 +10,7 @@ class clickHandler:
         if event == cv2.EVENT_LBUTTONDOWN:
             self.clicked_points.append([x,y])
 
-def make_data(path:str, output_folder:str, num:int):
+def make_data(path:str, output_folder:str, n:int):
     if not os.path.exists(path):
         raise RuntimeError(f'No Directory Found : {path}')
 
@@ -18,13 +18,24 @@ def make_data(path:str, output_folder:str, num:int):
         os.makedirs(f'{output_folder}', exist_ok=True)
         os.mkdir(f'{output_folder}/image')
 
-    image_filename_list = os.listdir(path)
+        image_filename_list = os.listdir(path)
 
-    crop_height = 256
-    crop_width = 256
-    json_s = {}
-    json_s['len'] = 0
-    cnt = 0
+        crop_height = 256
+        crop_width = 256
+        json_s = {}
+        json_s['len'] = 0
+        cnt = 0
+        num = 0
+
+    if os.path.exists(f'{output_folder}'):
+        image_filename_list = os.listdir(path)
+
+        crop_height = 256
+        crop_width = 256
+        with open(os.path.join(output_folder, 'data.json'), 'r') as f:
+            json_s = json.load(f)
+        cnt = len(json_s.keys()) -1
+        num = cnt
 
     while True:
         random_idx = np.random.randint(0, len(image_filename_list))
@@ -66,11 +77,11 @@ def make_data(path:str, output_folder:str, num:int):
         json_s[f'{cnt}'] = json_value
         cnt += 1
 
-        if len(json_s) >= num+1:
+        if len(json_s) - num >= n+1:
             break
 
     with open(os.path.join(output_folder, 'data.json'), 'w') as json_file:
         json.dump(json_s, json_file, indent=1)
 
 if __name__ == "__main__":
-    make_data('../warp_image', 'valid', 2)
+    make_data('../warp_image', 'train', 16)

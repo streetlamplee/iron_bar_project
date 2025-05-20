@@ -1,15 +1,26 @@
 import json
+import os
+import cv2
 
-with open('find-cross-point-model/valid/data.json', 'r') as f:
-    j = json.load(f)
+import extension
+from find_cross_point_model.dataset import calculate_tensor
+from find_cross_point_model.predict import extract_keypoints_from_tensor
 
-l_ = 0
+with open('find_cross_point_model/train/data.json', 'r') as f:
+    json_file = json.load(f)
 
-for item in j.values():
-    l = len(item['mask'])
-    l_ += l
+for key in json_file.keys():
+    if key == 'len':
+        continue
 
-j['len'] = l_
-
-with open('find-cross-point-model/valid/data.json', 'w') as f:
-    json.dump(j, f, indent=1)
+    image_path = json_file[key]['filename']
+    mask = json_file[key]['mask']
+    image = cv2.imread(os.path.join('find_cross_point_model', image_path))
+    c_tensor = calculate_tensor(image.shape[0], int(image.shape[0] / 32), mask)
+    c_tensor = c_tensor.unsqueeze(0).permute(0,3,1,2)
+    mask_after_f = extract_keypoints_from_tensor(c_tensor, image.shape[0])
+    for m in mask_after_f:
+        h, w, o = m
+        if o >= 0.5:
+            cv2.circle(image, (int(h),int(w)), radius = 2, thickness = -1, color = (0,0,255))
+    extension.image_show(image)

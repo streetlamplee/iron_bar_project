@@ -14,21 +14,8 @@ def make_data(path:str, output_folder:str, n:int):
     if not os.path.exists(path):
         raise RuntimeError(f'No Directory Found : {path}')
 
-    if not os.path.exists(f'{output_folder}'):
-        os.makedirs(f'{output_folder}', exist_ok=True)
-        os.mkdir(f'{output_folder}/image')
+    if os.path.exists(os.path.join(output_folder, 'data.json')):
 
-        image_filename_list = os.listdir(path)
-
-        crop_height = 256
-        crop_width = 256
-        json_s = {}
-        json_s['len'] = 0
-        cnt = 0
-        num = 0
-
-    if os.path.exists(f'{output_folder}'):
-        image_filename_list = os.listdir(path)
 
         crop_height = 256
         crop_width = 256
@@ -37,9 +24,24 @@ def make_data(path:str, output_folder:str, n:int):
         cnt = len(json_s.keys()) -1
         num = cnt
 
+    if not os.path.exists(os.path.join(output_folder, 'data.json')):
+        os.makedirs(f'{output_folder}', exist_ok=True)
+        os.makedirs(f'{output_folder}/image', exist_ok=True)
+
+        crop_height = 256
+        crop_width = 256
+        json_s = {}
+        json_s['len'] = 0
+        cnt = 0
+        num = 0
+
+    image_filename_list = os.listdir(path)
+
     while True:
-        random_idx = np.random.randint(0, len(image_filename_list))
-        image_filename = image_filename_list[random_idx]
+        # random_idx = np.random.randint(0, len(image_filename_list))
+        idx = -1
+        idx += 1
+        image_filename = image_filename_list[idx]
         if not image_filename.endswith(('.png','.jpg')):
             continue
 
@@ -49,8 +51,8 @@ def make_data(path:str, output_folder:str, n:int):
 
         h, w, _ = image.shape
 
-        crop_h = np.random.randint(0, h - crop_height)
-        crop_w = np.random.randint(0, w - crop_width)
+        crop_h = np.random.randint(0, h - crop_height+1)
+        crop_w = np.random.randint(0, w - crop_width+1)
 
         image_crop = image[crop_h:crop_h + crop_height, crop_w:crop_w + crop_width]
 
@@ -83,5 +85,6 @@ def make_data(path:str, output_folder:str, n:int):
     with open(os.path.join(output_folder, 'data.json'), 'w') as json_file:
         json.dump(json_s, json_file, indent=1)
 
+
 if __name__ == "__main__":
-    make_data('../warp_image', 'train', 16)
+    make_data('../warp_image', 'data', 5)

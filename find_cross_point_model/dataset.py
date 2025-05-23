@@ -83,7 +83,7 @@ class PointDataset(Dataset):
         points = data['mask']
 
         if self.transform :
-            image = self.transform(image)
+            image, points = self.transform(image, points)
             Normalization = transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
             image = Normalization(image)
 

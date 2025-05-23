@@ -16,7 +16,7 @@ from data_processing import make_data
 from dataset import PointDataset
 from criterion import pointFinderCriterion
 from EarlyStopping import EarlyStopping
-import custom_transforms
+import custom_transform
 
 print_with = extension.print_with
 str_with = extension.str_with
@@ -41,20 +41,10 @@ def main():
     '''
     학습에 적용할 augmentation
     '''
-    train_transform = transforms.Compose([
-        # transforms.RandomApply([
-        #     transforms.RandomVerticalFlip(),
-        #     transforms.RandomHorizontalFlip(),
-        # ], 0.5),
-        # transforms.RandomRotation(45, interpolation=InterpolationMode.NEAREST),
-        transforms.ToTensor(),
-    ])
 
-    # train_transform = custom_transforms.custom_transforms()
+    train_transform = custom_transform.custom_transforms('train')
 
-    valid_transform = transforms.Compose([
-        transforms.ToTensor(),
-    ])
+    valid_transform = custom_transform.custom_transforms('valid')
 
     '''
     데이터 불러오기
@@ -74,7 +64,7 @@ def main():
     num_classes = 1
     model = pointFindingModel()
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    optimizer = optim.Adam(model.parameters(), lr=1e-5)
+    optimizer = optim.Adam(model.parameters(), lr=1e-3)
     criterion = pointFinderCriterion()
 
     model.to(device)
@@ -82,7 +72,7 @@ def main():
 
     target_epochs = 99999
     min_val_loss = float('inf')
-    es = EarlyStopping(patience=1999, mode='min', delta=1e-7)
+    es = EarlyStopping(patience=1000, mode='min', delta=1e-2)
     print_with(f'device: {device}')
 
     '''

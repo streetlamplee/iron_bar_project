@@ -18,7 +18,7 @@ class pointFindingModel(nn.Module):
 
         self.classifier = nn.Sequential(
             nn.Dropout(0.2),
-            nn.Conv2d(in_channels=960, out_channels=12, kernel_size=(1, 1), padding=(0, 0)),
+            nn.Conv2d(in_channels=960, out_channels=12, kernel_size=(3, 3), padding=(1, 1)),
         )
 
     def forward(self, x: torch.Tensor) -> torch.Tensor:

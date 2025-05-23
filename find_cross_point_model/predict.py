@@ -5,6 +5,7 @@ import extension
 from find_cross_point_model.model import pointFindingModel
 import torch
 import cv2
+from nms import nms
 
 def extract_keypoints_from_tensor(tensor, image_size, max_points_per_cell=4, threshold=0.5):
     B, C, H, W = tensor.shape
@@ -34,12 +35,11 @@ def extract_keypoints_from_tensor(tensor, image_size, max_points_per_cell=4, thr
     return keypoints
 
 
-def main():
+def predict():
     test_image_folder = './valid/image'
     test_image_list = os.listdir(test_image_folder)
     model_folder = './models'
-    model_folder = os.path.join(model_folder, sorted(os.listdir(model_folder))[-1])
-    model_filename = os.path.join(model_folder, sorted(os.listdir(model_folder))[-1])
+    model_filename = os.path.join(model_folder, extension.get_latest_pth_file(model_folder, '.pth'))
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     checkpoint = torch.load(model_filename)
     model = pointFindingModel()
@@ -60,7 +60,7 @@ def main():
             output = model(t_image)
             print(output.shape)
             output = torch.sigmoid(output)
-            keypoints = extract_keypoints_from_tensor(output, 256, 4, 0.5)
+            keypoints = nms(output, 7)
         res = cv2.imread(os.path.join(test_image_folder, test_image))
         for keypoint in keypoints:
             h, w, o = keypoint
@@ -77,4 +77,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    predict()

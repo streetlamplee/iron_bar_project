@@ -33,6 +33,8 @@ class custom_transforms():
 
     def geometric(self, input_image, input_data):
         image, data = self.random_rotation(input_image, input_data, 30, 0.5)
+        image, data = self.random_Hflip(image, data, 0.5)
+        image, data = self.random_Vflip(image, data, 0.5)
         return image, data
 
 
@@ -69,4 +71,41 @@ class custom_transforms():
             return rotated_image, rotated_points
         else:
 
+            return image, points
+
+    def random_Hflip(self, image, points, p):
+        r = np.random.uniform(0, 1)
+        if r < p:
+            if isinstance(image, Image.Image):
+                image = np.array(image.convert("RGB"))
+            h, w = image.shape[:2]
+            flipped_image = cv2.flip(image, 1)
+
+            flipped_points = []
+            for x, y in points:
+                new_y = w - 1 - y
+                if 0 <= x < h and 0 <= new_y < w:
+                    flipped_points.append([x, new_y])
+            flipped_image = Image.fromarray(flipped_image)
+            return flipped_image, flipped_points
+
+        else:
+            return image, points
+
+    def random_Vflip(self, image, points, p):
+        r = np.random.uniform(0, 1)
+        if r < p:
+            if isinstance(image, Image.Image):
+                image = np.array(image.convert("RGB"))
+            h, w = image.shape[:2]
+            flipped_image = cv2.flip(image, 0)
+            flipped_points = []
+            for x, y in points:
+                new_x = h - 1 - x
+                if 0 <= new_x < w and 0 <= y < h:
+                    flipped_points.append([new_x, y])
+
+            flipped_image = Image.fromarray(flipped_image)
+            return flipped_image, flipped_points
+        else:
             return image, points

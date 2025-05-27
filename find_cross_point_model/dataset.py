@@ -63,9 +63,8 @@ def calculate_tensor(image_size, grid_size, keypoints, max_points_per_cell=4):
     return target
 
 class PointDataset(Dataset):
-    def __init__(self, data_json_path:str, transform = None, input_size=256):
-        with open(data_json_path, 'r') as json_file:
-           self.data_json = json.load(json_file)
+    def __init__(self, data_json:dict, transform = None, input_size=256):
+        self.data_json = data_json
         self.transform = transform
         self.input_size = 256
 

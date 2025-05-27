@@ -72,12 +72,15 @@ def clicked_point_finder(image:np.ndarray):
     return click.clicked_points
 
 def make_more_data(num:int, data_path:str, origin_data_json_path:str):
+    extension.set_seed(0)
     data_list = os.listdir(data_path)
     with open(origin_data_json_path, 'r') as f:
         data_json = json.load(f)
     before_data_len = len(data_json)
-
-    cnt = before_data_len - 1
+    if 'len' in data_json.keys():
+        cnt = before_data_len - 1
+    else:
+        cnt = before_data_len
     while True:
         data_file_name_iter = os.path.join(data_path, data_list[np.random.randint(0, len(data_list))])
         image_iter = cv2.imread(data_file_name_iter)
@@ -92,7 +95,8 @@ def make_more_data(num:int, data_path:str, origin_data_json_path:str):
                 'filename': f'train/image/{cnt}.png',
                 'mask': clicked_point
             }
-            data_json['len'] += len(clicked_point)
+            if 'len' in data_json.keys():
+                data_json['len'] += len(clicked_point)
             data_json[f'{cnt}'] = sub_dict
 
 
@@ -108,4 +112,7 @@ def make_more_data(num:int, data_path:str, origin_data_json_path:str):
     return
 
 if __name__ == "__main__":
-    make_more_data(50, '../warp_image', 'train/data.json')
+    make_more_data(5, '../warp_image', 'data/data.json')
+    '''
+    374개 까지 진행할 것
+    '''

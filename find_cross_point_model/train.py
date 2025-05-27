@@ -1,5 +1,6 @@
 import datetime
 import gc
+import json
 import os.path
 
 import torch.cuda
@@ -17,6 +18,7 @@ from dataset import PointDataset
 from criterion import pointFinderCriterion
 from EarlyStopping import EarlyStopping
 import custom_transform
+from train_valid_split import train_valid_split
 
 print_with = extension.print_with
 str_with = extension.str_with
@@ -28,10 +30,9 @@ def main():
     '''
     데이터 확인 및 없으면 만들기
     '''
-    if not os.path.exists('./train/data.json'):
-        make_data(f'warp_image', f'./data/train')
-    if not os.path.exists('./valid/data.json'):
-        make_data(f'warp_image', f'./data/valid')
+    if not os.path.exists('./data/data.json'):
+        make_data(f'warp_image', f'./data')
+
 
     '''
     시드 고정
@@ -49,8 +50,10 @@ def main():
     '''
     데이터 불러오기
     '''
-    train_dataset = PointDataset('./train/data.json', train_transform)
-    valid_dataset = PointDataset('./valid/data.json', valid_transform)
+    train_dict, valid_dict = train_valid_split('./data/data.json', 0.9, 0.1)
+
+    train_dataset = PointDataset(train_dict, train_transform)
+    valid_dataset = PointDataset(valid_dict, valid_transform)
 
     '''
     데이터 로더 만들기
@@ -64,7 +67,7 @@ def main():
     num_classes = 1
     model = pointFindingModel()
     device = "cuda" if torch.cuda.is_available() else "cpu"
-    optimizer = optim.Adam(model.parameters(), lr=1e-3)
+    optimizer = optim.Adam(model.parameters(), lr=1e-4)
     criterion = pointFinderCriterion()
 
     model.to(device)
@@ -72,7 +75,7 @@ def main():
 
     target_epochs = 99999
     min_val_loss = float('inf')
-    es = EarlyStopping(patience=1000, mode='min', delta=1e-2)
+    es = EarlyStopping(patience=500, mode='min', delta=1e-3)
     print_with(f'device: {device}')
 
     '''

@@ -40,6 +40,7 @@ def predict():
     test_image_list = os.listdir(test_image_folder)
     model_folder = './models'
     model_filename = os.path.join(model_folder, extension.get_latest_pth_file(model_folder, '.pth'))
+    print(model_filename)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     checkpoint = torch.load(model_filename)
     model = pointFindingModel()
@@ -70,7 +71,55 @@ def predict():
                 cv2.circle(res, (h,w), 2, (0,0,255), -1)
         os.makedirs('result', exist_ok=True)
         cv2.imwrite(os.path.join('result', test_image), res)
-        extension.image_show(res, title=test_image)
+        # extension.image_show(res, title=test_image)
+    return
+
+def predict_one_image(image:np.ndarray, model_file = None):
+    model = pointFindingModel()
+    device = 'cuda' if torch.cuda.is_available() else 'cpu'
+    if model_file is None:
+        model_folder = './models'
+        model_filename = os.path.join(model_folder, extension.get_latest_pth_file(model_folder, '.pth'))
+        checkpoint = torch.load(model_filename)
+        model.load_state_dict(checkpoint['model_state_dict'])
+
+    else:
+        checkpoint = torch.load(model_file)
+        model.load_state_dict(checkpoint['model_state_dict'])
+    model.to(device)
+    model.eval()
+    h, w = image.shape
+
+    res = np.zeros_like(image)
+    h, w = image.shape
+    for i in range(0, h, 256):
+        for j in range(0, w, 256):
+            tmp = []
+            h_end = min(h, i + 256)
+            w_end = min(w, j + 256)
+            c = image[i:h_end, j:w_end]
+
+            image_tensor = torch.tensor(c, dtype = torch.float32)
+            image_tensor /= 255.
+            image_tensor = image_tensor.permute(2,0,1).unsqueeze(0)
+            normalize = transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
+            image_tensor = normalize(image_tensor)
+            image_tensor = image_tensor.to(device)
+            with torch.no_grad():
+                output = model(image_tensor)
+                print(output.shape)
+                output = torch.sigmoid(output)
+                keypoints = nms(output, 7)
+            for h, w, o in keypoints:
+                if o >= 0.5:
+                   tmp.append([h, w])
+
+            for t in tmp:
+                sub_res = cv2.circle(res, t, 4, (255,255,255), -1)
+
+            res[i:h_end, j:w_end] = sub_res
+
+    return res
 
 
 

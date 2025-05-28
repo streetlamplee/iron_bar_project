@@ -6,7 +6,7 @@ from tqdm import tqdm
 import getDisplayCoordinate
 from find_cross_point_model.predict import predict_one_image
 from n_blur import custom_blur
-from n_brute_force_gpu import brute_force_best_warp
+from n_brute_force_gpu import brute_force_with_pointFinder, brute_force_best_warp
 from n_randomseed import randomseed
 from n_camera import Camera
 from n_picture import Picture
@@ -304,19 +304,16 @@ if __name__ == "__main__":
 
             cv2.imwrite(f'250514/iter_point/{i + 1}.png', np.reshape(point_seg_warped, (1024, 1024)).astype(np.uint8))
             cv2.imwrite(f'250514/iter_line/{i + 1}.png', np.reshape(seg_warped, (1024, 1024)).astype(np.uint8))
-            cv2.imwrite(f'250514/iter_{i + 1}_basis_image.png', point_basis_image.astype(np.uint8))
+            cv2.imwrite(f'250514/iter_{i + 1}_basis_image.png', point_seg_warped.astype(np.uint8))
             cv2.imwrite(f'250514/iter_{i + 1}_basis_seg_image.png', basis_image.astype(np.uint8))
 
             continue
 
 
-        best_warped, best_seg_warped, _, _ = brute_force_best_warp(point_seg_image, seg_image, basis_image, _2d_point, offset = 8, i = i)
-
-
-
+        best_warped, best_seg_warped, _  = brute_force_best_warp(seg_image, basis_image, _2d_point, offset = 8, i = i)
 
         # 기준 이미지와 best warped 이미지 블렌딩
-        point_basis_image = point_basis_image * i / (i + 1) + np.reshape(best_warped, (1024, 1024)) * 1. / (i + 1)
+        point_basis_image = point_basis_image * i / (i + 1) + np.reshape(best_seg_warped, (1024, 1024)) * 1. / (i + 1)
         basis_image = basis_image * i / (i + 1) + np.reshape(best_seg_warped, (1024, 1024)) * 1 / (i + 1)
         # 결과 시각화
         '''
@@ -327,7 +324,7 @@ if __name__ == "__main__":
             os.mkdir('250514/iter_point')
             os.mkdir('250514/iter_line')
 
-        cv2.imwrite(f'250514/iter_point/{i+1}.png', np.reshape(best_warped,(1024,1024)).astype(np.uint8))
+        # cv2.imwrite(f'250514/iter_point/{i+1}.png', np.reshape(best_warped,(1024,1024)).astype(np.uint8))
         cv2.imwrite(f'250514/iter_line/{i+1}.png', np.reshape(best_seg_warped, (1024, 1024)).astype(np.uint8))
         cv2.imwrite(f'250514/iter_{i+1}_basis_image.png', point_basis_image.astype(np.uint8))
         cv2.imwrite(f'250514/iter_{i+1}_basis_seg_image.png', basis_image.astype(np.uint8))

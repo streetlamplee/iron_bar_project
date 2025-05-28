@@ -5,7 +5,7 @@ import extension
 from find_cross_point_model.model import pointFindingModel
 import torch
 import cv2
-from nms import nms
+from find_cross_point_model.nms import nms
 
 def extract_keypoints_from_tensor(tensor, image_size, max_points_per_cell=4, threshold=0.5):
     B, C, H, W = tensor.shape
@@ -78,7 +78,7 @@ def predict_one_image(image:np.ndarray, model_file = None):
     model = pointFindingModel()
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     if model_file is None:
-        model_folder = './models'
+        model_folder = './find_cross_point_model/models'
         model_filename = os.path.join(model_folder, extension.get_latest_pth_file(model_folder, '.pth'))
         checkpoint = torch.load(model_filename)
         model.load_state_dict(checkpoint['model_state_dict'])
@@ -88,16 +88,21 @@ def predict_one_image(image:np.ndarray, model_file = None):
         model.load_state_dict(checkpoint['model_state_dict'])
     model.to(device)
     model.eval()
+    if len(image.shape) != 2:
+        image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     h, w = image.shape
 
     res = np.zeros_like(image)
     h, w = image.shape
     for i in range(0, h, 256):
         for j in range(0, w, 256):
+            sub_res = np.zeros(shape = (256, 256, 3), dtype = np.uint8)
             tmp = []
             h_end = min(h, i + 256)
             w_end = min(w, j + 256)
             c = image[i:h_end, j:w_end]
+            if len(c.shape) == 2:
+                c = cv2.cvtColor(c, cv2.COLOR_GRAY2RGB)
 
             image_tensor = torch.tensor(c, dtype = torch.float32)
             image_tensor /= 255.
@@ -107,16 +112,16 @@ def predict_one_image(image:np.ndarray, model_file = None):
             image_tensor = image_tensor.to(device)
             with torch.no_grad():
                 output = model(image_tensor)
-                print(output.shape)
+                # print(output.shape)
                 output = torch.sigmoid(output)
                 keypoints = nms(output, 7)
-            for h, w, o in keypoints:
+            for y, x, o in keypoints:
                 if o >= 0.5:
-                   tmp.append([h, w])
+                   tmp.append([y, x])
 
-            for t in tmp:
-                sub_res = cv2.circle(res, t, 4, (255,255,255), -1)
-
+            for y,x in tmp:
+                sub_res = cv2.circle(sub_res, (int(y), int(x)), 4, (255,255,255), -1)
+            sub_res = cv2.cvtColor(sub_res, cv2.COLOR_RGB2GRAY)
             res[i:h_end, j:w_end] = sub_res
 
     return res

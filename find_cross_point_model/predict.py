@@ -92,12 +92,13 @@ def predict_one_image(image:np.ndarray, model_file = None):
         image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     h, w = image.shape
 
+    res_points = []
     res = np.zeros_like(image)
     h, w = image.shape
+    patches = []
+    position = []
     for i in range(0, h, 256):
         for j in range(0, w, 256):
-            sub_res = np.zeros(shape = (256, 256, 3), dtype = np.uint8)
-            tmp = []
             h_end = min(h, i + 256)
             w_end = min(w, j + 256)
             c = image[i:h_end, j:w_end]
@@ -106,25 +107,36 @@ def predict_one_image(image:np.ndarray, model_file = None):
 
             image_tensor = torch.tensor(c, dtype = torch.float32)
             image_tensor /= 255.
-            image_tensor = image_tensor.permute(2,0,1).unsqueeze(0)
-            normalize = transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
-            image_tensor = normalize(image_tensor)
-            image_tensor = image_tensor.to(device)
-            with torch.no_grad():
-                output = model(image_tensor)
-                # print(output.shape)
-                output = torch.sigmoid(output)
-                keypoints = nms(output, 7)
-            for y, x, o in keypoints:
-                if o >= 0.5:
-                   tmp.append([y, x])
+            image_tensor = image_tensor.permute(2,0,1)
 
-            for y,x in tmp:
+            patches.append(image_tensor)
+            position.append((i,j))
+
+    batch_tensor = torch.stack(patches).to(device)
+
+
+    normalize = transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
+    batch_tensor = normalize(batch_tensor)
+    with torch.no_grad():
+        output_batch = model(batch_tensor)
+        # print(output.shape)
+        output_batch = torch.sigmoid(output_batch)
+
+    for idx, output in enumerate(output_batch):
+        i, j = position[idx]
+        keypoints = nms(output.unsqueeze(0), 15)
+        sub_res = np.zeros((256,256,3), dtype=np.uint8)
+        for y, x, o in keypoints:
+            if o >= 0.5:
                 sub_res = cv2.circle(sub_res, (int(y), int(x)), 4, (255,255,255), -1)
-            sub_res = cv2.cvtColor(sub_res, cv2.COLOR_RGB2GRAY)
-            res[i:h_end, j:w_end] = sub_res
+                res_points.append([i+y, j+x])
+        sub_res = cv2.cvtColor(sub_res, cv2.COLOR_BGR2GRAY)
+        h_end = min(h, i + 256)
+        w_end = min(w, j + 256)
+        res[i:h_end, j:w_end] = sub_res[0:h_end - i, 0:w_end-j]
 
-    return res
+
+    return res, res_points
 
 
 

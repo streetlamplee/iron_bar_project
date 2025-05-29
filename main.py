@@ -3,6 +3,8 @@ import matplotlib
 import os
 import json
 from tqdm import tqdm
+
+import extension
 import getDisplayCoordinate
 from find_cross_point_model.predict import predict_one_image
 from n_blur import custom_blur
@@ -250,9 +252,7 @@ if __name__ == "__main__":
     point_basis_image = None
     basis_image = None
     for i, (r, t) in enumerate(zip(rvec_list, tvec_list)):
-        gc.collect()
-        torch.cuda.empty_cache()
-        os.environ["PYTORCH_CUDA_ALLOC_CONF"] = "expandable_segments:True"
+
 
         # this is for auto mode
         _2d_point = getDisplayCoordinate.get_display_coordinate(cam, r, t, target_3d)
@@ -260,101 +260,106 @@ if __name__ == "__main__":
         # this is for manual mode
         _2d_point = _2d_coordinate[f'{i}']
         _2d_point = np.array(_2d_point, dtype = np.float32)
-        point_seg_image = cv2.imread(f'model_outputs/{i + 1}.png')
-        point_seg_image = cv2.cvtColor(point_seg_image, cv2.COLOR_BGR2GRAY)
-        point_seg_image = cv2.resize(point_seg_image, (1360, 1020))
-        seg_image = cv2.imread(f'data/image_seg/{i + 1}.png')
-        seg_image = cv2.cvtColor(seg_image, cv2.COLOR_BGR2GRAY)
-        seg_image = cv2.resize(seg_image, (1360, 1020))
+        # point_seg_image = cv2.imread(f'model_outputs/{i + 1}.png')
+        # point_seg_image = cv2.cvtColor(point_seg_image, cv2.COLOR_BGR2GRAY)
+        # point_seg_image = cv2.resize(point_seg_image, (1360, 1020))
+        # seg_image = cv2.imread(f'data/image_seg/{i + 1}.png')
+        # seg_image = cv2.cvtColor(seg_image, cv2.COLOR_BGR2GRAY)
+        # seg_image = cv2.resize(seg_image, (1360, 1020))
 
 
-        '''
-        250514 test code
-        '''
-        for p in range(len(_2d_point)):
-            point = _2d_point[p].astype(np.int32)
-            cv2.circle(seg_image, point, radius=5, thickness=-1, color=(255, 255, 255))
-
-        cv2.imwrite(f'250514/{i+1}.png', seg_image)
-        # warp_image = warp_perspective(iron_img, _2d_point)
-        # cv2.imwrite(f'warp_image/{i+1}.png', warp_image)
+        # '''
+        # 250514 test code
+        # '''
+        # for p in range(len(_2d_point)):
+        #     point = _2d_point[p].astype(np.int32)
+        #     cv2.circle(seg_image, point, radius=5, thickness=-1, color=(255, 255, 255))
         #
-        # continue
-
-        '''
-        x, y offset을 이용한 brutal force
-        '''
-        if i == 0:
-            point_seg_warped = warp_perspective(point_seg_image, _2d_point)
-            point_seg_warped = custom_blur(point_seg_warped)
-            point_basis_image = point_seg_warped
-            point_basis_image = np.astype(point_basis_image, np.float32)
-            seg_warped = warp_perspective(seg_image, _2d_point)
-            predicted_point_warped = predict_one_image(seg_warped)
-            predicted_point_warped = custom_blur(predicted_point_warped)
-            basis_image = predicted_point_warped
-            basis_image = np.astype(basis_image, np.float32)
-            '''
-            250514 확인용 코드
-            '''
-            if not os.path.exists('250514'):
-                os.mkdir('250514')
-                os.mkdir('250514/iter_point')
-                os.mkdir('250514/iter_line')
-
-            cv2.imwrite(f'250514/iter_point/{i + 1}.png', np.reshape(point_seg_warped, (1024, 1024)).astype(np.uint8))
-            cv2.imwrite(f'250514/iter_line/{i + 1}.png', np.reshape(seg_warped, (1024, 1024)).astype(np.uint8))
-            cv2.imwrite(f'250514/iter_{i + 1}_basis_image.png', point_seg_warped.astype(np.uint8))
-            cv2.imwrite(f'250514/iter_{i + 1}_basis_seg_image.png', basis_image.astype(np.uint8))
-
-            continue
+        # cv2.imwrite(f'250514/{i+1}.png', seg_image)
 
 
-        best_warped, best_seg_warped, _  = brute_force_best_warp(seg_image, basis_image, _2d_point, offset = 8, i = i)
+    '''
+    x, y offset을 이용한 brutal force
+    '''
+    from image_stock import stock_image
 
-        # 기준 이미지와 best warped 이미지 블렌딩
-        point_basis_image = point_basis_image * i / (i + 1) + np.reshape(best_seg_warped, (1024, 1024)) * 1. / (i + 1)
-        basis_image = basis_image * i / (i + 1) + np.reshape(best_seg_warped, (1024, 1024)) * 1 / (i + 1)
-        # 결과 시각화
-        '''
-        250514 확인용 코드
-        '''
-        if not os.path.exists('250514'):
-            os.mkdir('250514')
-            os.mkdir('250514/iter_point')
-            os.mkdir('250514/iter_line')
+    res_warp, res_point = stock_image('./data/image_seg', _2d_coordinate)
 
-        # cv2.imwrite(f'250514/iter_point/{i+1}.png', np.reshape(best_warped,(1024,1024)).astype(np.uint8))
-        cv2.imwrite(f'250514/iter_line/{i+1}.png', np.reshape(best_seg_warped, (1024, 1024)).astype(np.uint8))
-        cv2.imwrite(f'250514/iter_{i+1}_basis_image.png', point_basis_image.astype(np.uint8))
-        cv2.imwrite(f'250514/iter_{i+1}_basis_seg_image.png', basis_image.astype(np.uint8))
+    extension.image_show(res_warp)
+    extension.image_show(res_point)
 
 
-        import matplotlib.pyplot as plt
-
-        # plt.imshow(basis_image.astype(np.uint8), cmap='gray')
-        # plt.axis('off')
-        # plt.title("Blended Image")
-        # plt.show()
-
-    point_basis_image = np.astype(point_basis_image, np.uint8)
-    # cv2.imshow("result", basis_image)
-    # cv2.waitKey(10000)
-    # cv2.destroyWindow("result")
-    cv2.imwrite("res_point.png", point_basis_image)
-
-    basis_image = np.astype(basis_image, np.uint8)
-
-    cv2.imwrite('res_iron_pointwise.png', basis_image)
-
-    thres = np.where(point_basis_image >= 254. * 0.875, 255, 0)
-    thres_seg = np.where(basis_image >= 254. * 0.875, 255, 0)
-
-    thres = thres.astype(np.uint8)
-    thres_seg = thres_seg.astype(np.uint8)
-
-    # cv2.imshow("thres", thres)
-    # cv2.waitKey(10000)
-    # cv2.destroyWindow("thres")
-    cv2.imwrite('res_point_thres.png', thres)
-    cv2.imwrite('res_iron_pointwise_thres.png', thres_seg)
+        # if i == 0:
+        #     point_seg_warped = warp_perspective(point_seg_image, _2d_point)
+        #     point_seg_warped = custom_blur(point_seg_warped)
+        #     point_basis_image = point_seg_warped
+        #     point_basis_image = np.astype(point_basis_image, np.float32)
+        #     seg_warped = warp_perspective(seg_image, _2d_point)
+        #     predicted_point_warped = predict_one_image(seg_warped)
+        #     predicted_point_warped = custom_blur(predicted_point_warped)
+        #     basis_image = predicted_point_warped
+        #     basis_image = np.astype(basis_image, np.float32)
+        #     '''
+        #     250514 확인용 코드
+        #     '''
+        #     if not os.path.exists('250514'):
+        #         os.mkdir('250514')
+        #         os.mkdir('250514/iter_point')
+        #         os.mkdir('250514/iter_line')
+        #
+        #     cv2.imwrite(f'250514/iter_point/{i + 1}.png', np.reshape(point_seg_warped, (1024, 1024)).astype(np.uint8))
+        #     cv2.imwrite(f'250514/iter_line/{i + 1}.png', np.reshape(seg_warped, (1024, 1024)).astype(np.uint8))
+        #     cv2.imwrite(f'250514/iter_{i + 1}_basis_image.png', point_seg_warped.astype(np.uint8))
+        #     cv2.imwrite(f'250514/iter_{i + 1}_basis_seg_image.png', basis_image.astype(np.uint8))
+        #
+        #     continue
+    #
+    #
+    #     best_warped, best_seg_warped, _  = brute_force_best_warp(seg_image, basis_image, _2d_point, offset = 8, i = i)
+    #
+    #     # 기준 이미지와 best warped 이미지 블렌딩
+    #     point_basis_image = point_basis_image * i / (i + 1) + np.reshape(best_seg_warped, (1024, 1024)) * 1. / (i + 1)
+    #     basis_image = basis_image * i / (i + 1) + np.reshape(best_seg_warped, (1024, 1024)) * 1 / (i + 1)
+    #     # 결과 시각화
+    #     '''
+    #     250514 확인용 코드
+    #     '''
+    #     if not os.path.exists('250514'):
+    #         os.mkdir('250514')
+    #         os.mkdir('250514/iter_point')
+    #         os.mkdir('250514/iter_line')
+    #
+    #     # cv2.imwrite(f'250514/iter_point/{i+1}.png', np.reshape(best_warped,(1024,1024)).astype(np.uint8))
+    #     cv2.imwrite(f'250514/iter_line/{i+1}.png', np.reshape(best_seg_warped, (1024, 1024)).astype(np.uint8))
+    #     cv2.imwrite(f'250514/iter_{i+1}_basis_image.png', point_basis_image.astype(np.uint8))
+    #     cv2.imwrite(f'250514/iter_{i+1}_basis_seg_image.png', basis_image.astype(np.uint8))
+    #
+    #
+    #     import matplotlib.pyplot as plt
+    #
+    #     # plt.imshow(basis_image.astype(np.uint8), cmap='gray')
+    #     # plt.axis('off')
+    #     # plt.title("Blended Image")
+    #     # plt.show()
+    #
+    # point_basis_image = np.astype(point_basis_image, np.uint8)
+    # # cv2.imshow("result", basis_image)
+    # # cv2.waitKey(10000)
+    # # cv2.destroyWindow("result")
+    # cv2.imwrite("res_point.png", point_basis_image)
+    #
+    # basis_image = np.astype(basis_image, np.uint8)
+    #
+    # cv2.imwrite('res_iron_pointwise.png', basis_image)
+    #
+    # thres = np.where(point_basis_image >= 254. * 0.875, 255, 0)
+    # thres_seg = np.where(basis_image >= 254. * 0.875, 255, 0)
+    #
+    # thres = thres.astype(np.uint8)
+    # thres_seg = thres_seg.astype(np.uint8)
+    #
+    # # cv2.imshow("thres", thres)
+    # # cv2.waitKey(10000)
+    # # cv2.destroyWindow("thres")
+    # cv2.imwrite('res_point_thres.png', thres)
+    # cv2.imwrite('res_iron_pointwise_thres.png', thres_seg)

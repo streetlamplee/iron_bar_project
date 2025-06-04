@@ -45,3 +45,13 @@ def print_with(s:str):
 
 def str_with(s:str):
     return f"[{os.path.basename(sys.argv[0]):^20}] {s}"
+
+def random_pallete(n, seed = None):
+    rng = np.random.default_rng(seed)
+    return (rng.integers(0, 256, size = (n, 3))).astype(np.uint8)
+
+def array_norm(array:np.ndarray):
+    array_min = array.min()
+    array_max = array.max()
+
+    return (array - array_min) / (array_max - array_min)

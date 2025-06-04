@@ -34,7 +34,7 @@ def caculate_tensor(image_size, grid_size, keypoint):
 
     return target
 
-def calculate_tensor(image_size, grid_size, keypoints, max_points_per_cell=4):
+def calculate_tensor(image_size, grid_size, keypoints, max_points_per_cell=6):
     stride = image_size // grid_size
     grid_size = int(grid_size)
     stride = int(stride)

@@ -6,6 +6,7 @@ import numpy as np
 
 image = cv2.imread('./data/image_seg/1.png')
 image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+image = cv2.resize(image, (1360,1020))
 points = np.array([
         [
             380,
@@ -26,6 +27,7 @@ points = np.array([
     ], dtype=np.float32)
 image = warp_perspective(image, points)
 
-output = predict_one_image(image)
+output, points = predict_one_image(image)
+output = output.astype(np.uint8)
 image_show(image)
 image_show(output)

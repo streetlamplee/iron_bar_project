@@ -6,6 +6,9 @@ from tqdm import tqdm
 
 import extension
 import getDisplayCoordinate
+from extension import image_show
+from n_draw_line import draw_line
+from point_align import icp_align, apply_tps_from_icp_points, apply_tps_to_image
 from find_cross_point_model.predict import predict_one_image
 from n_blur import custom_blur
 from n_brute_force_gpu import brute_force_with_pointFinder, brute_force_best_warp
@@ -19,6 +22,7 @@ import torch.nn.functional as F
 import itertools
 import numpy as np
 import cv2
+from n_make_image_nice import custom_image_thresholding
 
 matplotlib.use('TkAgg')
 randomseed(42)
@@ -281,12 +285,98 @@ if __name__ == "__main__":
     '''
     x, y offset을 이용한 brutal force
     '''
-    from image_stock import stock_image
 
-    res_warp, res_point = stock_image('./data/image_seg', _2d_coordinate)
+    res_image_blending, res_aligned_image_list, res_predicted_point, res_aligned_point, inlier_aligned_point_list, inlier_predicted_points_list = icp_align('./data/image_seg', _2d_coordinate)
 
-    extension.image_show(res_warp)
-    extension.image_show(res_point)
+    # from image_stock import stock_image
+    # res_warp, res_point = stock_image('./data/image_seg', _2d_coordinate)
+
+    for i, (al_image, al_point, pred_point) in enumerate(zip(res_aligned_image_list, res_aligned_point, res_predicted_point)):
+        for y, x in al_point:
+            al_image_c = al_image.copy()
+            al_image_c = cv2.circle(al_image_c, (int(y), int(x)), radius = 3, color = (0,0,255), thickness = -1)
+        w_image = cv2.imread(os.path.join('./warp_image', f'{i+1}.png'))
+        for idx, (y, x) in enumerate(pred_point):
+            w_image = cv2.circle(w_image, (int(y), int(x)), 3, (0,0,255), -1)
+
+        # extension.image_show(w_image)
+        # extension.image_show(custom_blur(al_image_c))
+
+    pallete = extension.random_pallete(len(res_aligned_image_list))
+    tmp_res = np.zeros((1024, 1024, 3), dtype = np.uint8)
+    for i, point in enumerate(res_aligned_point):
+        color = tuple(int(c) for c in pallete[i])
+        for p in point:
+            y, x = p
+            tmp_res = cv2.circle(tmp_res, (int(y), int(x)), 5, color, -1)
+
+    extension.image_show(res_image_blending.astype(np.uint8))
+    extension.image_show(tmp_res)
+    after_align_image = np.where((res_image_blending > 255. * 2. / 3.), 255, 0).astype(np.uint8)
+    extension.image_show(after_align_image)
+
+    predicted_after_align_image, predicted_after_align_points = predict_one_image(after_align_image)
+
+    point_drawing_result_with_align = draw_line(predicted_after_align_points)
+
+    image_show(point_drawing_result_with_align)
+
+    zero_kernel_idx = []
+    h_kernel = np.ones((3, 64), np.uint8)
+    v_kernel = np.ones((64, 3), np.uint8)
+    h_erode_kernel = np.ones((7,1), np.uint8)       # only for vertical erode
+    v_erode_kernel = np.ones((1,7), np.uint8)       # only for horizontal erode
+    for zki in zero_kernel_idx:
+        h_kernel[zki,:] = 0
+        v_kernel[:,zki] = 0
+
+    h_thres_result = custom_image_thresholding(res_image_blending, h_kernel, int(32 * 1.75))
+    v_thres_result = custom_image_thresholding(res_image_blending, v_kernel, int(32 * 1.75))
+
+    extension.image_show(h_thres_result)
+    extension.image_show(v_thres_result)
+
+    h_thres_erod2_dilt1_result = cv2.erode(h_thres_result, h_erode_kernel, iterations=1)
+    h_thres_erod2_dilt1_result = cv2.dilate(h_thres_erod2_dilt1_result, h_erode_kernel)
+    v_thres_erod2_dilt1_result = cv2.erode(v_thres_result, v_erode_kernel, iterations=1)
+    v_thres_erod2_dilt1_result = cv2.dilate(v_thres_erod2_dilt1_result, v_erode_kernel)
+
+    extension.image_show(h_thres_erod2_dilt1_result)
+    extension.image_show(v_thres_erod2_dilt1_result)
+
+    extension.image_show(np.maximum(h_thres_result, v_thres_result))
+
+    extension.image_show(np.maximum(h_thres_erod2_dilt1_result,
+                                    v_thres_erod2_dilt1_result))
+
+
+    # extension.image_show(res_point)
+
+    tps_images, tps_points = apply_tps_from_icp_points(
+        res_aligned_image_list,
+        inlier_aligned_point_list,
+        reference_index=0,
+        output_size=(1024,1024)
+    )
+
+    res = np.zeros((1024,1024,3), dtype = np.float32)
+    for t_image in tps_images:
+        extension.image_show(t_image)
+        t_image = t_image.astype(np.float32)
+        res = res + t_image * 1. / float(len(tps_images))
+
+    res = res.astype(np.uint8)
+    extension.image_show(res)
+
+    pallete = extension.random_pallete(len(res_aligned_image_list))
+    tmp_res = np.zeros((1024, 1024, 3), dtype = np.uint8)
+    for i, point in enumerate(tps_points):
+        color = tuple(int(c) for c in pallete[i])
+        for p in point:
+            y, x = p
+            tmp_res = cv2.circle(tmp_res, (int(y), int(x)), 6 - i, color, -1)
+
+    extension.image_show(tmp_res.astype(np.uint8))
 
 
         # if i == 0:

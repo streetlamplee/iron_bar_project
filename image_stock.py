@@ -32,8 +32,8 @@ def stock_image(image_folder_path:str, warp_point):
             # image_show(image)
             # image_show(warp_image)
             warp_only_point, cross_points = predict_one_image(warp_image)
-            print(cross_points[:100])
-            warp_only_point = custom_blur(warp_only_point)
+            # print(cross_points[:100])
+            # warp_only_point = custom_blur(warp_only_point)
             # image_show(warp_only_point)
             res_warp = warp_image
             res_point = warp_only_point

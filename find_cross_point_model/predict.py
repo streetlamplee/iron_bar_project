@@ -36,10 +36,11 @@ def extract_keypoints_from_tensor(tensor, image_size, max_points_per_cell=4, thr
 
 
 def predict():
-    test_image_folder = './valid/image'
+    test_image_folder = '../warp_image'
     test_image_list = os.listdir(test_image_folder)
     model_folder = './models'
-    model_filename = os.path.join(model_folder, extension.get_latest_pth_file(model_folder, '.pth'))
+    # model_filename = os.path.join(model_folder, extension.get_latest_pth_file(model_folder, '.pth'))
+    model_filename = os.path.join(model_folder, '20250527_142708/epoch00808.pth')
     print(model_filename)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     checkpoint = torch.load(model_filename)
@@ -50,6 +51,7 @@ def predict():
     test_image_list.sort()
     for test_image in test_image_list:
         t_image = cv2.imread(os.path.join(test_image_folder, test_image))
+        h, w, _ = t_image.shape
         t_image = cv2.cvtColor(t_image, cv2.COLOR_BGR2RGB)
         t_image = torch.tensor(t_image, dtype = torch.float32)
         t_image /= 255
@@ -61,7 +63,7 @@ def predict():
             output = model(t_image)
             print(output.shape)
             output = torch.sigmoid(output)
-            keypoints = nms(output, 7)
+            keypoints = nms(output, h, 50)
         res = cv2.imread(os.path.join(test_image_folder, test_image))
         for keypoint in keypoints:
             h, w, o = keypoint
@@ -74,7 +76,7 @@ def predict():
         # extension.image_show(res, title=test_image)
     return
 
-def predict_one_image(image:np.ndarray, model_file = None):
+def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_model/models/20250527_142708/epoch00808.pth'
     model = pointFindingModel()
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     if model_file is None:
@@ -92,51 +94,81 @@ def predict_one_image(image:np.ndarray, model_file = None):
         image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     h, w = image.shape
 
-    res_points = []
-    res = np.zeros_like(image)
-    h, w = image.shape
-    patches = []
-    position = []
-    for i in range(0, h, 256):
-        for j in range(0, w, 256):
-            h_end = min(h, i + 256)
-            w_end = min(w, j + 256)
-            c = image[i:h_end, j:w_end]
-            if len(c.shape) == 2:
-                c = cv2.cvtColor(c, cv2.COLOR_GRAY2RGB)
+    if len(image.shape) == 2:
+        image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
 
-            image_tensor = torch.tensor(c, dtype = torch.float32)
-            image_tensor /= 255.
-            image_tensor = image_tensor.permute(2,0,1)
-
-            patches.append(image_tensor)
-            position.append((i,j))
-
-    batch_tensor = torch.stack(patches).to(device)
-
-
+    image_tensor = torch.tensor(image, dtype=torch.float32)
+    image_tensor /= 255.
+    image_tensor = image_tensor.permute(2, 0, 1)
+    image_tensor = image_tensor.unsqueeze(0)
     normalize = transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
-    batch_tensor = normalize(batch_tensor)
+    image_tensor = normalize(image_tensor)
+    image_tensor = image_tensor.to(device)
     with torch.no_grad():
-        output_batch = model(batch_tensor)
-        # print(output.shape)
-        output_batch = torch.sigmoid(output_batch)
+        output_logit = model(image_tensor)
+        output = torch.sigmoid(output_logit)
+        keypoints = nms(output, h, 20)
 
-    for idx, output in enumerate(output_batch):
-        i, j = position[idx]
-        keypoints = nms(output.unsqueeze(0), 15)
-        sub_res = np.zeros((256,256,3), dtype=np.uint8)
-        for y, x, o in keypoints:
-            if o >= 0.5:
-                sub_res = cv2.circle(sub_res, (int(y), int(x)), 4, (255,255,255), -1)
-                res_points.append([i+y, j+x])
-        sub_res = cv2.cvtColor(sub_res, cv2.COLOR_BGR2GRAY)
-        h_end = min(h, i + 256)
-        w_end = min(w, j + 256)
-        res[i:h_end, j:w_end] = sub_res[0:h_end - i, 0:w_end-j]
+    res = np.zeros_like(image, dtype = np.uint8)
+    res_point = []
+    for key in keypoints:
+        h, w, o = key
+        h = int(h)
+        w = int(w)
+        if o > 0.6:
+            cv2.circle(res, (h, w), 4, (255,255,255), -1)
+            res_point.append([h, w])
+    return res, res_point
 
-
-    return res, res_points
+    # res_points = []
+    # res = np.zeros_like(image)
+    # h, w = image.shape
+    # patches = []
+    # position = []
+    # for i in range(0, h, 256):
+    #     for j in range(0, w, 256):
+    #         h_end = min(h, i + 256)
+    #         w_end = min(w, j + 256)
+    #         c = image[i:h_end, j:w_end]
+    #         if len(c.shape) == 2:
+    #             c = cv2.cvtColor(c, cv2.COLOR_GRAY2RGB)
+    #
+    #         image_tensor = torch.tensor(c, dtype = torch.float32)
+    #         image_tensor /= 255.
+    #         image_tensor = image_tensor.permute(2,0,1)
+    #
+    #         patches.append(image_tensor)
+    #         position.append((i,j))
+    #
+    # batch_tensor = torch.stack(patches).to(device)
+    #
+    #
+    # normalize = transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
+    # batch_tensor = normalize(batch_tensor)
+    # with torch.no_grad():
+    #     output_batch = model(batch_tensor)
+    #     # print(output.shape)
+    #     output_batch = torch.sigmoid(output_batch)
+    #
+    # for idx, output in enumerate(output_batch):
+    #     i, j = position[idx]
+    #     keypoints = nms(output.unsqueeze(0), output.shape[-1], 15)
+    #     sub_res = np.zeros((256,256,3), dtype=np.uint8)
+    #     # tmp_ = image[i:i+256, j:j+256].copy()
+    #     for y, x, o in keypoints:
+    #         if o >= 0.6:
+    #             sub_res = cv2.circle(sub_res, (int(y), int(x)), 4, (255,255,255), -1)
+    #             res_points.append([i+y, j+x])
+    #             # tmp_ = cv2.circle(tmp_, (int(y), int(x)), 3, (0,0,255), -1)
+    #     sub_res = cv2.cvtColor(sub_res, cv2.COLOR_BGR2GRAY)
+    #     # tmp_ = tmp_.astype(np.uint8)
+    #     # extension.image_show(tmp_)
+    #     h_end = min(h, i + 256)
+    #     w_end = min(w, j + 256)
+    #     res[i:h_end, j:w_end] = sub_res[0:h_end - i, 0:w_end-j]
+    #
+    #
+    # return res, res_points
 
 
 

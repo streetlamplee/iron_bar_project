@@ -2,8 +2,8 @@ import torch
 import math
 
 
-def nms(input:torch.Tensor,  threshold = 0.5):
-    keypoints = export_point(input, 256)
+def nms(input:torch.Tensor, image_size, threshold = 0.5):
+    keypoints = export_point(input, image_size, 4)
     need_to_del = [False] * len(keypoints)
     for i, keypoint in enumerate(keypoints):
         if need_to_del[i]:
@@ -47,6 +47,6 @@ def export_point(tensor:torch.Tensor, image_size, max_points_per_cell = 4):
 
                 abs_x = min((gx + rel_x.item()) * stride, image_size - 1)
                 abs_y = min((gy + rel_y.item()) * stride, image_size - 1)
-                keypoints.append((abs_x, abs_y, float(objectness)))
+                keypoints.append([abs_x, abs_y, float(objectness)])
 
     return keypoints

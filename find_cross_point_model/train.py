@@ -50,7 +50,7 @@ def main():
     '''
     데이터 불러오기
     '''
-    train_dict, valid_dict = train_valid_split('./data/data.json', 0.9, 0.1)
+    train_dict, valid_dict = train_valid_split('./data/data.json', 0.7, 0.3)
 
     train_dataset = PointDataset(train_dict, train_transform)
     valid_dataset = PointDataset(valid_dict, valid_transform)
@@ -75,7 +75,7 @@ def main():
 
     target_epochs = 99999
     min_val_loss = float('inf')
-    es = EarlyStopping(patience=500, mode='min', delta=1e-3)
+    es = EarlyStopping(patience=5000, mode='min', delta=1e-4)
     print_with(f'device: {device}')
 
     '''

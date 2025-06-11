@@ -4,6 +4,8 @@ import cv2
 import random
 import numpy as np
 import torch
+import json
+import re
 
 
 def get_latest_pth_file(base_dir, extension):
@@ -55,3 +57,23 @@ def array_norm(array:np.ndarray):
     array_max = array.max()
 
     return (array - array_min) / (array_max - array_min)
+
+
+def smart_json_dump(data, fp, indent=2):
+    """
+    JSON을 파일에 저장하되, 단순한 리스트는 한 줄로 유지.
+
+    Args:
+        data: dict 또는 list 등 JSON 직렬화 가능한 객체
+        fp: 파일 객체 또는 파일 경로 (str)
+        indent: 들여쓰기 레벨
+    """
+    raw = json.dumps(data, indent=indent, sort_keys=True)
+    # 줄바꿈된 단순 리스트를 한 줄로 정리
+    cleaned = re.sub(r'\[\s+([^\[\]\n]+?)\s+\]', r'[\1]', raw)
+
+    if isinstance(fp, str):
+        with open(fp, 'w', encoding='utf-8') as f:
+            f.write(cleaned)
+    else:
+        fp.write(cleaned)

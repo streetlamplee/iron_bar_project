@@ -1,38 +1,8 @@
 import torch
 from torch.utils.data import Dataset, DataLoader
-import os
 from PIL import Image
 from torchvision import transforms
 import json
-
-def caculate_tensor(image_size, grid_size, keypoint):
-    """
-        image_size: int, 예: 256
-        grid_size: int, 예: 16
-        keypoint: tuple, 예: (135.2, 72.5) - 정답 점 좌표 (픽셀 기준)
-
-        반환값: target tensor, shape = (16, 16, 3)
-        """
-    stride = image_size // grid_size
-    x, y = keypoint
-
-    # 셀 위치 계산
-    cell_x = int(x // stride)
-    cell_y = int(y // stride)
-
-    # 셀 내 상대 좌표
-    rel_x = (x % stride) / stride
-    rel_y = (y % stride) / stride
-
-    # 타겟 텐서 초기화
-    target = torch.zeros((grid_size, grid_size, 3), dtype=torch.float32)
-
-    # 정답 셀에 값 채우기
-    target[cell_y, cell_x, 0] = rel_x  # x 오프셋
-    target[cell_y, cell_x, 1] = rel_y  # y 오프셋
-    target[cell_y, cell_x, 2] = 1.0  # objectness
-
-    return target
 
 def calculate_tensor(image_size, grid_size, keypoints, max_points_per_cell=6):
     stride = image_size // grid_size
@@ -62,18 +32,18 @@ def calculate_tensor(image_size, grid_size, keypoints, max_points_per_cell=6):
 
     return target
 
-class PointDataset(Dataset):
+class lineDataset(Dataset):
     def __init__(self, data_json:dict, transform = None, input_size=256):
-        self.data_json = data_json
+        self.data = data_json
         self.transform = transform
-        self.input_size = 256
+        self.input_size = input_size
 
     def __len__(self):
         return len(self.data_json) - 1
 
     def __getitem__(self, idx):
         # 이미지와 마스크 파일 경로
-        original_idx = idx % (len(self.data_json)-1)
+        original_idx = idx % (len(self.data_json) - 1)
         data = self.data_json[f'{original_idx}']
         image_path = data['filename']
 
@@ -81,7 +51,7 @@ class PointDataset(Dataset):
         image = Image.open(image_path).convert("RGB")
         points = data['mask']
 
-        if self.transform :
+        if self.transform:
             image, points = self.transform(image, points)
             Normalization = transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
             image = Normalization(image)
@@ -90,6 +60,6 @@ class PointDataset(Dataset):
 
         size = int(self.input_size / 32)
         mask = calculate_tensor(256, size, points)
-        mask = mask.permute(2,0,1)
+        mask = mask.permute(2, 0, 1)
         # test = extract_keypoints_from_tensor(mask.unsqueeze(0).permute(0,3,1,2), 256)
         return image, mask

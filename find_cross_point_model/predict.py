@@ -80,7 +80,7 @@ def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_
     model = pointFindingModel()
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     if model_file is None:
-        model_folder = './find_cross_point_model/models'
+        model_folder = '/home/user/PycharmProjects/iron_bar_sample_project/find_cross_point_model/models'
         model_filename = os.path.join(model_folder, extension.get_latest_pth_file(model_folder, '.pth'))
         checkpoint = torch.load(model_filename)
         model.load_state_dict(checkpoint['model_state_dict'])
@@ -107,7 +107,7 @@ def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_
     with torch.no_grad():
         output_logit = model(image_tensor)
         output = torch.sigmoid(output_logit)
-        keypoints = nms(output, h, 20)
+        keypoints = nms(output, h, 15)
 
     res = np.zeros_like(image, dtype = np.uint8)
     res_point = []

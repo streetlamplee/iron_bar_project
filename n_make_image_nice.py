@@ -3,7 +3,7 @@ import numpy as np
 from extension import array_norm
 
 def custom_image_thresholding(image, kernel, threshold):
-    b_image = (image > 255. * 2. / 3.).astype(np.uint8)
+    b_image = (image > 255. * 1. / 2.).astype(np.uint8)
 
     response = cv2.filter2D(b_image, -1, kernel, borderType=cv2.BORDER_CONSTANT)
 

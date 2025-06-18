@@ -5,13 +5,15 @@ from torchvision import transforms
 import os
 import extension
 from image_2_ironbar_model import data_making
-from model import pointFindingModel
+from image_2_ironbar_model.model import pointFindingModel
 from PIL import Image
 
 def predict(image_list, model_file = None):
     input = []
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     for image in image_list:
+        if len(image.shape) == 2:
+            image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
         image_tensor = torch.tensor(image, dtype = torch.float32)
         image_tensor = image_tensor.permute(2, 0, 1)
         image_tensor /= 255.

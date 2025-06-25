@@ -17,11 +17,16 @@ class PointClicker:
             cv2.circle(self.image, (x, y), radius=4, color=(0, 0, 255), thickness=-1)
             cv2.imshow(self.window_name, self.image)
 
-    def get_points(self, image):
+    def get_points(self, image, ratio = '4:3'):
         self.points = []
         if image.shape[0] > 900:
             self.multiplier = image.shape[0] / 900
-            image = cv2.resize(image ,(1200, 900))
+            if ratio == '4:3':
+                image = cv2.resize(image ,(1200, 900))
+            elif ratio == '16:9':
+                image = cv2.resize(image, (1600, 900))
+            else:
+                raise 'ratio value must be one of "4:3" or "16:9"'
         self.image = image.copy()
 
         cv2.imshow(self.window_name, self.image)

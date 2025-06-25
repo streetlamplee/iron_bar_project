@@ -50,7 +50,7 @@ def main():
     '''
     데이터 불러오기
     '''
-    train_dict, valid_dict = train_valid_split('./data/data.json', 0.7, 0.3)
+    train_dict, valid_dict = train_valid_split('./data/data.json', 0.85, 0.15)
 
     train_dataset = PointDataset(train_dict, train_transform)
     valid_dataset = PointDataset(valid_dict, valid_transform)
@@ -58,14 +58,16 @@ def main():
     '''
     데이터 로더 만들기
     '''
-    train_loader = DataLoader(train_dataset, batch_size=4, num_workers=1, pin_memory=True, shuffle=True, drop_last=True)
-    valid_loader = DataLoader(valid_dataset, batch_size=4, num_workers=1, pin_memory=True, shuffle=False, drop_last=False)
+    train_loader = DataLoader(train_dataset, batch_size=2, num_workers=1, pin_memory=True, shuffle=True, drop_last=True)
+    valid_loader = DataLoader(valid_dataset, batch_size=1, num_workers=1, pin_memory=True, shuffle=False, drop_last=False)
 
     '''
     학습에 필요한 요소 선언
     '''
     num_classes = 1
     model = pointFindingModel()
+    checkpoint = torch.load('/home/user/PycharmProjects/iron_bar_sample_project/find_cross_point_model/models/20250624_161155/epoch00905.pth')
+    model.load_state_dict(checkpoint['model_state_dict'])
     device = "cuda" if torch.cuda.is_available() else "cpu"
     optimizer = optim.Adam(model.parameters(), lr=1e-4)
     criterion = pointFinderCriterion()

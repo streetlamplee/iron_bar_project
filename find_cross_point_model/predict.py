@@ -2,6 +2,7 @@ import os
 from torchvision import transforms
 import numpy as np
 import extension
+from extension import image_show
 from find_cross_point_model.model import pointFindingModel
 import torch
 import cv2
@@ -115,7 +116,7 @@ def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_
         h, w, o = key
         h = int(h)
         w = int(w)
-        if o > 0.6:
+        if o > 0.5:
             cv2.circle(res, (h, w), 4, (255,255,255), -1)
             res_point.append([h, w])
     return res, res_point
@@ -175,4 +176,12 @@ def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_
 
 
 if __name__ == "__main__":
-    predict()
+    image = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/[0, 1, 2, 3]_btm.png')
+    image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
+    # image = cv2.resize(image, (512, 512))
+    result, result_point = predict_one_image(image)
+    image_show(result)
+    for p in result_point:
+        image = cv2.circle(image, p, radius=3, thickness=-1, color = (255, 0, 0))
+    image = cv2.cvtColor(image, cv2.COLOR_RGB2BGR)
+    image_show(image)

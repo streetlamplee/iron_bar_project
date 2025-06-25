@@ -92,7 +92,7 @@ def make_more_data(num:int, data_path:str, origin_data_json_path:str):
         if int(input()):
             clicked_point = clicked_point_finder(image)
             sub_dict = {
-                'filename': f'train/image/{cnt}.png',
+                'filename': f'data/image/{cnt}.png',
                 'mask': clicked_point
             }
             if 'len' in data_json.keys():
@@ -112,7 +112,5 @@ def make_more_data(num:int, data_path:str, origin_data_json_path:str):
     return
 
 if __name__ == "__main__":
-    make_more_data(5, '../warp_image', 'data/data.json')
-    '''
-    374개 까지 진행할 것
-    '''
+    extension.set_seed(10)
+    make_more_data(10, '../warp_image', 'data/data.json')

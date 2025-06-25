@@ -10,8 +10,8 @@ class pointFinderCriterion(nn.Module):
     def forward(self, x_logit, target):
         mse_loss = 0.0
         bce_loss = 0.0
-        w_mse = 5.0
-        w_bce = 0.5
+        w_mse = 1.0
+        w_bce = 1.0
 
         for i in range(4):
             x_idx = i * 3 + 0

@@ -10,10 +10,10 @@ from torchvision import transforms
 class custom_transforms():
     def __init__(self, mode):
         self.train_transforms = transforms.Compose([
-            transforms.ColorJitter(brightness= .2,
-                                   contrast=.4,
-                                   saturation=0,
-                                   hue=0),
+            # transforms.ColorJitter(brightness= .2,
+            #                        contrast=.4,
+            #                        saturation=0,
+            #                        hue=0),
             transforms.ToTensor(),
         ])
         self.valid_transforms = transforms.Compose([

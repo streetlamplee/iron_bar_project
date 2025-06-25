@@ -15,10 +15,9 @@ def get_model(num_classes):
     return model
 
 def predict(input):
-    # model_file = extension.get_latest_pth_file('models', '.pth')
-    # checkpoint = torch.load(os.path.join('models', model_file), map_location=torch.device('cpu'))
-    model_file = extension.get_latest_pth_file('./iron_bar_segmentation/models', '.pth')
-    checkpoint = torch.load(os.path.join('./iron_bar_segmentation/models', model_file), map_location=torch.device('cpu'))
+    model_file = extension.get_latest_pth_file('/home/user/PycharmProjects/iron_bar_sample_project/iron_bar_segmentation/models', '.pth')
+    # checkpoint = torch.load('/home/user/PycharmProjects/iron_bar_sample_project/iron_bar_segmentation/models/20250616_174956/epoch00231.pth', map_location=torch.device('cpu'))
+    checkpoint = torch.load(os.path.join('/home/user/PycharmProjects/iron_bar_sample_project/iron_bar_segmentation/models', model_file), map_location=torch.device('cpu'))
     print(os.path.join('./iron_bar_segmentati1on/models', model_file))
     model = get_model(1)
     model.load_state_dict(checkpoint['model_state_dict'])
@@ -40,7 +39,7 @@ def predict(input):
     return result
 
 if __name__ == '__main__':
-    input = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/iron_bar_segmentation/data_real/5.jpg')
+    input = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/data_real/0.jpg')
     input = cv2.cvtColor(input, cv2.COLOR_BGR2RGB)
     output = predict(input)
 

@@ -33,6 +33,7 @@ def predict(image_list, model_file = None):
         model_filename = os.path.join(model_folder, extension.get_latest_pth_file(model_folder, '.pth'))
         checkpoint = torch.load(model_filename)
         model.load_state_dict(checkpoint['model_state_dict'])
+        print(f'using model : {model_filename}')
     else:
         checkpoint = torch.load(model_file)
         model.load_state_dict(checkpoint['model_state_dict'])
@@ -60,7 +61,8 @@ def predict(image_list, model_file = None):
             y_value = output[2, h, w]
 
             if point_obj >= 0.5:
-                cv2.circle(result,(int(32 * h + 32 * y_value), int(32 * w + 32 * x_value)), radius=5, thickness = -1, color = (255,255,255))
+                c = int(255 * point_obj)
+                cv2.circle(result,(int(32 * h + 32 * y_value), int(32 * w + 32 * x_value)), radius=5, thickness = -1, color = (c,c,c))
                 point_list.append((float(point_obj), int(32 * h + 32 * y_value), int(32 * w + 32 * x_value)))
     return output, result, point_list
 
@@ -68,8 +70,8 @@ if __name__ == '__main__':
     image_list = []
     image_filename_list = []
     for i in range(5):
-        image = cv2.imread(f'../warp_image/{i+1}.png')
-        image_filename_list.append(f'../warp_image/{i+1}.png')
+        image = cv2.imread(f'../warp_seg_sample/{i}_seg.png')
+        image_filename_list.append(f'../warp_seg_sample/{i}_seg.png')
         image = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
         image = cv2.cvtColor(image, cv2.COLOR_GRAY2RGB)
         image_list.append(image)

@@ -32,9 +32,9 @@ def calculate_tensor(image_size, grid_size, keypoints, max_points_per_cell=6):
 
     return target
 
-class lineDataset(Dataset):
+class PointDataset(Dataset):
     def __init__(self, data_json:dict, transform = None, input_size=256):
-        self.data = data_json
+        self.data_json = data_json
         self.transform = transform
         self.input_size = input_size
 

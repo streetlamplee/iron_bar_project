@@ -10,7 +10,7 @@ def draw_line(points, image_size = 1024, is_set_of_points:bool = False):
         points = find_point_avg(points)
         points = np.array(points, dtype = np.int32).tolist()
 
-    dist = 25
+    dist = 64
     result = np.zeros((1024, 1024, 3), dtype = np.uint8)
     pallete = extension.random_pallete(99)
     p_idx = 0
@@ -35,10 +35,48 @@ def draw_line(points, image_size = 1024, is_set_of_points:bool = False):
             visited.extend(target_points_list)
             continue
 
-        target_points_list.insert(0, target_points_list[0].copy())
-        target_points_list[0][0] = 0
-        target_points_list.append(target_points_list[-1].copy())
-        target_points_list[-1][0] = image_size -1
+        # target_points_list.insert(0, target_points_list[0].copy())
+        # target_points_list[0][0] = 0
+        # target_points_list.append(target_points_list[-1].copy())
+        # target_points_list[-1][0] = image_size - 1
+
+        # insert head only if not already at row = 0
+        if target_points_list[0][0] > dist:
+            # head = target_points_list[0].copy()
+            # head[0] = 0
+            # target_points_list.insert(0, head)
+            p0 = target_points_list[0]
+            p1 = target_points_list[1]
+            dy = p1[0] - p0[0]
+            dx = p1[1] - p0[1]
+            if dx != 0:
+                slope = dy / dx
+                col_extrapolated = int(p0[1] - p0[0] / slope)
+                col_extrapolated = np.clip(col_extrapolated, 0, image_size - 1)
+            else:
+                col_extrapolated = p0[1]
+
+            head = [0, col_extrapolated]
+            target_points_list.insert(0, head)
+
+        # append tail only if not already at row = image_size - 1
+        if target_points_list[-1][0] < image_size - 1 - dist:
+            # tail = target_points_list[-1].copy()
+            # tail[0] = image_size - 1
+            # target_points_list.append(tail)
+            p0 = target_points_list[-2]
+            p1 = target_points_list[-1]
+            dy = p1[0] - p0[0]
+            dx = p1[1] - p0[1]
+            if dx != 0:
+                slope = dy / dx
+                col_extrapolated = int(p1[1] + (image_size - 1 - p1[0]) / slope)
+                col_extrapolated = np.clip(col_extrapolated, 0, image_size - 1)
+            else:
+                col_extrapolated = p1[1]
+
+            tail = [image_size - 1, col_extrapolated]
+            target_points_list.append(tail)
 
         color = tuple(int(c) for c in pallete[p_idx])
         p_idx += 1
@@ -71,11 +109,48 @@ def draw_line(points, image_size = 1024, is_set_of_points:bool = False):
             visited.extend(target_points_list)
             continue
 
+        # target_points_list.insert(0, target_points_list[0].copy())
+        # target_points_list[0][1] = 0
+        # target_points_list.append(target_points_list[-1].copy())
+        # target_points_list[-1][1] = image_size - 1
 
-        target_points_list.insert(0, target_points_list[0].copy())
-        target_points_list[0][1] = 0
-        target_points_list.append(target_points_list[-1].copy())
-        target_points_list[-1][1] = image_size-1
+        # insert head only if not already at col = 0
+        if target_points_list[0][1] > dist:
+            # head = target_points_list[0].copy()
+            # head[1] = 0
+            # target_points_list.insert(0, head)
+            p0 = target_points_list[0]
+            p1 = target_points_list[1]
+            dx = p1[1] - p0[1]
+            dy = p1[0] - p0[0]
+            if dx != 0:
+                slope = dy / dx
+                row_extrapolated = int(p0[0] - p0[1] * slope)
+                row_extrapolated = np.clip(row_extrapolated, 0, image_size - 1)
+            else:
+                row_extrapolated = p0[0]
+
+            head = [row_extrapolated, 0]
+            target_points_list.insert(0, head)
+
+        # append tail only if not already at col = image_size - 1
+        if target_points_list[-1][1] < image_size - 1 - dist:
+            # tail = target_points_list[-1].copy()
+            # tail[1] = image_size - 1
+            # target_points_list.append(tail)
+            p0 = target_points_list[-2]
+            p1 = target_points_list[-1]
+            dx = p1[1] - p0[1]
+            dy = p1[0] - p0[0]
+            if dx != 0:
+                slope = dy / dx
+                row_extrapolated = int(p1[0] + (image_size - 1 - p1[1]) * slope)
+                row_extrapolated = np.clip(row_extrapolated, 0, image_size - 1)
+            else:
+                row_extrapolated = p1[0]
+
+            tail = [row_extrapolated, image_size - 1]
+            target_points_list.append(tail)
 
         color = tuple(int(c) for c in pallete[p_idx])
         p_idx += 1

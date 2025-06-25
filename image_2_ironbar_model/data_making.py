@@ -19,7 +19,6 @@ def make_target(image_list, image_size, save_filename=None):
     src_image = cv2.cvtColor(src_image, cv2.COLOR_BGR2RGB)
     res = np.zeros_like(src_image, dtype = np.float32)
     res += src_image * (1/len(image_list))
-
     _, src_point = predict_one_image(src_image)
     # image_show(_)
 
@@ -127,9 +126,7 @@ def data_processing(h_lines, v_lines, image_size = (256, 256), grid_size = (8,8)
         res[3, :, grid_num_line] = value_line
 
     return res
-IMAGE_SIZE = 1024
-CROP_SIZE = 256
-NUM_CROPS = 256
+
 def crop_and_filter_points(points, crop_x, crop_y, crop_size=256):
     """
     이미지에서 crop 영역 내에 존재하는 점들만 필터링하는 함수
@@ -142,6 +139,9 @@ def crop_and_filter_points(points, crop_x, crop_y, crop_size=256):
             filtered_points.append([x - crop_x, y - crop_y])
     return filtered_points
 
+IMAGE_SIZE = 1024
+CROP_SIZE = 256
+NUM_CROPS = 256
 
 def main():
     import random
@@ -155,11 +155,16 @@ def main():
         group_num = sorted(list(map(int, [img.split("_")[0] for img in os.listdir('data/processed') if img.endswith('.png')])))[-1] +1
 
     # 1. 타겟 이미지 생성
-    warp_image_path = '../warp_image'
+    warp_image_path = '../real_seg_warp'
     image_list = sorted(os.listdir(warp_image_path))
     image_list = [os.path.join(warp_image_path, img) for img in image_list if img.endswith('.png')]
 
-    _, target_image, _ = make_target(image_list, IMAGE_SIZE)
+    # _, target_image, _ = make_target(image_list, IMAGE_SIZE)
+    target_image = np.zeros_like(cv2.imread(image_list[0])).astype(np.float32)
+    for image_filename in image_list:
+        image = cv2.imread(image_filename)
+        image = image.astype(np.float32)
+        target_image = target_image + image * (1 / len(image_list))
 
     # 2. 타겟 이미지에서 점 클릭
     target_image_rgb = cv2.cvtColor(target_image.astype(np.uint8), cv2.COLOR_BGR2RGB)
@@ -199,6 +204,11 @@ def main():
         data_json[c] = sub_dict
 
     # ✅ JSON으로 저장하고 싶을 경우 이 블럭을 사용하세요
+    for k in data_json.keys():
+        print(f"{k}: {type(k)}")
+
+    data_json = {int(k): v for k, v in data_json.items()}
+
     with open(json_path, 'w') as f:
         smart_json_dump(data_json, f, indent=2)
 

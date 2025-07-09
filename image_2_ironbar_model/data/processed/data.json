@@ -1,0 +1,8470 @@
+{
+  "0": {
+    "images": [
+      "data/processed/0_0.png",
+      "data/processed/0_1.png",
+      "data/processed/0_2.png",
+      "data/processed/0_3.png",
+      "data/processed/0_4.png"
+    ],
+    "points": [
+      [
+        107,
+        156
+      ],
+      [
+        111,
+        20
+      ],
+      [
+        209,
+        21
+      ],
+      [
+        215,
+        152
+      ]
+    ],
+    "result": "data/processed/0_4_target.png"
+  },
+  "1": {
+    "images": [
+      "data/processed/1_0.png",
+      "data/processed/1_1.png",
+      "data/processed/1_2.png",
+      "data/processed/1_3.png",
+      "data/processed/1_4.png"
+    ],
+    "points": [
+      [
+        101,
+        237
+      ],
+      [
+        101,
+        164
+      ],
+      [
+        219,
+        237
+      ],
+      [
+        215,
+        152
+      ],
+      [
+        215,
+        81
+      ],
+      [
+        106,
+        89
+      ]
+    ],
+    "result": "data/processed/1_4_target.png"
+  },
+  "2": {
+    "images": [
+      "data/processed/2_0.png",
+      "data/processed/2_1.png",
+      "data/processed/2_2.png",
+      "data/processed/2_3.png",
+      "data/processed/2_4.png"
+    ],
+    "points": [
+      [
+        14,
+        147
+      ],
+      [
+        16,
+        229
+      ],
+      [
+        156,
+        213
+      ],
+      [
+        151,
+        142
+      ],
+      [
+        255,
+        138
+      ],
+      [
+        152,
+        70
+      ],
+      [
+        19,
+        81
+      ]
+    ],
+    "result": "data/processed/2_4_target.png"
+  },
+  "3": {
+    "images": [
+      "data/processed/3_0.png",
+      "data/processed/3_1.png",
+      "data/processed/3_2.png",
+      "data/processed/3_3.png",
+      "data/processed/3_4.png"
+    ],
+    "points": [
+      [
+        20,
+        117
+      ],
+      [
+        17,
+        242
+      ],
+      [
+        64,
+        237
+      ],
+      [
+        132,
+        234
+      ],
+      [
+        133,
+        113
+      ],
+      [
+        242,
+        109
+      ],
+      [
+        234,
+        236
+      ]
+    ],
+    "result": "data/processed/3_4_target.png"
+  },
+  "4": {
+    "images": [
+      "data/processed/4_0.png",
+      "data/processed/4_1.png",
+      "data/processed/4_2.png",
+      "data/processed/4_3.png",
+      "data/processed/4_4.png"
+    ],
+    "points": [
+      [
+        82,
+        145
+      ],
+      [
+        81,
+        6
+      ],
+      [
+        194,
+        139
+      ],
+      [
+        199,
+        6
+      ]
+    ],
+    "result": "data/processed/4_4_target.png"
+  },
+  "5": {
+    "images": [
+      "data/processed/5_0.png",
+      "data/processed/5_1.png",
+      "data/processed/5_2.png",
+      "data/processed/5_3.png",
+      "data/processed/5_4.png"
+    ],
+    "points": [
+      [
+        87,
+        193
+      ],
+      [
+        91,
+        65
+      ],
+      [
+        201,
+        65
+      ],
+      [
+        204,
+        193
+      ]
+    ],
+    "result": "data/processed/5_4_target.png"
+  },
+  "6": {
+    "images": [
+      "data/processed/6_0.png",
+      "data/processed/6_1.png",
+      "data/processed/6_2.png",
+      "data/processed/6_3.png",
+      "data/processed/6_4.png"
+    ],
+    "points": [
+      [
+        117,
+        208
+      ],
+      [
+        118,
+        83
+      ],
+      [
+        222,
+        80
+      ],
+      [
+        216,
+        209
+      ]
+    ],
+    "result": "data/processed/6_4_target.png"
+  },
+  "7": {
+    "images": [
+      "data/processed/7_0.png",
+      "data/processed/7_1.png",
+      "data/processed/7_2.png",
+      "data/processed/7_3.png",
+      "data/processed/7_4.png"
+    ],
+    "points": [
+      [
+        6,
+        25
+      ],
+      [
+        8,
+        107
+      ],
+      [
+        14,
+        226
+      ],
+      [
+        142,
+        227
+      ],
+      [
+        250,
+        224
+      ],
+      [
+        248,
+        88
+      ],
+      [
+        148,
+        91
+      ],
+      [
+        143,
+        20
+      ],
+      [
+        247,
+        16
+      ]
+    ],
+    "result": "data/processed/7_4_target.png"
+  },
+  "8": {
+    "images": [
+      "data/processed/8_0.png",
+      "data/processed/8_1.png",
+      "data/processed/8_2.png",
+      "data/processed/8_3.png",
+      "data/processed/8_4.png"
+    ],
+    "points": [
+      [
+        11,
+        87
+      ],
+      [
+        13,
+        169
+      ],
+      [
+        253,
+        150
+      ],
+      [
+        153,
+        153
+      ],
+      [
+        148,
+        82
+      ],
+      [
+        252,
+        78
+      ],
+      [
+        254,
+        14
+      ],
+      [
+        149,
+        10
+      ],
+      [
+        16,
+        21
+      ]
+    ],
+    "result": "data/processed/8_4_target.png"
+  },
+  "9": {
+    "images": [
+      "data/processed/9_0.png",
+      "data/processed/9_1.png",
+      "data/processed/9_2.png",
+      "data/processed/9_3.png",
+      "data/processed/9_4.png"
+    ],
+    "points": [
+      [
+        90,
+        33
+      ],
+      [
+        84,
+        162
+      ],
+      [
+        197,
+        158
+      ],
+      [
+        198,
+        34
+      ]
+    ],
+    "result": "data/processed/9_4_target.png"
+  },
+  "10": {
+    "images": [
+      "data/processed/10_0.png",
+      "data/processed/10_1.png",
+      "data/processed/10_2.png",
+      "data/processed/10_3.png",
+      "data/processed/10_4.png"
+    ],
+    "points": [
+      [
+        180,
+        157
+      ],
+      [
+        60,
+        157
+      ],
+      [
+        56,
+        72
+      ],
+      [
+        56,
+        1
+      ]
+    ],
+    "result": "data/processed/10_4_target.png"
+  },
+  "11": {
+    "images": [
+      "data/processed/11_0.png",
+      "data/processed/11_1.png",
+      "data/processed/11_2.png",
+      "data/processed/11_3.png",
+      "data/processed/11_4.png"
+    ],
+    "points": [
+      [
+        42,
+        221
+      ],
+      [
+        46,
+        85
+      ],
+      [
+        144,
+        86
+      ],
+      [
+        150,
+        217
+      ]
+    ],
+    "result": "data/processed/11_4_target.png"
+  },
+  "12": {
+    "images": [
+      "data/processed/12_0.png",
+      "data/processed/12_1.png",
+      "data/processed/12_2.png",
+      "data/processed/12_3.png",
+      "data/processed/12_4.png"
+    ],
+    "points": [
+      [
+        73,
+        208
+      ],
+      [
+        181,
+        205
+      ],
+      [
+        179,
+        69
+      ],
+      [
+        79,
+        72
+      ],
+      [
+        74,
+        1
+      ]
+    ],
+    "result": "data/processed/12_4_target.png"
+  },
+  "13": {
+    "images": [
+      "data/processed/13_0.png",
+      "data/processed/13_1.png",
+      "data/processed/13_2.png",
+      "data/processed/13_3.png",
+      "data/processed/13_4.png"
+    ],
+    "points": [
+      [
+        24,
+        66
+      ],
+      [
+        22,
+        117
+      ],
+      [
+        26,
+        190
+      ],
+      [
+        25,
+        242
+      ],
+      [
+        125,
+        73
+      ],
+      [
+        132,
+        194
+      ]
+    ],
+    "result": "data/processed/13_4_target.png"
+  },
+  "14": {
+    "images": [
+      "data/processed/14_0.png",
+      "data/processed/14_1.png",
+      "data/processed/14_2.png",
+      "data/processed/14_3.png",
+      "data/processed/14_4.png"
+    ],
+    "points": [
+      [
+        88,
+        44
+      ],
+      [
+        82,
+        173
+      ],
+      [
+        195,
+        169
+      ],
+      [
+        196,
+        45
+      ]
+    ],
+    "result": "data/processed/14_4_target.png"
+  },
+  "15": {
+    "images": [
+      "data/processed/15_0.png",
+      "data/processed/15_1.png",
+      "data/processed/15_2.png",
+      "data/processed/15_3.png",
+      "data/processed/15_4.png"
+    ],
+    "points": [
+      [
+        42,
+        40
+      ],
+      [
+        46,
+        113
+      ],
+      [
+        45,
+        165
+      ],
+      [
+        45,
+        215
+      ],
+      [
+        152,
+        117
+      ]
+    ],
+    "result": "data/processed/15_4_target.png"
+  },
+  "16": {
+    "images": [
+      "data/processed/16_0.png",
+      "data/processed/16_1.png",
+      "data/processed/16_2.png",
+      "data/processed/16_3.png",
+      "data/processed/16_4.png"
+    ],
+    "points": [
+      [
+        81,
+        206
+      ],
+      [
+        81,
+        133
+      ],
+      [
+        199,
+        206
+      ],
+      [
+        195,
+        121
+      ],
+      [
+        195,
+        50
+      ],
+      [
+        86,
+        58
+      ]
+    ],
+    "result": "data/processed/16_4_target.png"
+  },
+  "17": {
+    "images": [
+      "data/processed/17_0.png",
+      "data/processed/17_1.png",
+      "data/processed/17_2.png",
+      "data/processed/17_3.png",
+      "data/processed/17_4.png"
+    ],
+    "points": [
+      [
+        52,
+        38
+      ],
+      [
+        49,
+        118
+      ],
+      [
+        47,
+        169
+      ],
+      [
+        51,
+        242
+      ],
+      [
+        150,
+        125
+      ],
+      [
+        157,
+        246
+      ]
+    ],
+    "result": "data/processed/17_4_target.png"
+  },
+  "18": {
+    "images": [
+      "data/processed/18_0.png",
+      "data/processed/18_1.png",
+      "data/processed/18_2.png",
+      "data/processed/18_3.png",
+      "data/processed/18_4.png"
+    ],
+    "points": [
+      [
+        82,
+        236
+      ],
+      [
+        80,
+        92
+      ],
+      [
+        180,
+        87
+      ],
+      [
+        180,
+        237
+      ]
+    ],
+    "result": "data/processed/18_4_target.png"
+  },
+  "19": {
+    "images": [
+      "data/processed/19_0.png",
+      "data/processed/19_1.png",
+      "data/processed/19_2.png",
+      "data/processed/19_3.png",
+      "data/processed/19_4.png"
+    ],
+    "points": [
+      [
+        65,
+        239
+      ],
+      [
+        69,
+        111
+      ],
+      [
+        179,
+        111
+      ],
+      [
+        182,
+        239
+      ],
+      [
+        247,
+        241
+      ]
+    ],
+    "result": "data/processed/19_4_target.png"
+  },
+  "20": {
+    "images": [
+      "data/processed/20_0.png",
+      "data/processed/20_1.png",
+      "data/processed/20_2.png",
+      "data/processed/20_3.png",
+      "data/processed/20_4.png"
+    ],
+    "points": [
+      [
+        76,
+        3
+      ],
+      [
+        82,
+        122
+      ],
+      [
+        210,
+        123
+      ]
+    ],
+    "result": "data/processed/20_4_target.png"
+  },
+  "21": {
+    "images": [
+      "data/processed/21_0.png",
+      "data/processed/21_1.png",
+      "data/processed/21_2.png",
+      "data/processed/21_3.png",
+      "data/processed/21_4.png"
+    ],
+    "points": [
+      [
+        14,
+        19
+      ],
+      [
+        15,
+        67
+      ],
+      [
+        12,
+        147
+      ],
+      [
+        10,
+        198
+      ],
+      [
+        113,
+        23
+      ],
+      [
+        113,
+        154
+      ]
+    ],
+    "result": "data/processed/21_4_target.png"
+  },
+  "22": {
+    "images": [
+      "data/processed/22_0.png",
+      "data/processed/22_1.png",
+      "data/processed/22_2.png",
+      "data/processed/22_3.png",
+      "data/processed/22_4.png"
+    ],
+    "points": [
+      [
+        119,
+        183
+      ],
+      [
+        227,
+        180
+      ],
+      [
+        225,
+        44
+      ],
+      [
+        125,
+        47
+      ]
+    ],
+    "result": "data/processed/22_4_target.png"
+  },
+  "23": {
+    "images": [
+      "data/processed/23_0.png",
+      "data/processed/23_1.png",
+      "data/processed/23_2.png",
+      "data/processed/23_3.png",
+      "data/processed/23_4.png"
+    ],
+    "points": [
+      [
+        127,
+        240
+      ],
+      [
+        128,
+        115
+      ],
+      [
+        232,
+        112
+      ],
+      [
+        226,
+        241
+      ]
+    ],
+    "result": "data/processed/23_4_target.png"
+  },
+  "24": {
+    "images": [
+      "data/processed/24_0.png",
+      "data/processed/24_1.png",
+      "data/processed/24_2.png",
+      "data/processed/24_3.png",
+      "data/processed/24_4.png"
+    ],
+    "points": [
+      [
+        52,
+        163
+      ],
+      [
+        51,
+        19
+      ],
+      [
+        162,
+        157
+      ],
+      [
+        163,
+        13
+      ]
+    ],
+    "result": "data/processed/24_4_target.png"
+  },
+  "25": {
+    "images": [
+      "data/processed/25_0.png",
+      "data/processed/25_1.png",
+      "data/processed/25_2.png",
+      "data/processed/25_3.png",
+      "data/processed/25_4.png"
+    ],
+    "points": [
+      [
+        236,
+        223
+      ],
+      [
+        126,
+        219
+      ],
+      [
+        26,
+        222
+      ],
+      [
+        21,
+        151
+      ],
+      [
+        125,
+        147
+      ],
+      [
+        236,
+        150
+      ],
+      [
+        241,
+        75
+      ],
+      [
+        127,
+        83
+      ],
+      [
+        22,
+        79
+      ]
+    ],
+    "result": "data/processed/25_4_target.png"
+  },
+  "26": {
+    "images": [
+      "data/processed/26_0.png",
+      "data/processed/26_1.png",
+      "data/processed/26_2.png",
+      "data/processed/26_3.png",
+      "data/processed/26_4.png"
+    ],
+    "points": [
+      [
+        63,
+        172
+      ],
+      [
+        64,
+        48
+      ],
+      [
+        174,
+        42
+      ],
+      [
+        172,
+        168
+      ]
+    ],
+    "result": "data/processed/26_4_target.png"
+  },
+  "27": {
+    "images": [
+      "data/processed/27_0.png",
+      "data/processed/27_1.png",
+      "data/processed/27_2.png",
+      "data/processed/27_3.png",
+      "data/processed/27_4.png"
+    ],
+    "points": [
+      [
+        32,
+        32
+      ],
+      [
+        29,
+        112
+      ],
+      [
+        27,
+        163
+      ],
+      [
+        31,
+        236
+      ],
+      [
+        130,
+        119
+      ],
+      [
+        137,
+        240
+      ]
+    ],
+    "result": "data/processed/27_4_target.png"
+  },
+  "28": {
+    "images": [
+      "data/processed/28_0.png",
+      "data/processed/28_1.png",
+      "data/processed/28_2.png",
+      "data/processed/28_3.png",
+      "data/processed/28_4.png"
+    ],
+    "points": [
+      [
+        41,
+        26
+      ],
+      [
+        43,
+        108
+      ],
+      [
+        49,
+        227
+      ],
+      [
+        177,
+        228
+      ],
+      [
+        183,
+        92
+      ],
+      [
+        178,
+        21
+      ]
+    ],
+    "result": "data/processed/28_4_target.png"
+  },
+  "29": {
+    "images": [
+      "data/processed/29_0.png",
+      "data/processed/29_1.png",
+      "data/processed/29_2.png",
+      "data/processed/29_3.png",
+      "data/processed/29_4.png"
+    ],
+    "points": [
+      [
+        64,
+        43
+      ],
+      [
+        64,
+        174
+      ],
+      [
+        209,
+        163
+      ],
+      [
+        210,
+        38
+      ]
+    ],
+    "result": "data/processed/29_4_target.png"
+  },
+  "30": {
+    "images": [
+      "data/processed/30_0.png",
+      "data/processed/30_1.png",
+      "data/processed/30_2.png",
+      "data/processed/30_3.png",
+      "data/processed/30_4.png"
+    ],
+    "points": [
+      [
+        44,
+        199
+      ],
+      [
+        48,
+        63
+      ],
+      [
+        146,
+        64
+      ],
+      [
+        152,
+        195
+      ]
+    ],
+    "result": "data/processed/30_4_target.png"
+  },
+  "31": {
+    "images": [
+      "data/processed/31_0.png",
+      "data/processed/31_1.png",
+      "data/processed/31_2.png",
+      "data/processed/31_3.png",
+      "data/processed/31_4.png"
+    ],
+    "points": [
+      [
+        6,
+        40
+      ],
+      [
+        1,
+        137
+      ],
+      [
+        5,
+        67
+      ],
+      [
+        94,
+        44
+      ],
+      [
+        96,
+        126
+      ],
+      [
+        102,
+        245
+      ],
+      [
+        230,
+        246
+      ],
+      [
+        236,
+        110
+      ],
+      [
+        231,
+        39
+      ]
+    ],
+    "result": "data/processed/31_4_target.png"
+  },
+  "32": {
+    "images": [
+      "data/processed/32_0.png",
+      "data/processed/32_1.png",
+      "data/processed/32_2.png",
+      "data/processed/32_3.png",
+      "data/processed/32_4.png"
+    ],
+    "points": [
+      [
+        116,
+        193
+      ],
+      [
+        117,
+        68
+      ],
+      [
+        221,
+        65
+      ],
+      [
+        215,
+        194
+      ]
+    ],
+    "result": "data/processed/32_4_target.png"
+  },
+  "33": {
+    "images": [
+      "data/processed/33_0.png",
+      "data/processed/33_1.png",
+      "data/processed/33_2.png",
+      "data/processed/33_3.png",
+      "data/processed/33_4.png"
+    ],
+    "points": [
+      [
+        170,
+        216
+      ],
+      [
+        50,
+        216
+      ],
+      [
+        46,
+        131
+      ],
+      [
+        46,
+        60
+      ],
+      [
+        171,
+        58
+      ]
+    ],
+    "result": "data/processed/33_4_target.png"
+  },
+  "34": {
+    "images": [
+      "data/processed/34_0.png",
+      "data/processed/34_1.png",
+      "data/processed/34_2.png",
+      "data/processed/34_3.png",
+      "data/processed/34_4.png"
+    ],
+    "points": [
+      [
+        76,
+        168
+      ],
+      [
+        75,
+        29
+      ],
+      [
+        188,
+        162
+      ],
+      [
+        193,
+        29
+      ]
+    ],
+    "result": "data/processed/34_4_target.png"
+  },
+  "35": {
+    "images": [
+      "data/processed/35_0.png",
+      "data/processed/35_1.png",
+      "data/processed/35_2.png",
+      "data/processed/35_3.png",
+      "data/processed/35_4.png"
+    ],
+    "points": [
+      [
+        169,
+        173
+      ],
+      [
+        69,
+        176
+      ],
+      [
+        64,
+        105
+      ],
+      [
+        168,
+        101
+      ],
+      [
+        170,
+        37
+      ],
+      [
+        65,
+        33
+      ]
+    ],
+    "result": "data/processed/35_4_target.png"
+  },
+  "36": {
+    "images": [
+      "data/processed/36_0.png",
+      "data/processed/36_1.png",
+      "data/processed/36_2.png",
+      "data/processed/36_3.png",
+      "data/processed/36_4.png"
+    ],
+    "points": [
+      [
+        94,
+        45
+      ],
+      [
+        37,
+        0
+      ],
+      [
+        33,
+        45
+      ],
+      [
+        32,
+        106
+      ],
+      [
+        36,
+        154
+      ],
+      [
+        32,
+        209
+      ],
+      [
+        88,
+        153
+      ],
+      [
+        91,
+        105
+      ],
+      [
+        89,
+        201
+      ],
+      [
+        199,
+        1
+      ],
+      [
+        187,
+        157
+      ]
+    ],
+    "result": "data/processed/36_4_target.png"
+  },
+  "37": {
+    "images": [
+      "data/processed/37_0.png",
+      "data/processed/37_1.png",
+      "data/processed/37_2.png",
+      "data/processed/37_3.png",
+      "data/processed/37_4.png"
+    ],
+    "points": [
+      [
+        31,
+        41
+      ],
+      [
+        36,
+        189
+      ],
+      [
+        36,
+        136
+      ],
+      [
+        35,
+        216
+      ],
+      [
+        124,
+        42
+      ],
+      [
+        124,
+        193
+      ],
+      [
+        247,
+        30
+      ],
+      [
+        129,
+        127
+      ]
+    ],
+    "result": "data/processed/37_4_target.png"
+  },
+  "38": {
+    "images": [
+      "data/processed/38_0.png",
+      "data/processed/38_1.png",
+      "data/processed/38_2.png",
+      "data/processed/38_3.png",
+      "data/processed/38_4.png"
+    ],
+    "points": [
+      [
+        21,
+        255
+      ],
+      [
+        21,
+        182
+      ],
+      [
+        139,
+        255
+      ],
+      [
+        135,
+        170
+      ],
+      [
+        135,
+        99
+      ],
+      [
+        26,
+        107
+      ]
+    ],
+    "result": "data/processed/38_4_target.png"
+  },
+  "39": {
+    "images": [
+      "data/processed/39_0.png",
+      "data/processed/39_1.png",
+      "data/processed/39_2.png",
+      "data/processed/39_3.png",
+      "data/processed/39_4.png"
+    ],
+    "points": [
+      [
+        3,
+        67
+      ],
+      [
+        132,
+        65
+      ],
+      [
+        0,
+        220
+      ],
+      [
+        133,
+        222
+      ],
+      [
+        249,
+        65
+      ],
+      [
+        236,
+        223
+      ]
+    ],
+    "result": "data/processed/39_4_target.png"
+  },
+  "40": {
+    "images": [
+      "data/processed/40_0.png",
+      "data/processed/40_1.png",
+      "data/processed/40_2.png",
+      "data/processed/40_3.png",
+      "data/processed/40_4.png"
+    ],
+    "points": [
+      [
+        99,
+        44
+      ],
+      [
+        87,
+        200
+      ],
+      [
+        233,
+        195
+      ],
+      [
+        227,
+        45
+      ]
+    ],
+    "result": "data/processed/40_4_target.png"
+  },
+  "41": {
+    "images": [
+      "data/processed/41_0.png",
+      "data/processed/41_1.png",
+      "data/processed/41_2.png",
+      "data/processed/41_3.png",
+      "data/processed/41_4.png"
+    ],
+    "points": [
+      [
+        198,
+        200
+      ],
+      [
+        196,
+        56
+      ],
+      [
+        71,
+        189
+      ],
+      [
+        76,
+        56
+      ]
+    ],
+    "result": "data/processed/41_4_target.png"
+  },
+  "42": {
+    "images": [
+      "data/processed/42_0.png",
+      "data/processed/42_1.png",
+      "data/processed/42_2.png",
+      "data/processed/42_3.png",
+      "data/processed/42_4.png"
+    ],
+    "points": [
+      [
+        91,
+        79
+      ],
+      [
+        220,
+        77
+      ],
+      [
+        88,
+        232
+      ],
+      [
+        221,
+        234
+      ]
+    ],
+    "result": "data/processed/42_4_target.png"
+  },
+  "43": {
+    "images": [
+      "data/processed/43_0.png",
+      "data/processed/43_1.png",
+      "data/processed/43_2.png",
+      "data/processed/43_3.png",
+      "data/processed/43_4.png"
+    ],
+    "points": [
+      [
+        197,
+        195
+      ],
+      [
+        97,
+        198
+      ],
+      [
+        92,
+        127
+      ],
+      [
+        196,
+        123
+      ],
+      [
+        198,
+        59
+      ],
+      [
+        93,
+        55
+      ]
+    ],
+    "result": "data/processed/43_4_target.png"
+  },
+  "44": {
+    "images": [
+      "data/processed/44_0.png",
+      "data/processed/44_1.png",
+      "data/processed/44_2.png",
+      "data/processed/44_3.png",
+      "data/processed/44_4.png"
+    ],
+    "points": [
+      [
+        96,
+        191
+      ],
+      [
+        204,
+        188
+      ],
+      [
+        202,
+        52
+      ],
+      [
+        102,
+        55
+      ]
+    ],
+    "result": "data/processed/44_4_target.png"
+  },
+  "45": {
+    "images": [
+      "data/processed/45_0.png",
+      "data/processed/45_1.png",
+      "data/processed/45_2.png",
+      "data/processed/45_3.png",
+      "data/processed/45_4.png"
+    ],
+    "points": [
+      [
+        170,
+        216
+      ],
+      [
+        60,
+        212
+      ],
+      [
+        59,
+        140
+      ],
+      [
+        170,
+        143
+      ],
+      [
+        175,
+        68
+      ],
+      [
+        61,
+        76
+      ]
+    ],
+    "result": "data/processed/45_4_target.png"
+  },
+  "46": {
+    "images": [
+      "data/processed/46_0.png",
+      "data/processed/46_1.png",
+      "data/processed/46_2.png",
+      "data/processed/46_3.png",
+      "data/processed/46_4.png"
+    ],
+    "points": [
+      [
+        51,
+        228
+      ],
+      [
+        51,
+        70
+      ],
+      [
+        153,
+        72
+      ],
+      [
+        152,
+        227
+      ],
+      [
+        93,
+        227
+      ],
+      [
+        200,
+        67
+      ],
+      [
+        206,
+        229
+      ]
+    ],
+    "result": "data/processed/46_4_target.png"
+  },
+  "47": {
+    "images": [
+      "data/processed/47_0.png",
+      "data/processed/47_1.png",
+      "data/processed/47_2.png",
+      "data/processed/47_3.png",
+      "data/processed/47_4.png"
+    ],
+    "points": [
+      [
+        50,
+        183
+      ],
+      [
+        54,
+        55
+      ],
+      [
+        164,
+        55
+      ],
+      [
+        167,
+        183
+      ],
+      [
+        232,
+        185
+      ]
+    ],
+    "result": "data/processed/47_4_target.png"
+  },
+  "48": {
+    "images": [
+      "data/processed/48_0.png",
+      "data/processed/48_1.png",
+      "data/processed/48_2.png",
+      "data/processed/48_3.png",
+      "data/processed/48_4.png"
+    ],
+    "points": [
+      [
+        237,
+        177
+      ],
+      [
+        117,
+        177
+      ],
+      [
+        113,
+        92
+      ],
+      [
+        113,
+        21
+      ],
+      [
+        4,
+        29
+      ],
+      [
+        238,
+        19
+      ]
+    ],
+    "result": "data/processed/48_4_target.png"
+  },
+  "49": {
+    "images": [
+      "data/processed/49_0.png",
+      "data/processed/49_1.png",
+      "data/processed/49_2.png",
+      "data/processed/49_3.png",
+      "data/processed/49_4.png"
+    ],
+    "points": [
+      [
+        0,
+        51
+      ],
+      [
+        99,
+        52
+      ],
+      [
+        96,
+        177
+      ],
+      [
+        143,
+        172
+      ],
+      [
+        211,
+        169
+      ],
+      [
+        212,
+        48
+      ]
+    ],
+    "result": "data/processed/49_4_target.png"
+  },
+  "50": {
+    "images": [
+      "data/processed/50_0.png",
+      "data/processed/50_1.png",
+      "data/processed/50_2.png",
+      "data/processed/50_3.png",
+      "data/processed/50_4.png"
+    ],
+    "points": [
+      [
+        25,
+        84
+      ],
+      [
+        25,
+        215
+      ],
+      [
+        170,
+        204
+      ],
+      [
+        171,
+        79
+      ]
+    ],
+    "result": "data/processed/50_4_target.png"
+  },
+  "51": {
+    "images": [
+      "data/processed/51_0.png",
+      "data/processed/51_1.png",
+      "data/processed/51_2.png",
+      "data/processed/51_3.png",
+      "data/processed/51_4.png"
+    ],
+    "points": [
+      [
+        69,
+        80
+      ],
+      [
+        67,
+        206
+      ],
+      [
+        192,
+        203
+      ],
+      [
+        193,
+        83
+      ]
+    ],
+    "result": "data/processed/51_4_target.png"
+  },
+  "52": {
+    "images": [
+      "data/processed/52_0.png",
+      "data/processed/52_1.png",
+      "data/processed/52_2.png",
+      "data/processed/52_3.png",
+      "data/processed/52_4.png"
+    ],
+    "points": [
+      [
+        37,
+        123
+      ],
+      [
+        31,
+        252
+      ],
+      [
+        144,
+        248
+      ],
+      [
+        145,
+        124
+      ],
+      [
+        255,
+        118
+      ],
+      [
+        253,
+        244
+      ]
+    ],
+    "result": "data/processed/52_4_target.png"
+  },
+  "53": {
+    "images": [
+      "data/processed/53_0.png",
+      "data/processed/53_1.png",
+      "data/processed/53_2.png",
+      "data/processed/53_3.png",
+      "data/processed/53_4.png"
+    ],
+    "points": [
+      [
+        61,
+        41
+      ],
+      [
+        63,
+        123
+      ],
+      [
+        69,
+        242
+      ],
+      [
+        197,
+        243
+      ],
+      [
+        203,
+        107
+      ],
+      [
+        198,
+        36
+      ]
+    ],
+    "result": "data/processed/53_4_target.png"
+  },
+  "54": {
+    "images": [
+      "data/processed/54_0.png",
+      "data/processed/54_1.png",
+      "data/processed/54_2.png",
+      "data/processed/54_3.png",
+      "data/processed/54_4.png"
+    ],
+    "points": [
+      [
+        234,
+        223
+      ],
+      [
+        124,
+        219
+      ],
+      [
+        24,
+        222
+      ],
+      [
+        19,
+        151
+      ],
+      [
+        123,
+        147
+      ],
+      [
+        234,
+        150
+      ],
+      [
+        239,
+        75
+      ],
+      [
+        125,
+        83
+      ],
+      [
+        20,
+        79
+      ]
+    ],
+    "result": "data/processed/54_4_target.png"
+  },
+  "55": {
+    "images": [
+      "data/processed/55_0.png",
+      "data/processed/55_1.png",
+      "data/processed/55_2.png",
+      "data/processed/55_3.png",
+      "data/processed/55_4.png"
+    ],
+    "points": [
+      [
+        29,
+        167
+      ],
+      [
+        33,
+        31
+      ],
+      [
+        131,
+        32
+      ],
+      [
+        137,
+        163
+      ]
+    ],
+    "result": "data/processed/55_4_target.png"
+  },
+  "56": {
+    "images": [
+      "data/processed/56_0.png",
+      "data/processed/56_1.png",
+      "data/processed/56_2.png",
+      "data/processed/56_3.png",
+      "data/processed/56_4.png"
+    ],
+    "points": [
+      [
+        65,
+        61
+      ],
+      [
+        72,
+        182
+      ],
+      [
+        204,
+        174
+      ],
+      [
+        210,
+        50
+      ]
+    ],
+    "result": "data/processed/56_4_target.png"
+  },
+  "57": {
+    "images": [
+      "data/processed/57_0.png",
+      "data/processed/57_1.png",
+      "data/processed/57_2.png",
+      "data/processed/57_3.png",
+      "data/processed/57_4.png"
+    ],
+    "points": [
+      [
+        22,
+        68
+      ],
+      [
+        14,
+        195
+      ],
+      [
+        143,
+        193
+      ],
+      [
+        147,
+        65
+      ]
+    ],
+    "result": "data/processed/57_4_target.png"
+  },
+  "58": {
+    "images": [
+      "data/processed/58_0.png",
+      "data/processed/58_1.png",
+      "data/processed/58_2.png",
+      "data/processed/58_3.png",
+      "data/processed/58_4.png"
+    ],
+    "points": [
+      [
+        104,
+        217
+      ],
+      [
+        103,
+        73
+      ],
+      [
+        214,
+        211
+      ],
+      [
+        215,
+        67
+      ]
+    ],
+    "result": "data/processed/58_4_target.png"
+  },
+  "59": {
+    "images": [
+      "data/processed/59_0.png",
+      "data/processed/59_1.png",
+      "data/processed/59_2.png",
+      "data/processed/59_3.png",
+      "data/processed/59_4.png"
+    ],
+    "points": [
+      [
+        74,
+        139
+      ],
+      [
+        80,
+        15
+      ],
+      [
+        179,
+        16
+      ],
+      [
+        176,
+        141
+      ],
+      [
+        223,
+        136
+      ]
+    ],
+    "result": "data/processed/59_4_target.png"
+  },
+  "60": {
+    "images": [
+      "data/processed/60_0.png",
+      "data/processed/60_1.png",
+      "data/processed/60_2.png",
+      "data/processed/60_3.png",
+      "data/processed/60_4.png"
+    ],
+    "points": [
+      [
+        13,
+        118
+      ],
+      [
+        121,
+        115
+      ],
+      [
+        230,
+        122
+      ]
+    ],
+    "result": "data/processed/60_4_target.png"
+  },
+  "61": {
+    "images": [
+      "data/processed/61_0.png",
+      "data/processed/61_1.png",
+      "data/processed/61_2.png",
+      "data/processed/61_3.png",
+      "data/processed/61_4.png"
+    ],
+    "points": [
+      [
+        106,
+        144
+      ],
+      [
+        215,
+        151
+      ],
+      [
+        214,
+        12
+      ],
+      [
+        104,
+        8
+      ],
+      [
+        4,
+        11
+      ]
+    ],
+    "result": "data/processed/61_4_target.png"
+  },
+  "62": {
+    "images": [
+      "data/processed/62_0.png",
+      "data/processed/62_1.png",
+      "data/processed/62_2.png",
+      "data/processed/62_3.png",
+      "data/processed/62_4.png"
+    ],
+    "points": [
+      [
+        190,
+        192
+      ],
+      [
+        188,
+        48
+      ],
+      [
+        63,
+        181
+      ],
+      [
+        68,
+        48
+      ]
+    ],
+    "result": "data/processed/62_4_target.png"
+  },
+  "63": {
+    "images": [
+      "data/processed/63_0.png",
+      "data/processed/63_1.png",
+      "data/processed/63_2.png",
+      "data/processed/63_3.png",
+      "data/processed/63_4.png"
+    ],
+    "points": [
+      [
+        46,
+        64
+      ],
+      [
+        52,
+        183
+      ],
+      [
+        180,
+        184
+      ],
+      [
+        186,
+        48
+      ]
+    ],
+    "result": "data/processed/63_4_target.png"
+  },
+  "64": {
+    "images": [
+      "data/processed/64_0.png",
+      "data/processed/64_1.png",
+      "data/processed/64_2.png",
+      "data/processed/64_3.png",
+      "data/processed/64_4.png"
+    ],
+    "points": [
+      [
+        64,
+        165
+      ],
+      [
+        68,
+        37
+      ],
+      [
+        178,
+        37
+      ],
+      [
+        181,
+        165
+      ],
+      [
+        246,
+        167
+      ]
+    ],
+    "result": "data/processed/64_4_target.png"
+  },
+  "65": {
+    "images": [
+      "data/processed/65_0.png",
+      "data/processed/65_1.png",
+      "data/processed/65_2.png",
+      "data/processed/65_3.png",
+      "data/processed/65_4.png"
+    ],
+    "points": [
+      [
+        43,
+        82
+      ],
+      [
+        45,
+        232
+      ],
+      [
+        153,
+        233
+      ],
+      [
+        152,
+        89
+      ]
+    ],
+    "result": "data/processed/65_4_target.png"
+  },
+  "66": {
+    "images": [
+      "data/processed/66_0.png",
+      "data/processed/66_1.png",
+      "data/processed/66_2.png",
+      "data/processed/66_3.png",
+      "data/processed/66_4.png"
+    ],
+    "points": [
+      [
+        86,
+        235
+      ],
+      [
+        86,
+        162
+      ],
+      [
+        204,
+        235
+      ],
+      [
+        200,
+        150
+      ],
+      [
+        200,
+        79
+      ],
+      [
+        91,
+        87
+      ]
+    ],
+    "result": "data/processed/66_4_target.png"
+  },
+  "67": {
+    "images": [
+      "data/processed/67_0.png",
+      "data/processed/67_1.png",
+      "data/processed/67_2.png",
+      "data/processed/67_3.png",
+      "data/processed/67_4.png"
+    ],
+    "points": [
+      [
+        95,
+        208
+      ],
+      [
+        96,
+        84
+      ],
+      [
+        206,
+        78
+      ],
+      [
+        204,
+        204
+      ]
+    ],
+    "result": "data/processed/67_4_target.png"
+  },
+  "68": {
+    "images": [
+      "data/processed/68_0.png",
+      "data/processed/68_1.png",
+      "data/processed/68_2.png",
+      "data/processed/68_3.png",
+      "data/processed/68_4.png"
+    ],
+    "points": [
+      [
+        86,
+        178
+      ],
+      [
+        92,
+        54
+      ],
+      [
+        191,
+        55
+      ],
+      [
+        188,
+        180
+      ],
+      [
+        235,
+        175
+      ]
+    ],
+    "result": "data/processed/68_4_target.png"
+  },
+  "69": {
+    "images": [
+      "data/processed/69_0.png",
+      "data/processed/69_1.png",
+      "data/processed/69_2.png",
+      "data/processed/69_3.png",
+      "data/processed/69_4.png"
+    ],
+    "points": [
+      [
+        12,
+        39
+      ],
+      [
+        9,
+        119
+      ],
+      [
+        7,
+        170
+      ],
+      [
+        11,
+        243
+      ],
+      [
+        110,
+        126
+      ],
+      [
+        117,
+        247
+      ],
+      [
+        249,
+        239
+      ],
+      [
+        255,
+        115
+      ]
+    ],
+    "result": "data/processed/69_4_target.png"
+  },
+  "70": {
+    "images": [
+      "data/processed/70_0.png",
+      "data/processed/70_1.png",
+      "data/processed/70_2.png",
+      "data/processed/70_3.png",
+      "data/processed/70_4.png"
+    ],
+    "points": [
+      [
+        50,
+        194
+      ],
+      [
+        51,
+        70
+      ],
+      [
+        161,
+        64
+      ],
+      [
+        159,
+        190
+      ]
+    ],
+    "result": "data/processed/70_4_target.png"
+  },
+  "71": {
+    "images": [
+      "data/processed/71_0.png",
+      "data/processed/71_1.png",
+      "data/processed/71_2.png",
+      "data/processed/71_3.png",
+      "data/processed/71_4.png"
+    ],
+    "points": [
+      [
+        40,
+        251
+      ],
+      [
+        41,
+        126
+      ],
+      [
+        145,
+        123
+      ],
+      [
+        139,
+        252
+      ],
+      [
+        252,
+        248
+      ],
+      [
+        253,
+        124
+      ]
+    ],
+    "result": "data/processed/71_4_target.png"
+  },
+  "72": {
+    "images": [
+      "data/processed/72_0.png",
+      "data/processed/72_1.png",
+      "data/processed/72_2.png",
+      "data/processed/72_3.png",
+      "data/processed/72_4.png"
+    ],
+    "points": [
+      [
+        44,
+        144
+      ],
+      [
+        152,
+        141
+      ],
+      [
+        150,
+        5
+      ],
+      [
+        50,
+        8
+      ]
+    ],
+    "result": "data/processed/72_4_target.png"
+  },
+  "73": {
+    "images": [
+      "data/processed/73_0.png",
+      "data/processed/73_1.png",
+      "data/processed/73_2.png",
+      "data/processed/73_3.png",
+      "data/processed/73_4.png"
+    ],
+    "points": [
+      [
+        54,
+        7
+      ],
+      [
+        52,
+        58
+      ],
+      [
+        56,
+        131
+      ],
+      [
+        55,
+        183
+      ],
+      [
+        55,
+        233
+      ],
+      [
+        155,
+        14
+      ],
+      [
+        162,
+        135
+      ]
+    ],
+    "result": "data/processed/73_4_target.png"
+  },
+  "74": {
+    "images": [
+      "data/processed/74_0.png",
+      "data/processed/74_1.png",
+      "data/processed/74_2.png",
+      "data/processed/74_3.png",
+      "data/processed/74_4.png"
+    ],
+    "points": [
+      [
+        85,
+        184
+      ],
+      [
+        89,
+        56
+      ],
+      [
+        199,
+        56
+      ],
+      [
+        202,
+        184
+      ]
+    ],
+    "result": "data/processed/74_4_target.png"
+  },
+  "75": {
+    "images": [
+      "data/processed/75_0.png",
+      "data/processed/75_1.png",
+      "data/processed/75_2.png",
+      "data/processed/75_3.png",
+      "data/processed/75_4.png"
+    ],
+    "points": [
+      [
+        36,
+        167
+      ],
+      [
+        144,
+        164
+      ],
+      [
+        253,
+        171
+      ],
+      [
+        252,
+        32
+      ],
+      [
+        142,
+        28
+      ],
+      [
+        42,
+        31
+      ]
+    ],
+    "result": "data/processed/75_4_target.png"
+  },
+  "76": {
+    "images": [
+      "data/processed/76_0.png",
+      "data/processed/76_1.png",
+      "data/processed/76_2.png",
+      "data/processed/76_3.png",
+      "data/processed/76_4.png"
+    ],
+    "points": [
+      [
+        163,
+        232
+      ],
+      [
+        53,
+        228
+      ],
+      [
+        52,
+        156
+      ],
+      [
+        163,
+        159
+      ],
+      [
+        168,
+        84
+      ],
+      [
+        54,
+        92
+      ]
+    ],
+    "result": "data/processed/76_4_target.png"
+  },
+  "77": {
+    "images": [
+      "data/processed/77_0.png",
+      "data/processed/77_1.png",
+      "data/processed/77_2.png",
+      "data/processed/77_3.png",
+      "data/processed/77_4.png"
+    ],
+    "points": [
+      [
+        111,
+        139
+      ],
+      [
+        209,
+        140
+      ]
+    ],
+    "result": "data/processed/77_4_target.png"
+  },
+  "78": {
+    "images": [
+      "data/processed/78_0.png",
+      "data/processed/78_1.png",
+      "data/processed/78_2.png",
+      "data/processed/78_3.png",
+      "data/processed/78_4.png"
+    ],
+    "points": [
+      [
+        22,
+        3
+      ],
+      [
+        25,
+        71
+      ],
+      [
+        19,
+        119
+      ],
+      [
+        17,
+        173
+      ],
+      [
+        85,
+        68
+      ],
+      [
+        84,
+        120
+      ],
+      [
+        84,
+        170
+      ],
+      [
+        191,
+        72
+      ],
+      [
+        84,
+        220
+      ],
+      [
+        187,
+        221
+      ]
+    ],
+    "result": "data/processed/78_4_target.png"
+  },
+  "79": {
+    "images": [
+      "data/processed/79_0.png",
+      "data/processed/79_1.png",
+      "data/processed/79_2.png",
+      "data/processed/79_3.png",
+      "data/processed/79_4.png"
+    ],
+    "points": [
+      [
+        54,
+        226
+      ],
+      [
+        52,
+        82
+      ],
+      [
+        152,
+        77
+      ],
+      [
+        152,
+        227
+      ]
+    ],
+    "result": "data/processed/79_4_target.png"
+  },
+  "80": {
+    "images": [
+      "data/processed/80_0.png",
+      "data/processed/80_1.png",
+      "data/processed/80_2.png",
+      "data/processed/80_3.png",
+      "data/processed/80_4.png"
+    ],
+    "points": [
+      [
+        117,
+        112
+      ],
+      [
+        219,
+        114
+      ]
+    ],
+    "result": "data/processed/80_4_target.png"
+  },
+  "81": {
+    "images": [
+      "data/processed/81_0.png",
+      "data/processed/81_1.png",
+      "data/processed/81_2.png",
+      "data/processed/81_3.png",
+      "data/processed/81_4.png"
+    ],
+    "points": [
+      [
+        55,
+        191
+      ],
+      [
+        155,
+        186
+      ],
+      [
+        56,
+        33
+      ],
+      [
+        170,
+        33
+      ]
+    ],
+    "result": "data/processed/81_4_target.png"
+  },
+  "82": {
+    "images": [
+      "data/processed/82_0.png",
+      "data/processed/82_1.png",
+      "data/processed/82_2.png",
+      "data/processed/82_3.png",
+      "data/processed/82_4.png"
+    ],
+    "points": [
+      [
+        81,
+        32
+      ],
+      [
+        87,
+        151
+      ],
+      [
+        215,
+        152
+      ],
+      [
+        221,
+        16
+      ]
+    ],
+    "result": "data/processed/82_4_target.png"
+  },
+  "83": {
+    "images": [
+      "data/processed/83_0.png",
+      "data/processed/83_1.png",
+      "data/processed/83_2.png",
+      "data/processed/83_3.png",
+      "data/processed/83_4.png"
+    ],
+    "points": [
+      [
+        30,
+        12
+      ],
+      [
+        32,
+        162
+      ],
+      [
+        140,
+        163
+      ],
+      [
+        139,
+        19
+      ],
+      [
+        250,
+        157
+      ],
+      [
+        251,
+        13
+      ]
+    ],
+    "result": "data/processed/83_4_target.png"
+  },
+  "84": {
+    "images": [
+      "data/processed/84_0.png",
+      "data/processed/84_1.png",
+      "data/processed/84_2.png",
+      "data/processed/84_3.png",
+      "data/processed/84_4.png"
+    ],
+    "points": [
+      [
+        48,
+        8
+      ],
+      [
+        54,
+        127
+      ],
+      [
+        182,
+        128
+      ]
+    ],
+    "result": "data/processed/84_4_target.png"
+  },
+  "85": {
+    "images": [
+      "data/processed/85_0.png",
+      "data/processed/85_1.png",
+      "data/processed/85_2.png",
+      "data/processed/85_3.png",
+      "data/processed/85_4.png"
+    ],
+    "points": [
+      [
+        88,
+        245
+      ],
+      [
+        87,
+        106
+      ],
+      [
+        87,
+        33
+      ],
+      [
+        200,
+        239
+      ],
+      [
+        205,
+        106
+      ],
+      [
+        201,
+        21
+      ]
+    ],
+    "result": "data/processed/85_4_target.png"
+  },
+  "86": {
+    "images": [
+      "data/processed/86_0.png",
+      "data/processed/86_1.png",
+      "data/processed/86_2.png",
+      "data/processed/86_3.png",
+      "data/processed/86_4.png"
+    ],
+    "points": [
+      [
+        79,
+        247
+      ],
+      [
+        78,
+        103
+      ],
+      [
+        189,
+        241
+      ],
+      [
+        190,
+        97
+      ]
+    ],
+    "result": "data/processed/86_4_target.png"
+  },
+  "87": {
+    "images": [
+      "data/processed/87_0.png",
+      "data/processed/87_1.png",
+      "data/processed/87_2.png",
+      "data/processed/87_3.png",
+      "data/processed/87_4.png"
+    ],
+    "points": [
+      [
+        93,
+        219
+      ],
+      [
+        202,
+        226
+      ],
+      [
+        201,
+        87
+      ],
+      [
+        91,
+        83
+      ],
+      [
+        90,
+        11
+      ],
+      [
+        201,
+        14
+      ]
+    ],
+    "result": "data/processed/87_4_target.png"
+  },
+  "88": {
+    "images": [
+      "data/processed/88_0.png",
+      "data/processed/88_1.png",
+      "data/processed/88_2.png",
+      "data/processed/88_3.png",
+      "data/processed/88_4.png"
+    ],
+    "points": [
+      [
+        2,
+        90
+      ],
+      [
+        1,
+        245
+      ],
+      [
+        49,
+        85
+      ],
+      [
+        55,
+        247
+      ],
+      [
+        117,
+        82
+      ],
+      [
+        117,
+        242
+      ],
+      [
+        219,
+        84
+      ],
+      [
+        216,
+        237
+      ]
+    ],
+    "result": "data/processed/88_4_target.png"
+  },
+  "89": {
+    "images": [
+      "data/processed/89_0.png",
+      "data/processed/89_1.png",
+      "data/processed/89_2.png",
+      "data/processed/89_3.png",
+      "data/processed/89_4.png"
+    ],
+    "points": [
+      [
+        22,
+        208
+      ],
+      [
+        28,
+        84
+      ],
+      [
+        127,
+        85
+      ],
+      [
+        124,
+        210
+      ],
+      [
+        171,
+        205
+      ],
+      [
+        239,
+        202
+      ],
+      [
+        240,
+        81
+      ]
+    ],
+    "result": "data/processed/89_4_target.png"
+  },
+  "90": {
+    "images": [
+      "data/processed/90_0.png",
+      "data/processed/90_1.png",
+      "data/processed/90_2.png",
+      "data/processed/90_3.png",
+      "data/processed/90_4.png"
+    ],
+    "points": [
+      [
+        60,
+        151
+      ],
+      [
+        58,
+        7
+      ],
+      [
+        158,
+        2
+      ],
+      [
+        158,
+        152
+      ]
+    ],
+    "result": "data/processed/90_4_target.png"
+  },
+  "91": {
+    "images": [
+      "data/processed/91_0.png",
+      "data/processed/91_1.png",
+      "data/processed/91_2.png",
+      "data/processed/91_3.png",
+      "data/processed/91_4.png"
+    ],
+    "points": [
+      [
+        23,
+        246
+      ],
+      [
+        22,
+        102
+      ],
+      [
+        133,
+        240
+      ],
+      [
+        134,
+        96
+      ]
+    ],
+    "result": "data/processed/91_4_target.png"
+  },
+  "92": {
+    "images": [
+      "data/processed/92_0.png",
+      "data/processed/92_1.png",
+      "data/processed/92_2.png",
+      "data/processed/92_3.png",
+      "data/processed/92_4.png"
+    ],
+    "points": [
+      [
+        74,
+        165
+      ],
+      [
+        75,
+        41
+      ],
+      [
+        185,
+        35
+      ],
+      [
+        183,
+        161
+      ]
+    ],
+    "result": "data/processed/92_4_target.png"
+  },
+  "93": {
+    "images": [
+      "data/processed/93_0.png",
+      "data/processed/93_1.png",
+      "data/processed/93_2.png",
+      "data/processed/93_3.png",
+      "data/processed/93_4.png"
+    ],
+    "points": [
+      [
+        48,
+        136
+      ],
+      [
+        156,
+        137
+      ]
+    ],
+    "result": "data/processed/93_4_target.png"
+  },
+  "94": {
+    "images": [
+      "data/processed/94_0.png",
+      "data/processed/94_1.png",
+      "data/processed/94_2.png",
+      "data/processed/94_3.png",
+      "data/processed/94_4.png"
+    ],
+    "points": [
+      [
+        35,
+        80
+      ],
+      [
+        29,
+        188
+      ],
+      [
+        32,
+        140
+      ],
+      [
+        30,
+        236
+      ],
+      [
+        140,
+        36
+      ],
+      [
+        128,
+        192
+      ]
+    ],
+    "result": "data/processed/94_4_target.png"
+  },
+  "95": {
+    "images": [
+      "data/processed/95_0.png",
+      "data/processed/95_1.png",
+      "data/processed/95_2.png",
+      "data/processed/95_3.png",
+      "data/processed/95_4.png"
+    ],
+    "points": [
+      [
+        50,
+        207
+      ],
+      [
+        154,
+        203
+      ],
+      [
+        36,
+        49
+      ],
+      [
+        156,
+        139
+      ],
+      [
+        51,
+        135
+      ]
+    ],
+    "result": "data/processed/95_4_target.png"
+  },
+  "96": {
+    "images": [
+      "data/processed/96_0.png",
+      "data/processed/96_1.png",
+      "data/processed/96_2.png",
+      "data/processed/96_3.png",
+      "data/processed/96_4.png"
+    ],
+    "points": [
+      [
+        50,
+        148
+      ],
+      [
+        51,
+        24
+      ],
+      [
+        161,
+        18
+      ],
+      [
+        159,
+        144
+      ]
+    ],
+    "result": "data/processed/96_4_target.png"
+  },
+  "97": {
+    "images": [
+      "data/processed/97_0.png",
+      "data/processed/97_1.png",
+      "data/processed/97_2.png",
+      "data/processed/97_3.png",
+      "data/processed/97_4.png"
+    ],
+    "points": [
+      [
+        85,
+        67
+      ],
+      [
+        81,
+        124
+      ],
+      [
+        81,
+        219
+      ],
+      [
+        25,
+        64
+      ],
+      [
+        21,
+        124
+      ],
+      [
+        24,
+        174
+      ],
+      [
+        20,
+        219
+      ],
+      [
+        180,
+        56
+      ],
+      [
+        186,
+        175
+      ]
+    ],
+    "result": "data/processed/97_4_target.png"
+  },
+  "98": {
+    "images": [
+      "data/processed/98_0.png",
+      "data/processed/98_1.png",
+      "data/processed/98_2.png",
+      "data/processed/98_3.png",
+      "data/processed/98_4.png"
+    ],
+    "points": [
+      [
+        22,
+        46
+      ],
+      [
+        18,
+        97
+      ],
+      [
+        21,
+        165
+      ],
+      [
+        15,
+        213
+      ],
+      [
+        79,
+        38
+      ],
+      [
+        77,
+        89
+      ],
+      [
+        81,
+        162
+      ],
+      [
+        80,
+        214
+      ],
+      [
+        180,
+        45
+      ],
+      [
+        187,
+        166
+      ]
+    ],
+    "result": "data/processed/98_4_target.png"
+  },
+  "99": {
+    "images": [
+      "data/processed/99_0.png",
+      "data/processed/99_1.png",
+      "data/processed/99_2.png",
+      "data/processed/99_3.png",
+      "data/processed/99_4.png"
+    ],
+    "points": [
+      [
+        141,
+        233
+      ],
+      [
+        241,
+        228
+      ],
+      [
+        21,
+        233
+      ],
+      [
+        17,
+        148
+      ],
+      [
+        17,
+        77
+      ],
+      [
+        142,
+        75
+      ]
+    ],
+    "result": "data/processed/99_4_target.png"
+  },
+  "100": {
+    "images": [
+      "data/processed/100_0.png",
+      "data/processed/100_1.png",
+      "data/processed/100_2.png",
+      "data/processed/100_3.png",
+      "data/processed/100_4.png"
+    ],
+    "points": [
+      [
+        43,
+        31
+      ],
+      [
+        43,
+        126
+      ],
+      [
+        37,
+        234
+      ],
+      [
+        40,
+        186
+      ],
+      [
+        148,
+        82
+      ],
+      [
+        136,
+        238
+      ]
+    ],
+    "result": "data/processed/100_4_target.png"
+  },
+  "101": {
+    "images": [
+      "data/processed/101_0.png",
+      "data/processed/101_1.png",
+      "data/processed/101_2.png",
+      "data/processed/101_3.png",
+      "data/processed/101_4.png"
+    ],
+    "points": [
+      [
+        72,
+        15
+      ],
+      [
+        74,
+        165
+      ],
+      [
+        182,
+        166
+      ],
+      [
+        181,
+        22
+      ]
+    ],
+    "result": "data/processed/101_4_target.png"
+  },
+  "102": {
+    "images": [
+      "data/processed/102_0.png",
+      "data/processed/102_1.png",
+      "data/processed/102_2.png",
+      "data/processed/102_3.png",
+      "data/processed/102_4.png"
+    ],
+    "points": [
+      [
+        131,
+        199
+      ],
+      [
+        137,
+        75
+      ],
+      [
+        236,
+        76
+      ],
+      [
+        233,
+        201
+      ]
+    ],
+    "result": "data/processed/102_4_target.png"
+  },
+  "103": {
+    "images": [
+      "data/processed/103_0.png",
+      "data/processed/103_1.png",
+      "data/processed/103_2.png",
+      "data/processed/103_3.png",
+      "data/processed/103_4.png"
+    ],
+    "points": [
+      [
+        37,
+        140
+      ],
+      [
+        141,
+        137
+      ],
+      [
+        249,
+        138
+      ]
+    ],
+    "result": "data/processed/103_4_target.png"
+  },
+  "104": {
+    "images": [
+      "data/processed/104_0.png",
+      "data/processed/104_1.png",
+      "data/processed/104_2.png",
+      "data/processed/104_3.png",
+      "data/processed/104_4.png"
+    ],
+    "points": [
+      [
+        77,
+        94
+      ],
+      [
+        74,
+        219
+      ],
+      [
+        121,
+        214
+      ],
+      [
+        189,
+        211
+      ],
+      [
+        190,
+        90
+      ]
+    ],
+    "result": "data/processed/104_4_target.png"
+  },
+  "105": {
+    "images": [
+      "data/processed/105_0.png",
+      "data/processed/105_1.png",
+      "data/processed/105_2.png",
+      "data/processed/105_3.png",
+      "data/processed/105_4.png"
+    ],
+    "points": [
+      [
+        89,
+        116
+      ],
+      [
+        197,
+        113
+      ]
+    ],
+    "result": "data/processed/105_4_target.png"
+  },
+  "106": {
+    "images": [
+      "data/processed/106_0.png",
+      "data/processed/106_1.png",
+      "data/processed/106_2.png",
+      "data/processed/106_3.png",
+      "data/processed/106_4.png"
+    ],
+    "points": [
+      [
+        21,
+        18
+      ],
+      [
+        13,
+        145
+      ],
+      [
+        142,
+        143
+      ],
+      [
+        146,
+        15
+      ]
+    ],
+    "result": "data/processed/106_4_target.png"
+  },
+  "107": {
+    "images": [
+      "data/processed/107_0.png",
+      "data/processed/107_1.png",
+      "data/processed/107_2.png",
+      "data/processed/107_3.png",
+      "data/processed/107_4.png"
+    ],
+    "points": [
+      [
+        57,
+        88
+      ],
+      [
+        49,
+        215
+      ],
+      [
+        178,
+        213
+      ],
+      [
+        182,
+        85
+      ]
+    ],
+    "result": "data/processed/107_4_target.png"
+  },
+  "108": {
+    "images": [
+      "data/processed/108_0.png",
+      "data/processed/108_1.png",
+      "data/processed/108_2.png",
+      "data/processed/108_3.png",
+      "data/processed/108_4.png"
+    ],
+    "points": [
+      [
+        37,
+        213
+      ],
+      [
+        35,
+        69
+      ],
+      [
+        135,
+        64
+      ],
+      [
+        135,
+        214
+      ]
+    ],
+    "result": "data/processed/108_4_target.png"
+  },
+  "109": {
+    "images": [
+      "data/processed/109_0.png",
+      "data/processed/109_1.png",
+      "data/processed/109_2.png",
+      "data/processed/109_3.png",
+      "data/processed/109_4.png"
+    ],
+    "points": [
+      [
+        24,
+        191
+      ],
+      [
+        30,
+        67
+      ],
+      [
+        129,
+        68
+      ],
+      [
+        126,
+        193
+      ],
+      [
+        173,
+        188
+      ],
+      [
+        241,
+        185
+      ],
+      [
+        242,
+        64
+      ]
+    ],
+    "result": "data/processed/109_4_target.png"
+  },
+  "110": {
+    "images": [
+      "data/processed/110_0.png",
+      "data/processed/110_1.png",
+      "data/processed/110_2.png",
+      "data/processed/110_3.png",
+      "data/processed/110_4.png"
+    ],
+    "points": [
+      [
+        118,
+        181
+      ],
+      [
+        122,
+        45
+      ],
+      [
+        220,
+        46
+      ],
+      [
+        226,
+        177
+      ]
+    ],
+    "result": "data/processed/110_4_target.png"
+  },
+  "111": {
+    "images": [
+      "data/processed/111_0.png",
+      "data/processed/111_1.png",
+      "data/processed/111_2.png",
+      "data/processed/111_3.png",
+      "data/processed/111_4.png"
+    ],
+    "points": [
+      [
+        97,
+        137
+      ],
+      [
+        206,
+        144
+      ],
+      [
+        205,
+        5
+      ],
+      [
+        95,
+        1
+      ]
+    ],
+    "result": "data/processed/111_4_target.png"
+  },
+  "112": {
+    "images": [
+      "data/processed/112_0.png",
+      "data/processed/112_1.png",
+      "data/processed/112_2.png",
+      "data/processed/112_3.png",
+      "data/processed/112_4.png"
+    ],
+    "points": [
+      [
+        201,
+        247
+      ],
+      [
+        91,
+        243
+      ],
+      [
+        90,
+        171
+      ],
+      [
+        201,
+        174
+      ],
+      [
+        206,
+        99
+      ],
+      [
+        92,
+        107
+      ]
+    ],
+    "result": "data/processed/112_4_target.png"
+  },
+  "113": {
+    "images": [
+      "data/processed/113_0.png",
+      "data/processed/113_1.png",
+      "data/processed/113_2.png",
+      "data/processed/113_3.png",
+      "data/processed/113_4.png"
+    ],
+    "points": [
+      [
+        37,
+        208
+      ],
+      [
+        37,
+        135
+      ],
+      [
+        155,
+        208
+      ],
+      [
+        151,
+        123
+      ],
+      [
+        151,
+        52
+      ],
+      [
+        42,
+        60
+      ]
+    ],
+    "result": "data/processed/113_4_target.png"
+  },
+  "114": {
+    "images": [
+      "data/processed/114_0.png",
+      "data/processed/114_1.png",
+      "data/processed/114_2.png",
+      "data/processed/114_3.png",
+      "data/processed/114_4.png"
+    ],
+    "points": [
+      [
+        2,
+        221
+      ],
+      [
+        3,
+        97
+      ],
+      [
+        113,
+        91
+      ],
+      [
+        111,
+        217
+      ],
+      [
+        236,
+        214
+      ],
+      [
+        237,
+        94
+      ]
+    ],
+    "result": "data/processed/114_4_target.png"
+  },
+  "115": {
+    "images": [
+      "data/processed/115_0.png",
+      "data/processed/115_1.png",
+      "data/processed/115_2.png",
+      "data/processed/115_3.png",
+      "data/processed/115_4.png"
+    ],
+    "points": [
+      [
+        99,
+        170
+      ],
+      [
+        100,
+        46
+      ],
+      [
+        210,
+        40
+      ],
+      [
+        208,
+        166
+      ]
+    ],
+    "result": "data/processed/115_4_target.png"
+  },
+  "116": {
+    "images": [
+      "data/processed/116_0.png",
+      "data/processed/116_1.png",
+      "data/processed/116_2.png",
+      "data/processed/116_3.png",
+      "data/processed/116_4.png"
+    ],
+    "points": [
+      [
+        91,
+        161
+      ],
+      [
+        200,
+        168
+      ],
+      [
+        199,
+        29
+      ],
+      [
+        89,
+        25
+      ]
+    ],
+    "result": "data/processed/116_4_target.png"
+  },
+  "117": {
+    "images": [
+      "data/processed/117_0.png",
+      "data/processed/117_1.png",
+      "data/processed/117_2.png",
+      "data/processed/117_3.png",
+      "data/processed/117_4.png"
+    ],
+    "points": [
+      [
+        6,
+        9
+      ],
+      [
+        8,
+        159
+      ],
+      [
+        116,
+        160
+      ],
+      [
+        115,
+        16
+      ],
+      [
+        226,
+        154
+      ],
+      [
+        227,
+        10
+      ]
+    ],
+    "result": "data/processed/117_4_target.png"
+  },
+  "118": {
+    "images": [
+      "data/processed/118_0.png",
+      "data/processed/118_1.png",
+      "data/processed/118_2.png",
+      "data/processed/118_3.png",
+      "data/processed/118_4.png"
+    ],
+    "points": [
+      [
+        73,
+        209
+      ],
+      [
+        74,
+        85
+      ],
+      [
+        184,
+        79
+      ],
+      [
+        182,
+        205
+      ]
+    ],
+    "result": "data/processed/118_4_target.png"
+  },
+  "119": {
+    "images": [
+      "data/processed/119_0.png",
+      "data/processed/119_1.png",
+      "data/processed/119_2.png",
+      "data/processed/119_3.png",
+      "data/processed/119_4.png"
+    ],
+    "points": [
+      [
+        122,
+        222
+      ],
+      [
+        120,
+        78
+      ],
+      [
+        220,
+        73
+      ],
+      [
+        220,
+        223
+      ],
+      [
+        0,
+        78
+      ]
+    ],
+    "result": "data/processed/119_4_target.png"
+  },
+  "120": {
+    "images": [
+      "data/processed/120_0.png",
+      "data/processed/120_1.png",
+      "data/processed/120_2.png",
+      "data/processed/120_3.png",
+      "data/processed/120_4.png"
+    ],
+    "points": [
+      [
+        19,
+        58
+      ],
+      [
+        17,
+        184
+      ],
+      [
+        142,
+        181
+      ],
+      [
+        143,
+        61
+      ],
+      [
+        251,
+        57
+      ],
+      [
+        252,
+        181
+      ]
+    ],
+    "result": "data/processed/120_4_target.png"
+  },
+  "121": {
+    "images": [
+      "data/processed/121_0.png",
+      "data/processed/121_1.png",
+      "data/processed/121_2.png",
+      "data/processed/121_3.png",
+      "data/processed/121_4.png"
+    ],
+    "points": [
+      [
+        47,
+        126
+      ],
+      [
+        161,
+        126
+      ]
+    ],
+    "result": "data/processed/121_4_target.png"
+  },
+  "122": {
+    "images": [
+      "data/processed/122_0.png",
+      "data/processed/122_1.png",
+      "data/processed/122_2.png",
+      "data/processed/122_3.png",
+      "data/processed/122_4.png"
+    ],
+    "points": [
+      [
+        105,
+        188
+      ],
+      [
+        229,
+        191
+      ],
+      [
+        233,
+        55
+      ],
+      [
+        106,
+        44
+      ]
+    ],
+    "result": "data/processed/122_4_target.png"
+  },
+  "123": {
+    "images": [
+      "data/processed/123_0.png",
+      "data/processed/123_1.png",
+      "data/processed/123_2.png",
+      "data/processed/123_3.png",
+      "data/processed/123_4.png"
+    ],
+    "points": [
+      [
+        8,
+        59
+      ],
+      [
+        6,
+        118
+      ],
+      [
+        114,
+        57
+      ],
+      [
+        110,
+        114
+      ],
+      [
+        110,
+        209
+      ],
+      [
+        54,
+        54
+      ],
+      [
+        50,
+        114
+      ],
+      [
+        53,
+        164
+      ],
+      [
+        49,
+        209
+      ],
+      [
+        3,
+        210
+      ],
+      [
+        209,
+        46
+      ],
+      [
+        215,
+        165
+      ]
+    ],
+    "result": "data/processed/123_4_target.png"
+  },
+  "124": {
+    "images": [
+      "data/processed/124_0.png",
+      "data/processed/124_1.png",
+      "data/processed/124_2.png",
+      "data/processed/124_3.png",
+      "data/processed/124_4.png"
+    ],
+    "points": [
+      [
+        3,
+        130
+      ],
+      [
+        9,
+        6
+      ],
+      [
+        108,
+        7
+      ],
+      [
+        105,
+        132
+      ],
+      [
+        152,
+        127
+      ],
+      [
+        220,
+        124
+      ],
+      [
+        221,
+        3
+      ]
+    ],
+    "result": "data/processed/124_4_target.png"
+  },
+  "125": {
+    "images": [
+      "data/processed/125_0.png",
+      "data/processed/125_1.png",
+      "data/processed/125_2.png",
+      "data/processed/125_3.png",
+      "data/processed/125_4.png"
+    ],
+    "points": [
+      [
+        39,
+        44
+      ],
+      [
+        31,
+        171
+      ],
+      [
+        160,
+        169
+      ],
+      [
+        164,
+        41
+      ]
+    ],
+    "result": "data/processed/125_4_target.png"
+  },
+  "126": {
+    "images": [
+      "data/processed/126_0.png",
+      "data/processed/126_1.png",
+      "data/processed/126_2.png",
+      "data/processed/126_3.png",
+      "data/processed/126_4.png"
+    ],
+    "points": [
+      [
+        0,
+        38
+      ],
+      [
+        0,
+        133
+      ],
+      [
+        105,
+        89
+      ],
+      [
+        93,
+        245
+      ],
+      [
+        239,
+        240
+      ],
+      [
+        233,
+        90
+      ]
+    ],
+    "result": "data/processed/126_4_target.png"
+  },
+  "127": {
+    "images": [
+      "data/processed/127_0.png",
+      "data/processed/127_1.png",
+      "data/processed/127_2.png",
+      "data/processed/127_3.png",
+      "data/processed/127_4.png"
+    ],
+    "points": [
+      [
+        38,
+        234
+      ],
+      [
+        106,
+        231
+      ],
+      [
+        107,
+        110
+      ],
+      [
+        216,
+        106
+      ],
+      [
+        208,
+        233
+      ]
+    ],
+    "result": "data/processed/127_4_target.png"
+  },
+  "128": {
+    "images": [
+      "data/processed/128_0.png",
+      "data/processed/128_1.png",
+      "data/processed/128_2.png",
+      "data/processed/128_3.png",
+      "data/processed/128_4.png"
+    ],
+    "points": [
+      [
+        71,
+        242
+      ],
+      [
+        171,
+        237
+      ],
+      [
+        72,
+        84
+      ],
+      [
+        186,
+        84
+      ]
+    ],
+    "result": "data/processed/128_4_target.png"
+  },
+  "129": {
+    "images": [
+      "data/processed/129_0.png",
+      "data/processed/129_1.png",
+      "data/processed/129_2.png",
+      "data/processed/129_3.png",
+      "data/processed/129_4.png"
+    ],
+    "points": [
+      [
+        32,
+        106
+      ],
+      [
+        79,
+        101
+      ],
+      [
+        147,
+        98
+      ],
+      [
+        249,
+        100
+      ],
+      [
+        246,
+        253
+      ]
+    ],
+    "result": "data/processed/129_4_target.png"
+  },
+  "130": {
+    "images": [
+      "data/processed/130_0.png",
+      "data/processed/130_1.png",
+      "data/processed/130_2.png",
+      "data/processed/130_3.png",
+      "data/processed/130_4.png"
+    ],
+    "points": [
+      [
+        43,
+        148
+      ],
+      [
+        44,
+        28
+      ],
+      [
+        152,
+        24
+      ],
+      [
+        153,
+        148
+      ]
+    ],
+    "result": "data/processed/130_4_target.png"
+  },
+  "131": {
+    "images": [
+      "data/processed/131_0.png",
+      "data/processed/131_1.png",
+      "data/processed/131_2.png",
+      "data/processed/131_3.png",
+      "data/processed/131_4.png"
+    ],
+    "points": [
+      [
+        55,
+        75
+      ],
+      [
+        59,
+        5
+      ],
+      [
+        51,
+        132
+      ],
+      [
+        51,
+        227
+      ],
+      [
+        150,
+        64
+      ],
+      [
+        156,
+        183
+      ]
+    ],
+    "result": "data/processed/131_4_target.png"
+  },
+  "132": {
+    "images": [
+      "data/processed/132_0.png",
+      "data/processed/132_1.png",
+      "data/processed/132_2.png",
+      "data/processed/132_3.png",
+      "data/processed/132_4.png"
+    ],
+    "points": [
+      [
+        43,
+        157
+      ],
+      [
+        37,
+        7
+      ],
+      [
+        145,
+        4
+      ],
+      [
+        147,
+        154
+      ],
+      [
+        255,
+        155
+      ],
+      [
+        254,
+        11
+      ]
+    ],
+    "result": "data/processed/132_4_target.png"
+  },
+  "133": {
+    "images": [
+      "data/processed/133_0.png",
+      "data/processed/133_1.png",
+      "data/processed/133_2.png",
+      "data/processed/133_3.png",
+      "data/processed/133_4.png"
+    ],
+    "points": [
+      [
+        5,
+        19
+      ],
+      [
+        3,
+        78
+      ],
+      [
+        111,
+        17
+      ],
+      [
+        107,
+        74
+      ],
+      [
+        107,
+        169
+      ],
+      [
+        51,
+        14
+      ],
+      [
+        47,
+        74
+      ],
+      [
+        50,
+        124
+      ],
+      [
+        46,
+        169
+      ],
+      [
+        0,
+        170
+      ],
+      [
+        1,
+        229
+      ],
+      [
+        45,
+        230
+      ],
+      [
+        104,
+        229
+      ],
+      [
+        206,
+        6
+      ],
+      [
+        212,
+        125
+      ]
+    ],
+    "result": "data/processed/133_4_target.png"
+  },
+  "134": {
+    "images": [
+      "data/processed/134_0.png",
+      "data/processed/134_1.png",
+      "data/processed/134_2.png",
+      "data/processed/134_3.png",
+      "data/processed/134_4.png"
+    ],
+    "points": [
+      [
+        107,
+        109
+      ],
+      [
+        224,
+        109
+      ]
+    ],
+    "result": "data/processed/134_4_target.png"
+  },
+  "135": {
+    "images": [
+      "data/processed/135_0.png",
+      "data/processed/135_1.png",
+      "data/processed/135_2.png",
+      "data/processed/135_3.png",
+      "data/processed/135_4.png"
+    ],
+    "points": [
+      [
+        30,
+        113
+      ],
+      [
+        27,
+        238
+      ],
+      [
+        74,
+        233
+      ],
+      [
+        142,
+        230
+      ],
+      [
+        143,
+        109
+      ],
+      [
+        252,
+        105
+      ],
+      [
+        244,
+        232
+      ]
+    ],
+    "result": "data/processed/135_4_target.png"
+  },
+  "136": {
+    "images": [
+      "data/processed/136_0.png",
+      "data/processed/136_1.png",
+      "data/processed/136_2.png",
+      "data/processed/136_3.png",
+      "data/processed/136_4.png"
+    ],
+    "points": [
+      [
+        72,
+        92
+      ],
+      [
+        74,
+        174
+      ],
+      [
+        214,
+        158
+      ],
+      [
+        209,
+        87
+      ],
+      [
+        210,
+        15
+      ],
+      [
+        77,
+        26
+      ]
+    ],
+    "result": "data/processed/136_4_target.png"
+  },
+  "137": {
+    "images": [
+      "data/processed/137_0.png",
+      "data/processed/137_1.png",
+      "data/processed/137_2.png",
+      "data/processed/137_3.png",
+      "data/processed/137_4.png"
+    ],
+    "points": [
+      [
+        25,
+        165
+      ],
+      [
+        134,
+        172
+      ],
+      [
+        133,
+        33
+      ],
+      [
+        23,
+        29
+      ],
+      [
+        246,
+        166
+      ],
+      [
+        251,
+        33
+      ]
+    ],
+    "result": "data/processed/137_4_target.png"
+  },
+  "138": {
+    "images": [
+      "data/processed/138_0.png",
+      "data/processed/138_1.png",
+      "data/processed/138_2.png",
+      "data/processed/138_3.png",
+      "data/processed/138_4.png"
+    ],
+    "points": [
+      [
+        53,
+        15
+      ],
+      [
+        57,
+        88
+      ],
+      [
+        56,
+        140
+      ],
+      [
+        56,
+        190
+      ],
+      [
+        163,
+        92
+      ],
+      [
+        56,
+        240
+      ],
+      [
+        159,
+        241
+      ]
+    ],
+    "result": "data/processed/138_4_target.png"
+  },
+  "139": {
+    "images": [
+      "data/processed/139_0.png",
+      "data/processed/139_1.png",
+      "data/processed/139_2.png",
+      "data/processed/139_3.png",
+      "data/processed/139_4.png"
+    ],
+    "points": [
+      [
+        2,
+        64
+      ],
+      [
+        134,
+        214
+      ],
+      [
+        134,
+        56
+      ],
+      [
+        236,
+        58
+      ],
+      [
+        235,
+        213
+      ],
+      [
+        176,
+        213
+      ]
+    ],
+    "result": "data/processed/139_4_target.png"
+  },
+  "140": {
+    "images": [
+      "data/processed/140_0.png",
+      "data/processed/140_1.png",
+      "data/processed/140_2.png",
+      "data/processed/140_3.png",
+      "data/processed/140_4.png"
+    ],
+    "points": [
+      [
+        39,
+        74
+      ],
+      [
+        37,
+        125
+      ],
+      [
+        41,
+        198
+      ],
+      [
+        40,
+        250
+      ],
+      [
+        140,
+        81
+      ],
+      [
+        147,
+        202
+      ]
+    ],
+    "result": "data/processed/140_4_target.png"
+  },
+  "141": {
+    "images": [
+      "data/processed/141_0.png",
+      "data/processed/141_1.png",
+      "data/processed/141_2.png",
+      "data/processed/141_3.png",
+      "data/processed/141_4.png"
+    ],
+    "points": [
+      [
+        1,
+        53
+      ],
+      [
+        130,
+        51
+      ],
+      [
+        131,
+        208
+      ],
+      [
+        247,
+        51
+      ],
+      [
+        234,
+        209
+      ]
+    ],
+    "result": "data/processed/141_4_target.png"
+  },
+  "142": {
+    "images": [
+      "data/processed/142_0.png",
+      "data/processed/142_1.png",
+      "data/processed/142_2.png",
+      "data/processed/142_3.png",
+      "data/processed/142_4.png"
+    ],
+    "points": [
+      [
+        212,
+        232
+      ],
+      [
+        92,
+        232
+      ],
+      [
+        88,
+        147
+      ],
+      [
+        88,
+        76
+      ],
+      [
+        213,
+        74
+      ]
+    ],
+    "result": "data/processed/142_4_target.png"
+  },
+  "143": {
+    "images": [
+      "data/processed/143_0.png",
+      "data/processed/143_1.png",
+      "data/processed/143_2.png",
+      "data/processed/143_3.png",
+      "data/processed/143_4.png"
+    ],
+    "points": [
+      [
+        100,
+        13
+      ],
+      [
+        94,
+        142
+      ],
+      [
+        207,
+        138
+      ],
+      [
+        208,
+        14
+      ]
+    ],
+    "result": "data/processed/143_4_target.png"
+  },
+  "144": {
+    "images": [
+      "data/processed/144_0.png",
+      "data/processed/144_1.png",
+      "data/processed/144_2.png",
+      "data/processed/144_3.png",
+      "data/processed/144_4.png"
+    ],
+    "points": [
+      [
+        59,
+        244
+      ],
+      [
+        159,
+        239
+      ],
+      [
+        60,
+        86
+      ],
+      [
+        174,
+        86
+      ]
+    ],
+    "result": "data/processed/144_4_target.png"
+  },
+  "145": {
+    "images": [
+      "data/processed/145_0.png",
+      "data/processed/145_1.png",
+      "data/processed/145_2.png",
+      "data/processed/145_3.png",
+      "data/processed/145_4.png"
+    ],
+    "points": [
+      [
+        109,
+        29
+      ],
+      [
+        48,
+        29
+      ],
+      [
+        2,
+        30
+      ],
+      [
+        3,
+        89
+      ],
+      [
+        47,
+        90
+      ],
+      [
+        6,
+        136
+      ],
+      [
+        51,
+        138
+      ],
+      [
+        47,
+        193
+      ],
+      [
+        3,
+        190
+      ],
+      [
+        103,
+        137
+      ],
+      [
+        106,
+        89
+      ],
+      [
+        104,
+        185
+      ],
+      [
+        202,
+        141
+      ]
+    ],
+    "result": "data/processed/145_4_target.png"
+  },
+  "146": {
+    "images": [
+      "data/processed/146_0.png",
+      "data/processed/146_1.png",
+      "data/processed/146_2.png",
+      "data/processed/146_3.png",
+      "data/processed/146_4.png"
+    ],
+    "points": [
+      [
+        6,
+        8
+      ],
+      [
+        12,
+        127
+      ],
+      [
+        140,
+        128
+      ],
+      [
+        248,
+        125
+      ]
+    ],
+    "result": "data/processed/146_4_target.png"
+  },
+  "147": {
+    "images": [
+      "data/processed/147_0.png",
+      "data/processed/147_1.png",
+      "data/processed/147_2.png",
+      "data/processed/147_3.png",
+      "data/processed/147_4.png"
+    ],
+    "points": [
+      [
+        78,
+        57
+      ],
+      [
+        66,
+        213
+      ],
+      [
+        212,
+        208
+      ],
+      [
+        206,
+        58
+      ]
+    ],
+    "result": "data/processed/147_4_target.png"
+  },
+  "148": {
+    "images": [
+      "data/processed/148_0.png",
+      "data/processed/148_1.png",
+      "data/processed/148_2.png",
+      "data/processed/148_3.png",
+      "data/processed/148_4.png"
+    ],
+    "points": [
+      [
+        2,
+        47
+      ],
+      [
+        1,
+        166
+      ],
+      [
+        59,
+        39
+      ],
+      [
+        57,
+        90
+      ],
+      [
+        61,
+        163
+      ],
+      [
+        60,
+        215
+      ],
+      [
+        160,
+        46
+      ],
+      [
+        167,
+        167
+      ]
+    ],
+    "result": "data/processed/148_4_target.png"
+  },
+  "149": {
+    "images": [
+      "data/processed/149_0.png",
+      "data/processed/149_1.png",
+      "data/processed/149_2.png",
+      "data/processed/149_3.png",
+      "data/processed/149_4.png"
+    ],
+    "points": [
+      [
+        52,
+        236
+      ],
+      [
+        176,
+        239
+      ],
+      [
+        180,
+        103
+      ],
+      [
+        53,
+        92
+      ]
+    ],
+    "result": "data/processed/149_4_target.png"
+  },
+  "150": {
+    "images": [
+      "data/processed/150_0.png",
+      "data/processed/150_1.png",
+      "data/processed/150_2.png",
+      "data/processed/150_3.png",
+      "data/processed/150_4.png"
+    ],
+    "points": [
+      [
+        27,
+        7
+      ],
+      [
+        23,
+        64
+      ],
+      [
+        23,
+        159
+      ],
+      [
+        20,
+        219
+      ],
+      [
+        128,
+        115
+      ]
+    ],
+    "result": "data/processed/150_4_target.png"
+  },
+  "151": {
+    "images": [
+      "data/processed/151_0.png",
+      "data/processed/151_1.png",
+      "data/processed/151_2.png",
+      "data/processed/151_3.png",
+      "data/processed/151_4.png"
+    ],
+    "points": [
+      [
+        46,
+        57
+      ],
+      [
+        175,
+        55
+      ],
+      [
+        43,
+        210
+      ],
+      [
+        176,
+        212
+      ]
+    ],
+    "result": "data/processed/151_4_target.png"
+  },
+  "152": {
+    "images": [
+      "data/processed/152_0.png",
+      "data/processed/152_1.png",
+      "data/processed/152_2.png",
+      "data/processed/152_3.png",
+      "data/processed/152_4.png"
+    ],
+    "points": [
+      [
+        51,
+        157
+      ],
+      [
+        45,
+        7
+      ],
+      [
+        153,
+        4
+      ],
+      [
+        155,
+        154
+      ]
+    ],
+    "result": "data/processed/152_4_target.png"
+  },
+  "153": {
+    "images": [
+      "data/processed/153_0.png",
+      "data/processed/153_1.png",
+      "data/processed/153_2.png",
+      "data/processed/153_3.png",
+      "data/processed/153_4.png"
+    ],
+    "points": [
+      [
+        232,
+        187
+      ],
+      [
+        112,
+        187
+      ],
+      [
+        108,
+        102
+      ],
+      [
+        108,
+        31
+      ],
+      [
+        233,
+        29
+      ]
+    ],
+    "result": "data/processed/153_4_target.png"
+  },
+  "154": {
+    "images": [
+      "data/processed/154_0.png",
+      "data/processed/154_1.png",
+      "data/processed/154_2.png",
+      "data/processed/154_3.png",
+      "data/processed/154_4.png"
+    ],
+    "points": [
+      [
+        13,
+        28
+      ],
+      [
+        20,
+        149
+      ],
+      [
+        152,
+        141
+      ],
+      [
+        158,
+        17
+      ],
+      [
+        254,
+        143
+      ]
+    ],
+    "result": "data/processed/154_4_target.png"
+  },
+  "155": {
+    "images": [
+      "data/processed/155_0.png",
+      "data/processed/155_1.png",
+      "data/processed/155_2.png",
+      "data/processed/155_3.png",
+      "data/processed/155_4.png"
+    ],
+    "points": [
+      [
+        8,
+        140
+      ],
+      [
+        112,
+        137
+      ],
+      [
+        220,
+        138
+      ]
+    ],
+    "result": "data/processed/155_4_target.png"
+  },
+  "156": {
+    "images": [
+      "data/processed/156_0.png",
+      "data/processed/156_1.png",
+      "data/processed/156_2.png",
+      "data/processed/156_3.png",
+      "data/processed/156_4.png"
+    ],
+    "points": [
+      [
+        231,
+        253
+      ],
+      [
+        229,
+        109
+      ],
+      [
+        104,
+        242
+      ],
+      [
+        109,
+        109
+      ],
+      [
+        105,
+        24
+      ]
+    ],
+    "result": "data/processed/156_4_target.png"
+  },
+  "157": {
+    "images": [
+      "data/processed/157_0.png",
+      "data/processed/157_1.png",
+      "data/processed/157_2.png",
+      "data/processed/157_3.png",
+      "data/processed/157_4.png"
+    ],
+    "points": [
+      [
+        74,
+        54
+      ],
+      [
+        75,
+        211
+      ],
+      [
+        191,
+        54
+      ],
+      [
+        178,
+        212
+      ]
+    ],
+    "result": "data/processed/157_4_target.png"
+  },
+  "158": {
+    "images": [
+      "data/processed/158_0.png",
+      "data/processed/158_1.png",
+      "data/processed/158_2.png",
+      "data/processed/158_3.png",
+      "data/processed/158_4.png"
+    ],
+    "points": [
+      [
+        25,
+        163
+      ],
+      [
+        29,
+        35
+      ],
+      [
+        139,
+        35
+      ],
+      [
+        142,
+        163
+      ],
+      [
+        207,
+        165
+      ]
+    ],
+    "result": "data/processed/158_4_target.png"
+  },
+  "159": {
+    "images": [
+      "data/processed/159_0.png",
+      "data/processed/159_1.png",
+      "data/processed/159_2.png",
+      "data/processed/159_3.png",
+      "data/processed/159_4.png"
+    ],
+    "points": [
+      [
+        105,
+        161
+      ],
+      [
+        99,
+        11
+      ],
+      [
+        207,
+        8
+      ],
+      [
+        209,
+        158
+      ]
+    ],
+    "result": "data/processed/159_4_target.png"
+  },
+  "160": {
+    "images": [
+      "data/processed/160_0.png",
+      "data/processed/160_1.png",
+      "data/processed/160_2.png",
+      "data/processed/160_3.png",
+      "data/processed/160_4.png"
+    ],
+    "points": [
+      [
+        63,
+        55
+      ],
+      [
+        60,
+        180
+      ],
+      [
+        107,
+        175
+      ],
+      [
+        175,
+        172
+      ],
+      [
+        176,
+        51
+      ]
+    ],
+    "result": "data/processed/160_4_target.png"
+  },
+  "161": {
+    "images": [
+      "data/processed/161_0.png",
+      "data/processed/161_1.png",
+      "data/processed/161_2.png",
+      "data/processed/161_3.png",
+      "data/processed/161_4.png"
+    ],
+    "points": [
+      [
+        26,
+        201
+      ],
+      [
+        25,
+        57
+      ],
+      [
+        136,
+        195
+      ],
+      [
+        137,
+        51
+      ]
+    ],
+    "result": "data/processed/161_4_target.png"
+  },
+  "162": {
+    "images": [
+      "data/processed/162_0.png",
+      "data/processed/162_1.png",
+      "data/processed/162_2.png",
+      "data/processed/162_3.png",
+      "data/processed/162_4.png"
+    ],
+    "points": [
+      [
+        104,
+        216
+      ],
+      [
+        102,
+        72
+      ],
+      [
+        202,
+        67
+      ],
+      [
+        202,
+        217
+      ]
+    ],
+    "result": "data/processed/162_4_target.png"
+  },
+  "163": {
+    "images": [
+      "data/processed/163_0.png",
+      "data/processed/163_1.png",
+      "data/processed/163_2.png",
+      "data/processed/163_3.png",
+      "data/processed/163_4.png"
+    ],
+    "points": [
+      [
+        99,
+        163
+      ],
+      [
+        103,
+        27
+      ],
+      [
+        201,
+        28
+      ],
+      [
+        207,
+        159
+      ]
+    ],
+    "result": "data/processed/163_4_target.png"
+  },
+  "164": {
+    "images": [
+      "data/processed/164_0.png",
+      "data/processed/164_1.png",
+      "data/processed/164_2.png",
+      "data/processed/164_3.png",
+      "data/processed/164_4.png"
+    ],
+    "points": [
+      [
+        130,
+        214
+      ],
+      [
+        131,
+        89
+      ],
+      [
+        235,
+        86
+      ],
+      [
+        229,
+        215
+      ]
+    ],
+    "result": "data/processed/164_4_target.png"
+  },
+  "165": {
+    "images": [
+      "data/processed/165_0.png",
+      "data/processed/165_1.png",
+      "data/processed/165_2.png",
+      "data/processed/165_3.png",
+      "data/processed/165_4.png"
+    ],
+    "points": [
+      [
+        60,
+        243
+      ],
+      [
+        60,
+        85
+      ],
+      [
+        162,
+        87
+      ],
+      [
+        161,
+        242
+      ],
+      [
+        102,
+        242
+      ],
+      [
+        209,
+        82
+      ],
+      [
+        215,
+        244
+      ]
+    ],
+    "result": "data/processed/165_4_target.png"
+  },
+  "166": {
+    "images": [
+      "data/processed/166_0.png",
+      "data/processed/166_1.png",
+      "data/processed/166_2.png",
+      "data/processed/166_3.png",
+      "data/processed/166_4.png"
+    ],
+    "points": [
+      [
+        99,
+        49
+      ],
+      [
+        42,
+        4
+      ],
+      [
+        38,
+        49
+      ],
+      [
+        37,
+        110
+      ],
+      [
+        41,
+        158
+      ],
+      [
+        37,
+        213
+      ],
+      [
+        93,
+        157
+      ],
+      [
+        96,
+        109
+      ],
+      [
+        94,
+        205
+      ],
+      [
+        204,
+        5
+      ],
+      [
+        192,
+        161
+      ]
+    ],
+    "result": "data/processed/166_4_target.png"
+  },
+  "167": {
+    "images": [
+      "data/processed/167_0.png",
+      "data/processed/167_1.png",
+      "data/processed/167_2.png",
+      "data/processed/167_3.png",
+      "data/processed/167_4.png"
+    ],
+    "points": [
+      [
+        30,
+        116
+      ],
+      [
+        98,
+        113
+      ],
+      [
+        200,
+        115
+      ]
+    ],
+    "result": "data/processed/167_4_target.png"
+  },
+  "168": {
+    "images": [
+      "data/processed/168_0.png",
+      "data/processed/168_1.png",
+      "data/processed/168_2.png",
+      "data/processed/168_3.png",
+      "data/processed/168_4.png"
+    ],
+    "points": [
+      [
+        106,
+        252
+      ],
+      [
+        214,
+        249
+      ],
+      [
+        212,
+        113
+      ],
+      [
+        112,
+        116
+      ],
+      [
+        107,
+        45
+      ],
+      [
+        211,
+        41
+      ]
+    ],
+    "result": "data/processed/168_4_target.png"
+  },
+  "169": {
+    "images": [
+      "data/processed/169_0.png",
+      "data/processed/169_1.png",
+      "data/processed/169_2.png",
+      "data/processed/169_3.png",
+      "data/processed/169_4.png"
+    ],
+    "points": [
+      [
+        84,
+        225
+      ],
+      [
+        84,
+        152
+      ],
+      [
+        202,
+        225
+      ],
+      [
+        198,
+        140
+      ],
+      [
+        198,
+        69
+      ],
+      [
+        89,
+        77
+      ]
+    ],
+    "result": "data/processed/169_4_target.png"
+  },
+  "170": {
+    "images": [
+      "data/processed/170_0.png",
+      "data/processed/170_1.png",
+      "data/processed/170_2.png",
+      "data/processed/170_3.png",
+      "data/processed/170_4.png"
+    ],
+    "points": [
+      [
+        24,
+        84
+      ],
+      [
+        28,
+        14
+      ],
+      [
+        20,
+        141
+      ],
+      [
+        20,
+        236
+      ],
+      [
+        119,
+        73
+      ],
+      [
+        125,
+        192
+      ],
+      [
+        253,
+        193
+      ]
+    ],
+    "result": "data/processed/170_4_target.png"
+  },
+  "171": {
+    "images": [
+      "data/processed/171_0.png",
+      "data/processed/171_1.png",
+      "data/processed/171_2.png",
+      "data/processed/171_3.png",
+      "data/processed/171_4.png"
+    ],
+    "points": [
+      [
+        20,
+        23
+      ],
+      [
+        16,
+        78
+      ],
+      [
+        13,
+        158
+      ],
+      [
+        9,
+        209
+      ],
+      [
+        72,
+        22
+      ],
+      [
+        73,
+        70
+      ],
+      [
+        70,
+        150
+      ],
+      [
+        68,
+        201
+      ],
+      [
+        171,
+        26
+      ],
+      [
+        171,
+        157
+      ]
+    ],
+    "result": "data/processed/171_4_target.png"
+  },
+  "172": {
+    "images": [
+      "data/processed/172_0.png",
+      "data/processed/172_1.png",
+      "data/processed/172_2.png",
+      "data/processed/172_3.png",
+      "data/processed/172_4.png"
+    ],
+    "points": [
+      [
+        81,
+        98
+      ],
+      [
+        183,
+        100
+      ],
+      [
+        182,
+        255
+      ],
+      [
+        123,
+        255
+      ],
+      [
+        230,
+        95
+      ]
+    ],
+    "result": "data/processed/172_4_target.png"
+  },
+  "173": {
+    "images": [
+      "data/processed/173_0.png",
+      "data/processed/173_1.png",
+      "data/processed/173_2.png",
+      "data/processed/173_3.png",
+      "data/processed/173_4.png"
+    ],
+    "points": [
+      [
+        2,
+        29
+      ],
+      [
+        5,
+        97
+      ],
+      [
+        61,
+        21
+      ],
+      [
+        65,
+        94
+      ],
+      [
+        64,
+        146
+      ],
+      [
+        64,
+        196
+      ],
+      [
+        171,
+        98
+      ],
+      [
+        64,
+        246
+      ],
+      [
+        167,
+        247
+      ]
+    ],
+    "result": "data/processed/173_4_target.png"
+  },
+  "174": {
+    "images": [
+      "data/processed/174_0.png",
+      "data/processed/174_1.png",
+      "data/processed/174_2.png",
+      "data/processed/174_3.png",
+      "data/processed/174_4.png"
+    ],
+    "points": [
+      [
+        1,
+        204
+      ],
+      [
+        0,
+        60
+      ],
+      [
+        111,
+        198
+      ],
+      [
+        235,
+        201
+      ],
+      [
+        239,
+        65
+      ],
+      [
+        112,
+        54
+      ]
+    ],
+    "result": "data/processed/174_4_target.png"
+  },
+  "175": {
+    "images": [
+      "data/processed/175_0.png",
+      "data/processed/175_1.png",
+      "data/processed/175_2.png",
+      "data/processed/175_3.png",
+      "data/processed/175_4.png"
+    ],
+    "points": [
+      [
+        78,
+        33
+      ],
+      [
+        75,
+        158
+      ],
+      [
+        122,
+        153
+      ],
+      [
+        190,
+        150
+      ],
+      [
+        191,
+        29
+      ]
+    ],
+    "result": "data/processed/175_4_target.png"
+  },
+  "176": {
+    "images": [
+      "data/processed/176_0.png",
+      "data/processed/176_1.png",
+      "data/processed/176_2.png",
+      "data/processed/176_3.png",
+      "data/processed/176_4.png"
+    ],
+    "points": [
+      [
+        70,
+        211
+      ],
+      [
+        174,
+        207
+      ],
+      [
+        56,
+        53
+      ],
+      [
+        176,
+        143
+      ],
+      [
+        71,
+        139
+      ]
+    ],
+    "result": "data/processed/176_4_target.png"
+  },
+  "177": {
+    "images": [
+      "data/processed/177_0.png",
+      "data/processed/177_1.png",
+      "data/processed/177_2.png",
+      "data/processed/177_3.png",
+      "data/processed/177_4.png"
+    ],
+    "points": [
+      [
+        11,
+        21
+      ],
+      [
+        17,
+        140
+      ],
+      [
+        145,
+        141
+      ],
+      [
+        253,
+        138
+      ],
+      [
+        251,
+        2
+      ],
+      [
+        151,
+        5
+      ]
+    ],
+    "result": "data/processed/177_4_target.png"
+  },
+  "178": {
+    "images": [
+      "data/processed/178_0.png",
+      "data/processed/178_1.png",
+      "data/processed/178_2.png",
+      "data/processed/178_3.png",
+      "data/processed/178_4.png"
+    ],
+    "points": [
+      [
+        21,
+        147
+      ],
+      [
+        27,
+        23
+      ],
+      [
+        126,
+        24
+      ],
+      [
+        123,
+        149
+      ],
+      [
+        170,
+        144
+      ],
+      [
+        238,
+        141
+      ],
+      [
+        239,
+        20
+      ]
+    ],
+    "result": "data/processed/178_4_target.png"
+  },
+  "179": {
+    "images": [
+      "data/processed/179_0.png",
+      "data/processed/179_1.png",
+      "data/processed/179_2.png",
+      "data/processed/179_3.png",
+      "data/processed/179_4.png"
+    ],
+    "points": [
+      [
+        32,
+        130
+      ],
+      [
+        177,
+        250
+      ],
+      [
+        178,
+        125
+      ]
+    ],
+    "result": "data/processed/179_4_target.png"
+  },
+  "180": {
+    "images": [
+      "data/processed/180_0.png",
+      "data/processed/180_1.png",
+      "data/processed/180_2.png",
+      "data/processed/180_3.png",
+      "data/processed/180_4.png"
+    ],
+    "points": [
+      [
+        6,
+        250
+      ],
+      [
+        12,
+        126
+      ],
+      [
+        13,
+        1
+      ],
+      [
+        111,
+        127
+      ],
+      [
+        108,
+        252
+      ],
+      [
+        155,
+        247
+      ],
+      [
+        223,
+        244
+      ],
+      [
+        224,
+        123
+      ]
+    ],
+    "result": "data/processed/180_4_target.png"
+  },
+  "181": {
+    "images": [
+      "data/processed/181_0.png",
+      "data/processed/181_1.png",
+      "data/processed/181_2.png",
+      "data/processed/181_3.png",
+      "data/processed/181_4.png"
+    ],
+    "points": [
+      [
+        28,
+        48
+      ],
+      [
+        26,
+        99
+      ],
+      [
+        30,
+        172
+      ],
+      [
+        29,
+        224
+      ],
+      [
+        129,
+        55
+      ],
+      [
+        136,
+        176
+      ]
+    ],
+    "result": "data/processed/181_4_target.png"
+  },
+  "182": {
+    "images": [
+      "data/processed/182_0.png",
+      "data/processed/182_1.png",
+      "data/processed/182_2.png",
+      "data/processed/182_3.png",
+      "data/processed/182_4.png"
+    ],
+    "points": [
+      [
+        87,
+        184
+      ],
+      [
+        88,
+        60
+      ],
+      [
+        198,
+        54
+      ],
+      [
+        196,
+        180
+      ]
+    ],
+    "result": "data/processed/182_4_target.png"
+  },
+  "183": {
+    "images": [
+      "data/processed/183_0.png",
+      "data/processed/183_1.png",
+      "data/processed/183_2.png",
+      "data/processed/183_3.png",
+      "data/processed/183_4.png"
+    ],
+    "points": [
+      [
+        128,
+        226
+      ],
+      [
+        122,
+        76
+      ],
+      [
+        230,
+        73
+      ],
+      [
+        232,
+        223
+      ]
+    ],
+    "result": "data/processed/183_4_target.png"
+  },
+  "184": {
+    "images": [
+      "data/processed/184_0.png",
+      "data/processed/184_1.png",
+      "data/processed/184_2.png",
+      "data/processed/184_3.png",
+      "data/processed/184_4.png"
+    ],
+    "points": [
+      [
+        20,
+        115
+      ],
+      [
+        149,
+        113
+      ]
+    ],
+    "result": "data/processed/184_4_target.png"
+  },
+  "185": {
+    "images": [
+      "data/processed/185_0.png",
+      "data/processed/185_1.png",
+      "data/processed/185_2.png",
+      "data/processed/185_3.png",
+      "data/processed/185_4.png"
+    ],
+    "points": [
+      [
+        0,
+        87
+      ],
+      [
+        121,
+        212
+      ],
+      [
+        125,
+        84
+      ],
+      [
+        235,
+        84
+      ],
+      [
+        238,
+        212
+      ]
+    ],
+    "result": "data/processed/185_4_target.png"
+  },
+  "186": {
+    "images": [
+      "data/processed/186_0.png",
+      "data/processed/186_1.png",
+      "data/processed/186_2.png",
+      "data/processed/186_3.png",
+      "data/processed/186_4.png"
+    ],
+    "points": [
+      [
+        60,
+        1
+      ],
+      [
+        2,
+        110
+      ],
+      [
+        54,
+        109
+      ],
+      [
+        57,
+        61
+      ],
+      [
+        55,
+        157
+      ],
+      [
+        52,
+        237
+      ],
+      [
+        153,
+        113
+      ],
+      [
+        153,
+        244
+      ]
+    ],
+    "result": "data/processed/186_4_target.png"
+  },
+  "187": {
+    "images": [
+      "data/processed/187_0.png",
+      "data/processed/187_1.png",
+      "data/processed/187_2.png",
+      "data/processed/187_3.png",
+      "data/processed/187_4.png"
+    ],
+    "points": [
+      [
+        45,
+        40
+      ],
+      [
+        46,
+        88
+      ],
+      [
+        43,
+        168
+      ],
+      [
+        41,
+        219
+      ],
+      [
+        144,
+        44
+      ],
+      [
+        144,
+        175
+      ]
+    ],
+    "result": "data/processed/187_4_target.png"
+  },
+  "188": {
+    "images": [
+      "data/processed/188_0.png",
+      "data/processed/188_1.png",
+      "data/processed/188_2.png",
+      "data/processed/188_3.png",
+      "data/processed/188_4.png"
+    ],
+    "points": [
+      [
+        43,
+        51
+      ],
+      [
+        44,
+        208
+      ],
+      [
+        160,
+        51
+      ],
+      [
+        225,
+        53
+      ],
+      [
+        147,
+        209
+      ],
+      [
+        225,
+        210
+      ]
+    ],
+    "result": "data/processed/188_4_target.png"
+  },
+  "189": {
+    "images": [
+      "data/processed/189_0.png",
+      "data/processed/189_1.png",
+      "data/processed/189_2.png",
+      "data/processed/189_3.png",
+      "data/processed/189_4.png"
+    ],
+    "points": [
+      [
+        66,
+        210
+      ],
+      [
+        177,
+        213
+      ],
+      [
+        182,
+        138
+      ],
+      [
+        68,
+        146
+      ]
+    ],
+    "result": "data/processed/189_4_target.png"
+  },
+  "190": {
+    "images": [
+      "data/processed/190_0.png",
+      "data/processed/190_1.png",
+      "data/processed/190_2.png",
+      "data/processed/190_3.png",
+      "data/processed/190_4.png"
+    ],
+    "points": [
+      [
+        189,
+        240
+      ],
+      [
+        79,
+        236
+      ],
+      [
+        78,
+        164
+      ],
+      [
+        189,
+        167
+      ],
+      [
+        194,
+        92
+      ],
+      [
+        80,
+        100
+      ]
+    ],
+    "result": "data/processed/190_4_target.png"
+  },
+  "191": {
+    "images": [
+      "data/processed/191_0.png",
+      "data/processed/191_1.png",
+      "data/processed/191_2.png",
+      "data/processed/191_3.png",
+      "data/processed/191_4.png"
+    ],
+    "points": [
+      [
+        28,
+        154
+      ],
+      [
+        29,
+        33
+      ],
+      [
+        138,
+        29
+      ],
+      [
+        130,
+        156
+      ]
+    ],
+    "result": "data/processed/191_4_target.png"
+  },
+  "192": {
+    "images": [
+      "data/processed/192_0.png",
+      "data/processed/192_1.png",
+      "data/processed/192_2.png",
+      "data/processed/192_3.png",
+      "data/processed/192_4.png"
+    ],
+    "points": [
+      [
+        2,
+        106
+      ],
+      [
+        104,
+        108
+      ],
+      [
+        233,
+        106
+      ]
+    ],
+    "result": "data/processed/192_4_target.png"
+  },
+  "193": {
+    "images": [
+      "data/processed/193_0.png",
+      "data/processed/193_1.png",
+      "data/processed/193_2.png",
+      "data/processed/193_3.png",
+      "data/processed/193_4.png"
+    ],
+    "points": [
+      [
+        6,
+        6
+      ],
+      [
+        12,
+        125
+      ],
+      [
+        140,
+        126
+      ],
+      [
+        248,
+        123
+      ]
+    ],
+    "result": "data/processed/193_4_target.png"
+  },
+  "194": {
+    "images": [
+      "data/processed/194_0.png",
+      "data/processed/194_1.png",
+      "data/processed/194_2.png",
+      "data/processed/194_3.png",
+      "data/processed/194_4.png"
+    ],
+    "points": [
+      [
+        47,
+        158
+      ],
+      [
+        51,
+        22
+      ],
+      [
+        149,
+        23
+      ],
+      [
+        155,
+        154
+      ]
+    ],
+    "result": "data/processed/194_4_target.png"
+  },
+  "195": {
+    "images": [
+      "data/processed/195_0.png",
+      "data/processed/195_1.png",
+      "data/processed/195_2.png",
+      "data/processed/195_3.png",
+      "data/processed/195_4.png"
+    ],
+    "points": [
+      [
+        2,
+        10
+      ],
+      [
+        95,
+        122
+      ],
+      [
+        95,
+        253
+      ],
+      [
+        240,
+        242
+      ],
+      [
+        241,
+        117
+      ]
+    ],
+    "result": "data/processed/195_4_target.png"
+  },
+  "196": {
+    "images": [
+      "data/processed/196_0.png",
+      "data/processed/196_1.png",
+      "data/processed/196_2.png",
+      "data/processed/196_3.png",
+      "data/processed/196_4.png"
+    ],
+    "points": [
+      [
+        92,
+        235
+      ],
+      [
+        96,
+        107
+      ],
+      [
+        206,
+        107
+      ],
+      [
+        209,
+        235
+      ]
+    ],
+    "result": "data/processed/196_4_target.png"
+  },
+  "197": {
+    "images": [
+      "data/processed/197_0.png",
+      "data/processed/197_1.png",
+      "data/processed/197_2.png",
+      "data/processed/197_3.png",
+      "data/processed/197_4.png"
+    ],
+    "points": [
+      [
+        86,
+        211
+      ],
+      [
+        90,
+        75
+      ],
+      [
+        188,
+        76
+      ],
+      [
+        194,
+        207
+      ]
+    ],
+    "result": "data/processed/197_4_target.png"
+  },
+  "198": {
+    "images": [
+      "data/processed/198_0.png",
+      "data/processed/198_1.png",
+      "data/processed/198_2.png",
+      "data/processed/198_3.png",
+      "data/processed/198_4.png"
+    ],
+    "points": [
+      [
+        82,
+        150
+      ],
+      [
+        83,
+        30
+      ],
+      [
+        191,
+        26
+      ],
+      [
+        192,
+        150
+      ]
+    ],
+    "result": "data/processed/198_4_target.png"
+  },
+  "199": {
+    "images": [
+      "data/processed/199_0.png",
+      "data/processed/199_1.png",
+      "data/processed/199_2.png",
+      "data/processed/199_3.png",
+      "data/processed/199_4.png"
+    ],
+    "points": [
+      [
+        44,
+        93
+      ],
+      [
+        36,
+        220
+      ],
+      [
+        165,
+        218
+      ],
+      [
+        169,
+        90
+      ]
+    ],
+    "result": "data/processed/199_4_target.png"
+  },
+  "200": {
+    "images": [
+      "data/processed/200_0.png",
+      "data/processed/200_1.png",
+      "data/processed/200_2.png",
+      "data/processed/200_3.png",
+      "data/processed/200_4.png"
+    ],
+    "points": [
+      [
+        69,
+        99
+      ],
+      [
+        68,
+        254
+      ],
+      [
+        9,
+        254
+      ],
+      [
+        116,
+        94
+      ],
+      [
+        184,
+        91
+      ],
+      [
+        184,
+        251
+      ]
+    ],
+    "result": "data/processed/200_4_target.png"
+  },
+  "201": {
+    "images": [
+      "data/processed/201_0.png",
+      "data/processed/201_1.png",
+      "data/processed/201_2.png",
+      "data/processed/201_3.png",
+      "data/processed/201_4.png"
+    ],
+    "points": [
+      [
+        104,
+        246
+      ],
+      [
+        104,
+        173
+      ],
+      [
+        222,
+        246
+      ],
+      [
+        218,
+        161
+      ],
+      [
+        218,
+        90
+      ],
+      [
+        109,
+        98
+      ]
+    ],
+    "result": "data/processed/201_4_target.png"
+  },
+  "202": {
+    "images": [
+      "data/processed/202_0.png",
+      "data/processed/202_1.png",
+      "data/processed/202_2.png",
+      "data/processed/202_3.png",
+      "data/processed/202_4.png"
+    ],
+    "points": [
+      [
+        13,
+        63
+      ],
+      [
+        7,
+        111
+      ],
+      [
+        5,
+        165
+      ],
+      [
+        73,
+        60
+      ],
+      [
+        72,
+        112
+      ],
+      [
+        72,
+        162
+      ],
+      [
+        179,
+        64
+      ],
+      [
+        72,
+        212
+      ],
+      [
+        175,
+        213
+      ]
+    ],
+    "result": "data/processed/202_4_target.png"
+  },
+  "203": {
+    "images": [
+      "data/processed/203_0.png",
+      "data/processed/203_1.png",
+      "data/processed/203_2.png",
+      "data/processed/203_3.png",
+      "data/processed/203_4.png"
+    ],
+    "points": [
+      [
+        93,
+        136
+      ],
+      [
+        94,
+        12
+      ],
+      [
+        204,
+        6
+      ],
+      [
+        202,
+        132
+      ]
+    ],
+    "result": "data/processed/203_4_target.png"
+  },
+  "204": {
+    "images": [
+      "data/processed/204_0.png",
+      "data/processed/204_1.png",
+      "data/processed/204_2.png",
+      "data/processed/204_3.png",
+      "data/processed/204_4.png"
+    ],
+    "points": [
+      [
+        8,
+        248
+      ],
+      [
+        9,
+        124
+      ],
+      [
+        119,
+        118
+      ],
+      [
+        117,
+        244
+      ],
+      [
+        242,
+        241
+      ],
+      [
+        243,
+        121
+      ]
+    ],
+    "result": "data/processed/204_4_target.png"
+  },
+  "205": {
+    "images": [
+      "data/processed/205_0.png",
+      "data/processed/205_1.png",
+      "data/processed/205_2.png",
+      "data/processed/205_3.png",
+      "data/processed/205_4.png"
+    ],
+    "points": [
+      [
+        8,
+        218
+      ],
+      [
+        7,
+        74
+      ],
+      [
+        118,
+        212
+      ],
+      [
+        242,
+        215
+      ],
+      [
+        246,
+        79
+      ],
+      [
+        119,
+        68
+      ]
+    ],
+    "result": "data/processed/205_4_target.png"
+  },
+  "206": {
+    "images": [
+      "data/processed/206_0.png",
+      "data/processed/206_1.png",
+      "data/processed/206_2.png",
+      "data/processed/206_3.png",
+      "data/processed/206_4.png"
+    ],
+    "points": [
+      [
+        6,
+        177
+      ],
+      [
+        7,
+        52
+      ],
+      [
+        111,
+        49
+      ],
+      [
+        105,
+        178
+      ],
+      [
+        218,
+        174
+      ],
+      [
+        219,
+        50
+      ]
+    ],
+    "result": "data/processed/206_4_target.png"
+  },
+  "207": {
+    "images": [
+      "data/processed/207_0.png",
+      "data/processed/207_1.png",
+      "data/processed/207_2.png",
+      "data/processed/207_3.png",
+      "data/processed/207_4.png"
+    ],
+    "points": [
+      [
+        78,
+        82
+      ],
+      [
+        85,
+        203
+      ],
+      [
+        217,
+        195
+      ],
+      [
+        223,
+        71
+      ]
+    ],
+    "result": "data/processed/207_4_target.png"
+  },
+  "208": {
+    "images": [
+      "data/processed/208_0.png",
+      "data/processed/208_1.png",
+      "data/processed/208_2.png",
+      "data/processed/208_3.png",
+      "data/processed/208_4.png"
+    ],
+    "points": [
+      [
+        30,
+        118
+      ],
+      [
+        30,
+        65
+      ],
+      [
+        25,
+        215
+      ],
+      [
+        29,
+        145
+      ],
+      [
+        118,
+        122
+      ],
+      [
+        120,
+        204
+      ],
+      [
+        255,
+        117
+      ],
+      [
+        123,
+        56
+      ]
+    ],
+    "result": "data/processed/208_4_target.png"
+  },
+  "209": {
+    "images": [
+      "data/processed/209_0.png",
+      "data/processed/209_1.png",
+      "data/processed/209_2.png",
+      "data/processed/209_3.png",
+      "data/processed/209_4.png"
+    ],
+    "points": [
+      [
+        38,
+        67
+      ],
+      [
+        30,
+        194
+      ],
+      [
+        159,
+        192
+      ],
+      [
+        163,
+        64
+      ]
+    ],
+    "result": "data/processed/209_4_target.png"
+  },
+  "210": {
+    "images": [
+      "data/processed/210_0.png",
+      "data/processed/210_1.png",
+      "data/processed/210_2.png",
+      "data/processed/210_3.png",
+      "data/processed/210_4.png"
+    ],
+    "points": [
+      [
+        65,
+        132
+      ],
+      [
+        169,
+        129
+      ]
+    ],
+    "result": "data/processed/210_4_target.png"
+  },
+  "211": {
+    "images": [
+      "data/processed/211_0.png",
+      "data/processed/211_1.png",
+      "data/processed/211_2.png",
+      "data/processed/211_3.png",
+      "data/processed/211_4.png"
+    ],
+    "points": [
+      [
+        91,
+        138
+      ],
+      [
+        237,
+        133
+      ]
+    ],
+    "result": "data/processed/211_4_target.png"
+  },
+  "212": {
+    "images": [
+      "data/processed/212_0.png",
+      "data/processed/212_1.png",
+      "data/processed/212_2.png",
+      "data/processed/212_3.png",
+      "data/processed/212_4.png"
+    ],
+    "points": [
+      [
+        41,
+        180
+      ],
+      [
+        35,
+        30
+      ],
+      [
+        143,
+        27
+      ],
+      [
+        145,
+        177
+      ],
+      [
+        253,
+        178
+      ],
+      [
+        252,
+        34
+      ]
+    ],
+    "result": "data/processed/212_4_target.png"
+  },
+  "213": {
+    "images": [
+      "data/processed/213_0.png",
+      "data/processed/213_1.png",
+      "data/processed/213_2.png",
+      "data/processed/213_3.png",
+      "data/processed/213_4.png"
+    ],
+    "points": [
+      [
+        85,
+        64
+      ],
+      [
+        84,
+        219
+      ],
+      [
+        25,
+        219
+      ],
+      [
+        132,
+        59
+      ],
+      [
+        138,
+        221
+      ],
+      [
+        200,
+        56
+      ],
+      [
+        200,
+        216
+      ]
+    ],
+    "result": "data/processed/213_4_target.png"
+  },
+  "214": {
+    "images": [
+      "data/processed/214_0.png",
+      "data/processed/214_1.png",
+      "data/processed/214_2.png",
+      "data/processed/214_3.png",
+      "data/processed/214_4.png"
+    ],
+    "points": [
+      [
+        43,
+        237
+      ],
+      [
+        44,
+        116
+      ],
+      [
+        153,
+        112
+      ],
+      [
+        145,
+        239
+      ]
+    ],
+    "result": "data/processed/214_4_target.png"
+  },
+  "215": {
+    "images": [
+      "data/processed/215_0.png",
+      "data/processed/215_1.png",
+      "data/processed/215_2.png",
+      "data/processed/215_3.png",
+      "data/processed/215_4.png"
+    ],
+    "points": [
+      [
+        25,
+        88
+      ],
+      [
+        25,
+        35
+      ],
+      [
+        20,
+        185
+      ],
+      [
+        24,
+        115
+      ],
+      [
+        16,
+        242
+      ],
+      [
+        113,
+        92
+      ],
+      [
+        115,
+        174
+      ],
+      [
+        255,
+        158
+      ],
+      [
+        250,
+        87
+      ],
+      [
+        251,
+        15
+      ],
+      [
+        118,
+        26
+      ]
+    ],
+    "result": "data/processed/215_4_target.png"
+  },
+  "216": {
+    "images": [
+      "data/processed/216_0.png",
+      "data/processed/216_1.png",
+      "data/processed/216_2.png",
+      "data/processed/216_3.png",
+      "data/processed/216_4.png"
+    ],
+    "points": [
+      [
+        21,
+        249
+      ],
+      [
+        27,
+        125
+      ],
+      [
+        28,
+        0
+      ],
+      [
+        126,
+        126
+      ],
+      [
+        123,
+        251
+      ],
+      [
+        170,
+        246
+      ],
+      [
+        238,
+        243
+      ],
+      [
+        239,
+        122
+      ]
+    ],
+    "result": "data/processed/216_4_target.png"
+  },
+  "217": {
+    "images": [
+      "data/processed/217_0.png",
+      "data/processed/217_1.png",
+      "data/processed/217_2.png",
+      "data/processed/217_3.png",
+      "data/processed/217_4.png"
+    ],
+    "points": [
+      [
+        51,
+        136
+      ],
+      [
+        55,
+        8
+      ],
+      [
+        165,
+        8
+      ],
+      [
+        168,
+        136
+      ],
+      [
+        233,
+        138
+      ]
+    ],
+    "result": "data/processed/217_4_target.png"
+  },
+  "218": {
+    "images": [
+      "data/processed/218_0.png",
+      "data/processed/218_1.png",
+      "data/processed/218_2.png",
+      "data/processed/218_3.png",
+      "data/processed/218_4.png"
+    ],
+    "points": [
+      [
+        46,
+        106
+      ],
+      [
+        163,
+        106
+      ],
+      [
+        228,
+        108
+      ]
+    ],
+    "result": "data/processed/218_4_target.png"
+  },
+  "219": {
+    "images": [
+      "data/processed/219_0.png",
+      "data/processed/219_1.png",
+      "data/processed/219_2.png",
+      "data/processed/219_3.png",
+      "data/processed/219_4.png"
+    ],
+    "points": [
+      [
+        3,
+        99
+      ],
+      [
+        10,
+        220
+      ],
+      [
+        142,
+        212
+      ],
+      [
+        148,
+        88
+      ],
+      [
+        247,
+        89
+      ],
+      [
+        244,
+        214
+      ]
+    ],
+    "result": "data/processed/219_4_target.png"
+  },
+  "220": {
+    "images": [
+      "data/processed/220_0.png",
+      "data/processed/220_1.png",
+      "data/processed/220_2.png",
+      "data/processed/220_3.png",
+      "data/processed/220_4.png"
+    ],
+    "points": [
+      [
+        40,
+        59
+      ],
+      [
+        169,
+        57
+      ],
+      [
+        37,
+        212
+      ],
+      [
+        170,
+        214
+      ]
+    ],
+    "result": "data/processed/220_4_target.png"
+  },
+  "221": {
+    "images": [
+      "data/processed/221_0.png",
+      "data/processed/221_1.png",
+      "data/processed/221_2.png",
+      "data/processed/221_3.png",
+      "data/processed/221_4.png"
+    ],
+    "points": [
+      [
+        4,
+        250
+      ],
+      [
+        128,
+        253
+      ],
+      [
+        132,
+        117
+      ],
+      [
+        230,
+        118
+      ],
+      [
+        236,
+        249
+      ],
+      [
+        5,
+        106
+      ]
+    ],
+    "result": "data/processed/221_4_target.png"
+  },
+  "222": {
+    "images": [
+      "data/processed/222_0.png",
+      "data/processed/222_1.png",
+      "data/processed/222_2.png",
+      "data/processed/222_3.png",
+      "data/processed/222_4.png"
+    ],
+    "points": [
+      [
+        0,
+        65
+      ],
+      [
+        0,
+        225
+      ],
+      [
+        102,
+        67
+      ],
+      [
+        231,
+        65
+      ],
+      [
+        99,
+        220
+      ],
+      [
+        232,
+        222
+      ]
+    ],
+    "result": "data/processed/222_4_target.png"
+  },
+  "223": {
+    "images": [
+      "data/processed/223_0.png",
+      "data/processed/223_1.png",
+      "data/processed/223_2.png",
+      "data/processed/223_3.png",
+      "data/processed/223_4.png"
+    ],
+    "points": [
+      [
+        99,
+        143
+      ],
+      [
+        209,
+        137
+      ]
+    ],
+    "result": "data/processed/223_4_target.png"
+  },
+  "224": {
+    "images": [
+      "data/processed/224_0.png",
+      "data/processed/224_1.png",
+      "data/processed/224_2.png",
+      "data/processed/224_3.png",
+      "data/processed/224_4.png"
+    ],
+    "points": [
+      [
+        177,
+        189
+      ],
+      [
+        67,
+        185
+      ],
+      [
+        66,
+        113
+      ],
+      [
+        177,
+        116
+      ],
+      [
+        182,
+        41
+      ],
+      [
+        68,
+        49
+      ]
+    ],
+    "result": "data/processed/224_4_target.png"
+  },
+  "225": {
+    "images": [
+      "data/processed/225_0.png",
+      "data/processed/225_1.png",
+      "data/processed/225_2.png",
+      "data/processed/225_3.png",
+      "data/processed/225_4.png"
+    ],
+    "points": [
+      [
+        113,
+        219
+      ],
+      [
+        114,
+        99
+      ],
+      [
+        222,
+        95
+      ],
+      [
+        223,
+        219
+      ]
+    ],
+    "result": "data/processed/225_4_target.png"
+  },
+  "226": {
+    "images": [
+      "data/processed/226_0.png",
+      "data/processed/226_1.png",
+      "data/processed/226_2.png",
+      "data/processed/226_3.png",
+      "data/processed/226_4.png"
+    ],
+    "points": [
+      [
+        88,
+        101
+      ],
+      [
+        95,
+        222
+      ],
+      [
+        227,
+        214
+      ],
+      [
+        233,
+        90
+      ]
+    ],
+    "result": "data/processed/226_4_target.png"
+  },
+  "227": {
+    "images": [
+      "data/processed/227_0.png",
+      "data/processed/227_1.png",
+      "data/processed/227_2.png",
+      "data/processed/227_3.png",
+      "data/processed/227_4.png"
+    ],
+    "points": [
+      [
+        21,
+        244
+      ],
+      [
+        27,
+        120
+      ],
+      [
+        126,
+        121
+      ],
+      [
+        123,
+        246
+      ],
+      [
+        170,
+        241
+      ],
+      [
+        238,
+        238
+      ],
+      [
+        239,
+        117
+      ]
+    ],
+    "result": "data/processed/227_4_target.png"
+  },
+  "228": {
+    "images": [
+      "data/processed/228_0.png",
+      "data/processed/228_1.png",
+      "data/processed/228_2.png",
+      "data/processed/228_3.png",
+      "data/processed/228_4.png"
+    ],
+    "points": [
+      [
+        35,
+        100
+      ],
+      [
+        27,
+        227
+      ],
+      [
+        156,
+        225
+      ],
+      [
+        160,
+        97
+      ]
+    ],
+    "result": "data/processed/228_4_target.png"
+  },
+  "229": {
+    "images": [
+      "data/processed/229_0.png",
+      "data/processed/229_1.png",
+      "data/processed/229_2.png",
+      "data/processed/229_3.png",
+      "data/processed/229_4.png"
+    ],
+    "points": [
+      [
+        31,
+        22
+      ],
+      [
+        28,
+        102
+      ],
+      [
+        24,
+        153
+      ],
+      [
+        27,
+        221
+      ],
+      [
+        88,
+        14
+      ],
+      [
+        85,
+        94
+      ],
+      [
+        83,
+        145
+      ],
+      [
+        87,
+        218
+      ],
+      [
+        186,
+        101
+      ],
+      [
+        193,
+        222
+      ]
+    ],
+    "result": "data/processed/229_4_target.png"
+  },
+  "230": {
+    "images": [
+      "data/processed/230_0.png",
+      "data/processed/230_1.png",
+      "data/processed/230_2.png",
+      "data/processed/230_3.png",
+      "data/processed/230_4.png"
+    ],
+    "points": [
+      [
+        12,
+        246
+      ],
+      [
+        18,
+        122
+      ],
+      [
+        117,
+        123
+      ],
+      [
+        114,
+        248
+      ],
+      [
+        161,
+        243
+      ],
+      [
+        229,
+        240
+      ],
+      [
+        230,
+        119
+      ]
+    ],
+    "result": "data/processed/230_4_target.png"
+  },
+  "231": {
+    "images": [
+      "data/processed/231_0.png",
+      "data/processed/231_1.png",
+      "data/processed/231_2.png",
+      "data/processed/231_3.png",
+      "data/processed/231_4.png"
+    ],
+    "points": [
+      [
+        96,
+        202
+      ],
+      [
+        196,
+        197
+      ],
+      [
+        97,
+        44
+      ],
+      [
+        211,
+        44
+      ]
+    ],
+    "result": "data/processed/231_4_target.png"
+  },
+  "232": {
+    "images": [
+      "data/processed/232_0.png",
+      "data/processed/232_1.png",
+      "data/processed/232_2.png",
+      "data/processed/232_3.png",
+      "data/processed/232_4.png"
+    ],
+    "points": [
+      [
+        39,
+        1
+      ],
+      [
+        43,
+        74
+      ],
+      [
+        42,
+        126
+      ],
+      [
+        42,
+        176
+      ],
+      [
+        149,
+        78
+      ],
+      [
+        42,
+        226
+      ],
+      [
+        145,
+        227
+      ]
+    ],
+    "result": "data/processed/232_4_target.png"
+  },
+  "233": {
+    "images": [
+      "data/processed/233_0.png",
+      "data/processed/233_1.png",
+      "data/processed/233_2.png",
+      "data/processed/233_3.png",
+      "data/processed/233_4.png"
+    ],
+    "points": [
+      [
+        18,
+        213
+      ],
+      [
+        19,
+        88
+      ],
+      [
+        123,
+        85
+      ],
+      [
+        117,
+        214
+      ],
+      [
+        230,
+        210
+      ],
+      [
+        231,
+        86
+      ]
+    ],
+    "result": "data/processed/233_4_target.png"
+  },
+  "234": {
+    "images": [
+      "data/processed/234_0.png",
+      "data/processed/234_1.png",
+      "data/processed/234_2.png",
+      "data/processed/234_3.png",
+      "data/processed/234_4.png"
+    ],
+    "points": [
+      [
+        145,
+        138
+      ],
+      [
+        35,
+        134
+      ],
+      [
+        34,
+        62
+      ],
+      [
+        145,
+        65
+      ]
+    ],
+    "result": "data/processed/234_4_target.png"
+  },
+  "235": {
+    "images": [
+      "data/processed/235_0.png",
+      "data/processed/235_1.png",
+      "data/processed/235_2.png",
+      "data/processed/235_3.png",
+      "data/processed/235_4.png"
+    ],
+    "points": [
+      [
+        16,
+        216
+      ],
+      [
+        15,
+        77
+      ],
+      [
+        15,
+        4
+      ],
+      [
+        255,
+        221
+      ],
+      [
+        253,
+        77
+      ],
+      [
+        128,
+        210
+      ],
+      [
+        133,
+        77
+      ]
+    ],
+    "result": "data/processed/235_4_target.png"
+  },
+  "236": {
+    "images": [
+      "data/processed/236_0.png",
+      "data/processed/236_1.png",
+      "data/processed/236_2.png",
+      "data/processed/236_3.png",
+      "data/processed/236_4.png"
+    ],
+    "points": [
+      [
+        72,
+        242
+      ],
+      [
+        72,
+        84
+      ],
+      [
+        174,
+        86
+      ],
+      [
+        173,
+        241
+      ],
+      [
+        114,
+        241
+      ],
+      [
+        221,
+        81
+      ],
+      [
+        227,
+        243
+      ]
+    ],
+    "result": "data/processed/236_4_target.png"
+  },
+  "237": {
+    "images": [
+      "data/processed/237_0.png",
+      "data/processed/237_1.png",
+      "data/processed/237_2.png",
+      "data/processed/237_3.png",
+      "data/processed/237_4.png"
+    ],
+    "points": [
+      [
+        125,
+        173
+      ],
+      [
+        15,
+        169
+      ],
+      [
+        14,
+        97
+      ],
+      [
+        125,
+        100
+      ],
+      [
+        243,
+        173
+      ],
+      [
+        239,
+        88
+      ],
+      [
+        239,
+        17
+      ],
+      [
+        130,
+        25
+      ],
+      [
+        16,
+        33
+      ]
+    ],
+    "result": "data/processed/237_4_target.png"
+  },
+  "238": {
+    "images": [
+      "data/processed/238_0.png",
+      "data/processed/238_1.png",
+      "data/processed/238_2.png",
+      "data/processed/238_3.png",
+      "data/processed/238_4.png"
+    ],
+    "points": [
+      [
+        114,
+        129
+      ],
+      [
+        222,
+        126
+      ]
+    ],
+    "result": "data/processed/238_4_target.png"
+  },
+  "239": {
+    "images": [
+      "data/processed/239_0.png",
+      "data/processed/239_1.png",
+      "data/processed/239_2.png",
+      "data/processed/239_3.png",
+      "data/processed/239_4.png"
+    ],
+    "points": [
+      [
+        81,
+        235
+      ],
+      [
+        82,
+        111
+      ],
+      [
+        192,
+        105
+      ],
+      [
+        190,
+        231
+      ]
+    ],
+    "result": "data/processed/239_4_target.png"
+  },
+  "240": {
+    "images": [
+      "data/processed/240_0.png",
+      "data/processed/240_1.png",
+      "data/processed/240_2.png",
+      "data/processed/240_3.png",
+      "data/processed/240_4.png"
+    ],
+    "points": [
+      [
+        39,
+        18
+      ],
+      [
+        39,
+        169
+      ],
+      [
+        41,
+        251
+      ],
+      [
+        181,
+        235
+      ],
+      [
+        176,
+        164
+      ],
+      [
+        162,
+        6
+      ],
+      [
+        177,
+        92
+      ],
+      [
+        44,
+        103
+      ]
+    ],
+    "result": "data/processed/240_4_target.png"
+  },
+  "241": {
+    "images": [
+      "data/processed/241_0.png",
+      "data/processed/241_1.png",
+      "data/processed/241_2.png",
+      "data/processed/241_3.png",
+      "data/processed/241_4.png"
+    ],
+    "points": [
+      [
+        184,
+        197
+      ],
+      [
+        74,
+        193
+      ],
+      [
+        73,
+        121
+      ],
+      [
+        184,
+        124
+      ],
+      [
+        189,
+        49
+      ],
+      [
+        75,
+        57
+      ]
+    ],
+    "result": "data/processed/241_4_target.png"
+  },
+  "242": {
+    "images": [
+      "data/processed/242_0.png",
+      "data/processed/242_1.png",
+      "data/processed/242_2.png",
+      "data/processed/242_3.png",
+      "data/processed/242_4.png"
+    ],
+    "points": [
+      [
+        36,
+        87
+      ],
+      [
+        36,
+        247
+      ],
+      [
+        138,
+        89
+      ],
+      [
+        135,
+        242
+      ]
+    ],
+    "result": "data/processed/242_4_target.png"
+  },
+  "243": {
+    "images": [
+      "data/processed/243_0.png",
+      "data/processed/243_1.png",
+      "data/processed/243_2.png",
+      "data/processed/243_3.png",
+      "data/processed/243_4.png"
+    ],
+    "points": [
+      [
+        50,
+        1
+      ],
+      [
+        38,
+        157
+      ],
+      [
+        184,
+        152
+      ],
+      [
+        178,
+        2
+      ]
+    ],
+    "result": "data/processed/243_4_target.png"
+  },
+  "244": {
+    "images": [
+      "data/processed/244_0.png",
+      "data/processed/244_1.png",
+      "data/processed/244_2.png",
+      "data/processed/244_3.png",
+      "data/processed/244_4.png"
+    ],
+    "points": [
+      [
+        87,
+        176
+      ],
+      [
+        87,
+        105
+      ],
+      [
+        212,
+        103
+      ]
+    ],
+    "result": "data/processed/244_4_target.png"
+  },
+  "245": {
+    "images": [
+      "data/processed/245_0.png",
+      "data/processed/245_1.png",
+      "data/processed/245_2.png",
+      "data/processed/245_3.png",
+      "data/processed/245_4.png"
+    ],
+    "points": [
+      [
+        63,
+        111
+      ],
+      [
+        110,
+        106
+      ],
+      [
+        178,
+        103
+      ]
+    ],
+    "result": "data/processed/245_4_target.png"
+  },
+  "246": {
+    "images": [
+      "data/processed/246_0.png",
+      "data/processed/246_1.png",
+      "data/processed/246_2.png",
+      "data/processed/246_3.png",
+      "data/processed/246_4.png"
+    ],
+    "points": [
+      [
+        100,
+        113
+      ],
+      [
+        228,
+        114
+      ]
+    ],
+    "result": "data/processed/246_4_target.png"
+  },
+  "247": {
+    "images": [
+      "data/processed/247_0.png",
+      "data/processed/247_1.png",
+      "data/processed/247_2.png",
+      "data/processed/247_3.png",
+      "data/processed/247_4.png"
+    ],
+    "points": [
+      [
+        58,
+        109
+      ],
+      [
+        175,
+        109
+      ],
+      [
+        240,
+        111
+      ]
+    ],
+    "result": "data/processed/247_4_target.png"
+  },
+  "248": {
+    "images": [
+      "data/processed/248_0.png",
+      "data/processed/248_1.png",
+      "data/processed/248_2.png",
+      "data/processed/248_3.png",
+      "data/processed/248_4.png"
+    ],
+    "points": [
+      [
+        56,
+        131
+      ],
+      [
+        165,
+        138
+      ]
+    ],
+    "result": "data/processed/248_4_target.png"
+  },
+  "249": {
+    "images": [
+      "data/processed/249_0.png",
+      "data/processed/249_1.png",
+      "data/processed/249_2.png",
+      "data/processed/249_3.png",
+      "data/processed/249_4.png"
+    ],
+    "points": [
+      [
+        86,
+        199
+      ],
+      [
+        87,
+        79
+      ],
+      [
+        195,
+        75
+      ],
+      [
+        196,
+        199
+      ]
+    ],
+    "result": "data/processed/249_4_target.png"
+  },
+  "250": {
+    "images": [
+      "data/processed/250_0.png",
+      "data/processed/250_1.png",
+      "data/processed/250_2.png",
+      "data/processed/250_3.png",
+      "data/processed/250_4.png"
+    ],
+    "points": [
+      [
+        32,
+        220
+      ],
+      [
+        31,
+        76
+      ],
+      [
+        142,
+        214
+      ],
+      [
+        143,
+        70
+      ]
+    ],
+    "result": "data/processed/250_4_target.png"
+  },
+  "251": {
+    "images": [
+      "data/processed/251_0.png",
+      "data/processed/251_1.png",
+      "data/processed/251_2.png",
+      "data/processed/251_3.png",
+      "data/processed/251_4.png"
+    ],
+    "points": [
+      [
+        37,
+        28
+      ],
+      [
+        43,
+        147
+      ],
+      [
+        171,
+        148
+      ],
+      [
+        177,
+        12
+      ]
+    ],
+    "result": "data/processed/251_4_target.png"
+  },
+  "252": {
+    "images": [
+      "data/processed/252_0.png",
+      "data/processed/252_1.png",
+      "data/processed/252_2.png",
+      "data/processed/252_3.png",
+      "data/processed/252_4.png"
+    ],
+    "points": [
+      [
+        206,
+        180
+      ],
+      [
+        106,
+        183
+      ],
+      [
+        101,
+        112
+      ],
+      [
+        205,
+        108
+      ],
+      [
+        207,
+        44
+      ],
+      [
+        102,
+        40
+      ]
+    ],
+    "result": "data/processed/252_4_target.png"
+  },
+  "253": {
+    "images": [
+      "data/processed/253_0.png",
+      "data/processed/253_1.png",
+      "data/processed/253_2.png",
+      "data/processed/253_3.png",
+      "data/processed/253_4.png"
+    ],
+    "points": [
+      [
+        16,
+        59
+      ],
+      [
+        15,
+        214
+      ],
+      [
+        63,
+        54
+      ],
+      [
+        69,
+        216
+      ],
+      [
+        131,
+        51
+      ],
+      [
+        131,
+        211
+      ],
+      [
+        233,
+        53
+      ],
+      [
+        230,
+        206
+      ]
+    ],
+    "result": "data/processed/253_4_target.png"
+  },
+  "254": {
+    "images": [
+      "data/processed/254_0.png",
+      "data/processed/254_1.png",
+      "data/processed/254_2.png",
+      "data/processed/254_3.png",
+      "data/processed/254_4.png"
+    ],
+    "points": [
+      [
+        72,
+        211
+      ],
+      [
+        72,
+        138
+      ],
+      [
+        190,
+        211
+      ],
+      [
+        186,
+        126
+      ],
+      [
+        186,
+        55
+      ],
+      [
+        77,
+        63
+      ]
+    ],
+    "result": "data/processed/254_4_target.png"
+  },
+  "255": {
+    "images": [
+      "data/processed/255_0.png",
+      "data/processed/255_1.png",
+      "data/processed/255_2.png",
+      "data/processed/255_3.png",
+      "data/processed/255_4.png"
+    ],
+    "points": [
+      [
+        11,
+        81
+      ],
+      [
+        7,
+        230
+      ],
+      [
+        143,
+        231
+      ],
+      [
+        143,
+        73
+      ],
+      [
+        245,
+        75
+      ],
+      [
+        244,
+        230
+      ],
+      [
+        185,
+        230
+      ]
+    ],
+    "result": "data/processed/255_4_target.png"
+  }
+}

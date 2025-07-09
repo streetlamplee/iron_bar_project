@@ -176,7 +176,7 @@ def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_
 
 
 if __name__ == "__main__":
-    image = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/[0, 1, 2, 3]_btm.png')
+    image = cv2.imread('')
     image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)
     # image = cv2.resize(image, (512, 512))
     result, result_point = predict_one_image(image)

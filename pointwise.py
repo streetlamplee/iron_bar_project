@@ -115,38 +115,38 @@ def make_point_match(origin_img_arr:np.ndarray, img_arr:np.ndarray):
     return (basis_image * 255).numpy().astype(np.uint8), basis_image_origin.astype(np.uint8)
 
 
-if __name__ == "__main__":
-    '''
-    Do not run the code below except debugging
-    '''
-    img1 = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/warp_image/1.png')
-    img2 = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/warp_image/2.png')
-    img3 = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/warp_image/3.png')
-    img4 = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/warp_image/4.png')
-    img5 = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/warp_image/5.png')
-    img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
-    img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
-    img3 = cv2.cvtColor(img3, cv2.COLOR_BGR2GRAY)
-    img4 = cv2.cvtColor(img4, cv2.COLOR_BGR2GRAY)
-    img5 = cv2.cvtColor(img5, cv2.COLOR_BGR2GRAY)
-
-    input = [find_cross_point(img1, 15),
-             find_cross_point(img2, 15),
-             find_cross_point(img3, 15),
-             find_cross_point(img4, 15),
-             find_cross_point(img5, 15),]
-
-    input = np.array(input)
-
-    original_img = np.array([img1, img2, img3, img4, img5])
-
-    point_matched_image, result = make_point_match(original_img, input)
-
-    cv2.imshow('result', result)
-    cv2.waitKey(0)
-    cv2.destroyWindow('result')
-
-    result_thres = np.where(result > (255. / len(input) * (len(input) - 2)), 255, 0)
-    cv2.imshow('thres', result_thres.astype(np.uint8))
-    cv2.waitKey(0)
-    cv2.destroyWindow('thres')
+# if __name__ == "__main__":
+#     '''
+#     Do not run the code below except debugging
+#     '''
+#     img1 = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/warp_image/1.png')
+#     img2 = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/warp_image/2.png')
+#     img3 = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/warp_image/3.png')
+#     img4 = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/warp_image/4.png')
+#     img5 = cv2.imread('/home/user/PycharmProjects/iron_bar_sample_project/warp_image/5.png')
+#     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
+#     img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
+#     img3 = cv2.cvtColor(img3, cv2.COLOR_BGR2GRAY)
+#     img4 = cv2.cvtColor(img4, cv2.COLOR_BGR2GRAY)
+#     img5 = cv2.cvtColor(img5, cv2.COLOR_BGR2GRAY)
+#
+#     input = [find_cross_point(img1, 15),
+#              find_cross_point(img2, 15),
+#              find_cross_point(img3, 15),
+#              find_cross_point(img4, 15),
+#              find_cross_point(img5, 15),]
+#
+#     input = np.array(input)
+#
+#     original_img = np.array([img1, img2, img3, img4, img5])
+#
+#     point_matched_image, result = make_point_match(original_img, input)
+#
+#     cv2.imshow('result', result)
+#     cv2.waitKey(0)
+#     cv2.destroyWindow('result')
+#
+#     result_thres = np.where(result > (255. / len(input) * (len(input) - 2)), 255, 0)
+#     cv2.imshow('thres', result_thres.astype(np.uint8))
+#     cv2.waitKey(0)
+#     cv2.destroyWindow('thres')

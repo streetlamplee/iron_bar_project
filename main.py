@@ -6,6 +6,7 @@ from extension import image_show
 from n_pointClicker import PointClicker
 import iron_bar_segmentation.predict as seg_predict
 from n_warp import warp_perspective
+from get_picture_from_raspi import get_picture_from_raspi
 
 FastDebug = True
 isTop = True
@@ -14,33 +15,24 @@ def main():
     '''
     main run method
     '''
-    isShow = False
+    isShow = True
 
     '''
     데이터 위치 선언
     '''
-    real_data_folder = 'data_sample'
-    real_data_filename_list = os.listdir(real_data_folder)
-    real_data_filename_list.sort(key = lambda x: int(x.replace('.jpg','')))
-    # real_data_filename_list  = [x for x in real_data_filename_list if int(x.replace('.jpg','')) in [2,3,4,5,11]]
-    '''
-    데이터 불러오기
-    '''
-    real_image_list = []
-    for real_data_filename in real_data_filename_list:
-        real_data_path = os.path.join(real_data_folder, real_data_filename)
-        real_image = cv2.imread(real_data_path)
-        real_image = cv2.cvtColor(real_image, cv2.COLOR_BGR2RGB)
-        real_image_list.append(real_image)
-
+    data_list = get_picture_from_raspi(False)
 
     '''
     철근 찾기
     '''
     iron_seg_image_list = []
 
-    for real_image in real_image_list:
+    for real_image in data_list:
+        real_image = cv2.cvtColor(real_image, cv2.COLOR_BGR2RGB)
         iron_seg_image = seg_predict.predict(real_image)
+        if isShow:
+            image_show(iron_seg_image)
+
         iron_seg_image_list.append(iron_seg_image)
 
     '''
@@ -53,7 +45,7 @@ def main():
         # warp_point_list_stack = [[(2541, 386), (4154, 1399), (899, 2135), (942, 531)], [(2867, 932), (4067, 2377), (341, 2301), (1348, 924)], [(2609, 1323), (2974, 2866), (-228, 2413), (1166, 1287)], [(2883, 1020), (2559, 1824), (1113, 1541), (1920, 950)], [(1488, 790), (3143, 1054), (2320, 2238), (100, 1318)]]
         if isTop:
             # 상부근 철근 좌표 list
-            warp_point_list_stack = [[(1716, 1086), (3786, 1353), (2643, 2173), (100, 1656)], [(1656, 933), (3603, 1330), (2583, 2453), (253, 1760)], [(1703, 806), (3450, 1303), (2536, 2476), (486, 1713)], [(1700, 813), (3363, 1323), (2500, 2513), (570, 1763)], [(1726, 913), (3266, 1406), (2436, 2500), (673, 1793)]]
+            warp_point_list_stack = [[(1112, 198), (1624, 445), (1198, 891), (655, 483)], [(739, 177), (1194, 432), (714, 870), (210, 457)], [(991, 147), (1490, 348), (1084, 720), (528, 378)], [(849, 92), (1304, 302), (820, 667), (334, 318)]]
         else:
             # 하부근 철근 좌표 list
             warp_point_list_stack = [[(1666, 1313), (3743, 1610), (2613, 2516), (100, 1930)], [(1633, 1140), (3563, 1556), (2570, 2730), (256, 1996)], [(1680, 993), (3413, 1493), (2516, 2696), (490, 1906)], [(1683, 990), (3326, 1493), (2486, 2700), (580, 1943)], [(1710, 1073), (3233, 1563), (2420, 2676), (676, 1953)]]
@@ -61,7 +53,7 @@ def main():
         print(warp_point_list_stack)
 
         num = 0
-        for real_image, warp_point_list in zip(real_image_list, warp_point_list_stack):
+        for real_image, warp_point_list in zip(data_list, warp_point_list_stack):
 
             tmp = real_image.copy()
             tmp = cv2.cvtColor(tmp, cv2.COLOR_RGB2BGR)
@@ -70,27 +62,31 @@ def main():
                 tmp = cv2.circle(tmp, warp_point, thickness=-1, radius = 3, color = (0, 0, 255))
             cv2.imwrite(f'{num}.png', tmp)
             num += 1
+            image_show(tmp)
     else:
         warping_area_list = []
         warp_point_list_stack = []
 
         clicker = PointClicker(4)
         num = 0
-        for real_image in real_image_list:
+        for real_image in data_list:
             original_h, original_w = real_image.shape[:2]
-            canvas = np.ones(shape = (5000, 6000, 3), dtype = np.uint8) * 255
+            # canvas = np.ones(shape = (original_h+1000, original_w+1000, 3), dtype = np.uint8) * 255
             # real_image = cv2.resize(real_image, (1200,900))
-            canvas[1000:4000, 1000:5000] = real_image
+            # canvas[500:500+original_h, 500:500+original_w] = real_image
+            canvas = real_image.copy()
             point_check_image = real_image.copy()
+            point_check_image = cv2.cvtColor(point_check_image, cv2.COLOR_RGB2BGR)
             warp_point_list = clicker.get_points(canvas)
-            warp_point_list = [(x - 1000, y - 1000) for x, y in warp_point_list]
+            # warp_point_list = [(x - 500, y - 500) for x, y in warp_point_list]
+            # print(f"warp_point_list : {warp_point_list}")
             # warp_point_list = [(int(x / 1200 * original_w), int(y / 900 * original_h)) for x, y in warp_point_list]
 
             warp_point_list_stack.append(warp_point_list)
 
             if isShow:
                 for warp_point in warp_point_list:
-                    point_check_image = cv2.circle(cv2.resize(point_check_image, (original_h,original_w)), warp_point, thickness=-1, radius = 3, color = (0, 0, 255))
+                    point_check_image = cv2.circle(cv2.resize(point_check_image, (original_w,original_h)), warp_point, thickness=-1, radius = 3, color = (0, 0, 255))
                 cv2.imwrite(f'{num}.png', point_check_image)
                 num += 1
         print(warp_point_list_stack)
@@ -100,7 +96,7 @@ def main():
     '''
     warp_seg_image_list = []
     num = 0
-    for iron_seg_image, warping_points, r in zip(iron_seg_image_list, warp_point_list_stack, real_image_list):
+    for iron_seg_image, warping_points, r in zip(iron_seg_image_list, warp_point_list_stack, data_list):
         warp_seg_image = warp_perspective(iron_seg_image,
                                           np.array(warping_points, dtype = np.float32),
                                           dst = np.float32([[0,0],[1024,0],[1024,1024],[0,1024]]))
@@ -119,26 +115,25 @@ def main():
     '''
     erode dilate로 확인하기
     '''
-    target_list = [0,1,2,3]
+    target = [0, 1, 3]
     n = 0
     from n_blur import custom_blur
     result = np.zeros_like(warp_seg_image_list[0]).astype(np.float32)
-    for warp_seg_image, image_filename in zip(warp_seg_image_list, real_data_filename_list):
-        target_filename = [f'{num}.jpg' for num in target_list]
-        if not image_filename in target_filename:
+    for i, warp_seg_image in enumerate(warp_seg_image_list):
+        if i not in target:
             continue
         warp_seg_image = custom_blur(warp_seg_image)
-        result += warp_seg_image * (1 / len(target_list))
+        result += warp_seg_image * (1 / len(target))
         n += 14
     print(n)
     result_seg = result.astype(np.uint8)
-    result_t = np.where((result_seg > int(255 * (len(target_list) - 1) / len(target_list))), 255, 0)
+    cv2.imwrite(f"result_top_before.png", result_seg)
+    result_t = np.where(result_seg > int(255 * (len(target)-1) / len(target)), 255, 0)
     if isShow:
         image_show(result_seg)
         image_show(result_t.astype(np.uint8))
     top_btm = 'top' if isTop else 'btm'
-    cv2.imwrite(f"{target_list}_{top_btm}.png", result_seg)
-    cv2.imwrite(f"{target_list}_{top_btm}_t.png", result_t)
+    cv2.imwrite(f"result_{top_btm}.png", result_t)
 
     '''
     점 찾기 이후 선 그리기
@@ -150,7 +145,7 @@ def main():
 
     line_drawing_result = draw_line(point_list)
 
-    cv2.imwrite(f"{target_list}_{top_btm}_line.png", line_drawing_result)
+    cv2.imwrite(f"result_{top_btm}_line.png", line_drawing_result)
 
 
     return

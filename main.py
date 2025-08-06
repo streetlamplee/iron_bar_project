@@ -7,6 +7,7 @@ from n_pointClicker import PointClicker
 import iron_bar_segmentation.predict as seg_predict
 from n_warp import warp_perspective
 from get_picture_from_raspi import get_picture_from_raspi
+from video_to_imageset import video_to_frame, target_frame
 
 FastDebug = True
 isTop = True
@@ -20,8 +21,8 @@ def main():
     '''
     데이터 위치 선언
     '''
-    data_list = get_picture_from_raspi(False)
-
+    # data_list = get_picture_from_raspi(False)
+    data_list = target_frame('video_frame', [0, 5, 11, 19])
     '''
     철근 찾기
     '''
@@ -45,7 +46,8 @@ def main():
         # warp_point_list_stack = [[(2541, 386), (4154, 1399), (899, 2135), (942, 531)], [(2867, 932), (4067, 2377), (341, 2301), (1348, 924)], [(2609, 1323), (2974, 2866), (-228, 2413), (1166, 1287)], [(2883, 1020), (2559, 1824), (1113, 1541), (1920, 950)], [(1488, 790), (3143, 1054), (2320, 2238), (100, 1318)]]
         if isTop:
             # 상부근 철근 좌표 list
-            warp_point_list_stack = [[(1112, 198), (1624, 445), (1198, 891), (655, 483)], [(739, 177), (1194, 432), (714, 870), (210, 457)], [(991, 147), (1490, 348), (1084, 720), (528, 378)], [(849, 92), (1304, 302), (820, 667), (334, 318)]]
+            warp_point_list_stack = [[(751, 240), (1149, 382), (903, 674), (466, 481)], [(789, 144), (1180, 277), (944, 556), (511, 379)], [(621, 36), (996, 158), (755, 426), (341, 266)], [(350, 135), (718, 267), (438, 546), (36, 373)]]
+
         else:
             # 하부근 철근 좌표 list
             warp_point_list_stack = [[(1666, 1313), (3743, 1610), (2613, 2516), (100, 1930)], [(1633, 1140), (3563, 1556), (2570, 2730), (256, 1996)], [(1680, 993), (3413, 1493), (2516, 2696), (490, 1906)], [(1683, 990), (3326, 1493), (2486, 2700), (580, 1943)], [(1710, 1073), (3233, 1563), (2420, 2676), (676, 1953)]]
@@ -115,7 +117,7 @@ def main():
     '''
     erode dilate로 확인하기
     '''
-    target = [0, 1, 3]
+    target = [0,1,2,3]
     n = 0
     from n_blur import custom_blur
     result = np.zeros_like(warp_seg_image_list[0]).astype(np.float32)

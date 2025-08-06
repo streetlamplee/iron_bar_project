@@ -310,6 +310,7 @@ pyrightconfig.json
 model/
 models/
 *.png
+*.jpg
 del/
 Solus-PDD-Finder/
-.mp4
+*.mp4

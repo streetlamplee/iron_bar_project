@@ -12,7 +12,7 @@ from video_to_imageset import video_to_frame, target_frame
 FastDebug = True
 isTop = True
 
-def main():
+def prev_main():
     '''
     main run method
     '''
@@ -170,6 +170,81 @@ def main():
         result_seg = cv2.circle(cv2.resize(result_seg, (1024,1024)), result_point[1:], radius = 5, thickness = -1, color = (0,0,255))
 
     cv2.imwrite('result.png', result_seg.astype(np.uint8))
+
+import os
+import cv2
+import numpy as np
+from get_picture_from_raspi import get_picture_from_raspi
+import warp_point_finder.detect_marker
+import warp_point_finder.prjection
+import iron_bar_segmentation.predict as seg_predict
+from n_warp import warp_perspective
+from n_blur import custom_blur
+from extension import image_show
+
+
+def main():
+    '''
+    프로젝트의 메인 함수
+    '''
+
+    # init
+    is_raspi_connected = False
+    warping_point = [
+        [-1.0, 1.0, 0],
+        [1.0, 1.0, 0],
+        [1.0, -1.0, 0],
+        [-1.0, -1.0, 0]
+    ]
+    warping_img_segmentation = []
+    warping_img = []
+
+    # 데이터 불러오기
+    img_arr = get_picture_from_raspi(is_raspi_connected)
+
+    # 각 데이터 사진 한 개마다 process 적용
+    for img in img_arr:
+        # 마커 찾기 및 마커기준 카메라의 rvec tvec 찾기
+        _, k, d, rvec, tvec = warp_point_finder.detect_marker.detectMarker(img, "./warp_point_finder/images")
+
+        # warp point projection
+        warping_point_2d = []
+        for wp in warping_point:
+            wp_2d = warp_point_finder.prjection.project(wp, k, d, rvec, tvec)
+            warping_point_2d.append(wp_2d)
+
+        # 철근 찾기
+        img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+        img_segmentation = seg_predict.predict(img_rgb)
+
+        # perspective warp 실행
+        img_warp = warp_perspective(
+            img,
+            np.array(warping_point_2d, dtype = np.float32),
+            dst = np.float32([[0,0],[1024,0],[1024,1024],[0,1024]])
+        )
+        img_segmentation_warp = warp_perspective(
+            img_segmentation,
+            np.array(warping_point_2d, dtype=np.float32),
+            dst=np.float32([[0, 0], [1024, 0], [1024, 1024], [0, 1024]])
+        )
+
+        warping_img.append(img_warp)
+        warping_img_segmentation.append(img_segmentation_warp)
+
+    # warping segmented image 를 블러 처리 후 합치기
+    image_count = len(warping_img_segmentation)
+    weighted_sum_image = np.zeros_like(warping_img_segmentation[0], dtype=np.float32)
+    for i, ws_img in enumerate(warping_img_segmentation):
+        ws_img_blur = custom_blur(ws_img)
+        weighted_sum_image += ws_img_blur * (1 / len(warping_img_segmentation))
+    weighted_sum_image = weighted_sum_image.astype(np.uint8)
+    image_show(weighted_sum_image)
+    cv2.imwrite("./weighted_sum_image.png", weighted_sum_image)
+    thresholded_weighted_sum_image = np.where(weighted_sum_image > int(255 * (image_count - 1 / image_count)), 255, 0)
+    image_show(thresholded_weighted_sum_image.astype(np.uint8))
+    cv2.imwrite("./weighted_sum_thresholded_image.png", thresholded_weighted_sum_image)
+
 
 if __name__ == '__main__':
     main()

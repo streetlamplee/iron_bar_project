@@ -31,7 +31,7 @@ def triangluate(mat1, rv1, tv1, mat2, rv2, tv2, point1, point2):
 if __name__ == "__main__":
     import detect_marker
 
-    r, m, rv, tv = detect_marker.orderPoint("./marker_image_4.jpg", "./images")
+    r, m, rv, tv = detect_marker.orderPoint("./marker_image_4_iron.jpg", "./images")
 
     img0 = [m[0], rv[0], tv[0]]
     img1 = [m[1], rv[1], tv[1]]

@@ -11,7 +11,8 @@ from extension import image_show, CamArrayIdx
 @return 해당 camera의 calibrateCamera 함수 return 값
 '''
 def findChessboard(folderName, idx):
-    mask = CamArrayIdx(idx)
+    if idx is not None:
+        mask = CamArrayIdx(idx)
     CHECKERBOARD = (9,6)
     criteria = (cv2.TERM_CRITERIA_EPS + cv2.TERM_CRITERIA_MAX_ITER, 30, 0.001)
 
@@ -25,7 +26,8 @@ def findChessboard(folderName, idx):
     images = glob.glob(folderName + "/*.jpg")
     for fname in images:
         img = cv2.imread(fname)
-        img = img[mask[0]:mask[1], mask[2]:mask[3]]
+        if idx is not None:
+            img = img[mask[0]:mask[1], mask[2]:mask[3]]
         gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
         ret, corners = cv2.findChessboardCorners(gray,

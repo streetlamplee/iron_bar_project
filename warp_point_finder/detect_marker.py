@@ -1,5 +1,5 @@
 import cv2
-from calib import findChessboard
+from warp_point_finder.calib import findChessboard
 from extension import image_show, CamArrayIdx
 import numpy as np
 
@@ -15,7 +15,7 @@ import numpy as np
 @return target_rvec : target인 id를 가지는 marker 기준, 카메라의 rvec (마커가 1개인 경우, 자동으로 그 marker가 기준)
 @return target_tvec : target인 id를 가지는 marker 기준, 카메라의 tvec (마커가 1개인 경우, 자동으로 그 marker가 기준)
 '''
-def detectMarker(fname, folderName, idx):
+def detectMarker(image, folderName, idx= None):
     ARUCO_DICT = {
         "DICT_4X4_50": cv2.aruco.DICT_4X4_50,
         "DICT_4X4_100": cv2.aruco.DICT_4X4_100,
@@ -41,12 +41,16 @@ def detectMarker(fname, folderName, idx):
     }
 
 
-    mask = CamArrayIdx(idx)
 
     _, k, d, rv, tv = findChessboard(folderName, idx)
 
-    image = cv2.imread(fname)
-    image = image[mask[0]:mask[1], mask[2]:mask[3]]
+    if type(image) == str:
+        image = cv2.imread(image)
+    elif type(image) == np.ndarray:
+        image = image
+    if idx is not None:
+        mask = CamArrayIdx(idx)
+        image = image[mask[0]:mask[1], mask[2]:mask[3]]
     gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
     arucoDict = cv2.aruco.getPredefinedDictionary(ARUCO_DICT["DICT_5X5_100"])
@@ -115,7 +119,55 @@ def orderPoint(fname, folderName):
     return result, matrixs, rvs, tvs
 
 if __name__ == "__main__":
-    # res, _, _, _ = orderPoint("./marker_image_4.jpg", "./images")
-    #
-    # print(res)
-    detectMarker("./raspi_image_with_marker.jpg", "./images", 1)
+    res, _, _, _ = orderPoint("./marker_image_4_iron.jpg", "./images")
+
+    print(res)
+
+    img = cv2.imread("./marker_image_4_iron.jpg")
+    img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
+
+    mask = CamArrayIdx(0)
+    img0 = img[mask[0]:mask[1], mask[2]:mask[3]]
+    mask = CamArrayIdx(1)
+    img1 = img[mask[0]:mask[1], mask[2]:mask[3]]
+    mask = CamArrayIdx(2)
+    img2 = img[mask[0]:mask[1], mask[2]:mask[3]]
+    mask = CamArrayIdx(3)
+    img3 = img[mask[0]:mask[1], mask[2]:mask[3]]
+
+    from n_warp import warp_perspective
+
+    warp0 = warp_perspective(
+        img0,
+        np.array([res[0][0], res[1][0], res[2][0], res[3][0]], dtype = np.float32),
+        dst=np.float32([[0, 0], [1024, 0], [1024, 1024], [0, 1024]])
+    )
+    warp1 = warp_perspective(
+        img1,
+        np.array([res[0][1], res[1][1], res[2][1], res[3][1]], dtype = np.float32),
+        dst=np.float32([[0, 0], [1024, 0], [1024, 1024], [0, 1024]])
+    )
+    warp2 = warp_perspective(
+        img2,
+        np.array([res[0][2], res[1][2], res[2][2], res[3][2]], dtype = np.float32),
+        dst=np.float32([[0, 0], [1024, 0], [1024, 1024], [0, 1024]])
+    )
+    warp3 = warp_perspective(
+        img3,
+        np.array([res[0][3], res[1][3], res[2][3], res[3][3]], dtype = np.float32),
+        dst=np.float32([[0, 0], [1024, 0], [1024, 1024], [0, 1024]])
+    )
+
+    canvas = np.zeros_like(warp0, dtype = np.float32)
+    canvas += warp0 * (1 / 4)
+    canvas += warp1 * (1 / 4)
+    canvas += warp2 * (1 / 4)
+    canvas += warp3 * (1 / 4)
+
+    cv2.imwrite("./canvas.png", canvas)
+
+
+
+
+
+    # detectMarker("./raspi_image_with_marker.jpg", "./images", 1)

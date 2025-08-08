@@ -181,6 +181,7 @@ import iron_bar_segmentation.predict as seg_predict
 from n_warp import warp_perspective
 from n_blur import custom_blur
 from extension import image_show
+from featureMatching.featureMatching import perspectiveTransfrom, getHomographySift
 
 
 def main():
@@ -190,12 +191,13 @@ def main():
 
     # init
     is_raspi_connected = False
-    warping_point = [
-        [-1.0, 1.0, 0],
-        [1.0, 1.0, 0],
-        [1.0, -1.0, 0],
-        [-1.0, -1.0, 0]
-    ]
+    points = [[1065, 503], [1393, 559], [1341, 849], [951, 765]]
+    # warping_point = [
+    #     [-1.0, 1.0, 0],
+    #     [1.0, 1.0, 0],
+    #     [1.0, -1.0, 0],
+    #     [-1.0, -1.0, 0]
+    # ]
     warping_img_segmentation = []
     warping_img = []
 
@@ -203,15 +205,31 @@ def main():
     img_arr = get_picture_from_raspi(is_raspi_connected)
 
     # 각 데이터 사진 한 개마다 process 적용
-    for img in img_arr:
-        # 마커 찾기 및 마커기준 카메라의 rvec tvec 찾기
-        _, k, d, rvec, tvec = warp_point_finder.detect_marker.detectMarker(img, "./warp_point_finder/images")
+    for i, img in enumerate(img_arr):
+        # # 마커 찾기 및 마커기준 카메라의 rvec tvec 찾기
+        # _, k, d, rvec, tvec = warp_point_finder.detect_marker.detectMarker(img, "./warp_point_finder/images")
+        #
+        # # warp point projection
+        # warping_point_2d = []
+        # for wp in warping_point:
+        #     wp_2d = warp_point_finder.prjection.project(wp, k, d, rvec, tvec)
+        #     warping_point_2d.append(wp_2d)
 
-        # warp point projection
-        warping_point_2d = []
-        for wp in warping_point:
-            wp_2d = warp_point_finder.prjection.project(wp, k, d, rvec, tvec)
-            warping_point_2d.append(wp_2d)
+        # warping point 찾기 (SIFT 사용)
+        if i == 0:
+            srcimg = img
+            warping_point_2d = points
+        else:
+            srcimg_gray = cv2.cvtColor(srcimg, cv2.COLOR_BGR2GRAY)
+            img_gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+
+            retval, M = getHomographySift(srcimg_gray, img_gray)
+
+            if retval:
+                warping_point_2d = perspectiveTransfrom(points, M)
+            else:
+                warping_point_2d = []
+
 
         # 철근 찾기
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -243,7 +261,7 @@ def main():
     cv2.imwrite("./weighted_sum_image.png", weighted_sum_image)
     thresholded_weighted_sum_image = np.where(weighted_sum_image > int(255 * (image_count - 1 / image_count)), 255, 0)
     image_show(thresholded_weighted_sum_image.astype(np.uint8))
-    cv2.imwrite("./weighted_sum_thresholded_image.png", thresholded_weighted_sum_image)
+    cv2.imwrite("./weighted_sum_thresholded_image.png", thresholded_weighted_sum_image.astype(np.uint8))
 
 
 if __name__ == '__main__':

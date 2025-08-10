@@ -16,7 +16,7 @@ def prev_main():
     '''
     main run method
     '''
-    isShow = True
+    isShow = False
 
     '''
     데이터 위치 선언
@@ -191,7 +191,8 @@ def main():
 
     # init
     is_raspi_connected = False
-    points = [[1065, 503], [1393, 559], [1341, 849], [951, 765]]
+    # points = [[1065, 503], [1393, 559], [1341, 849], [951, 765]]
+    points = [[853, 701], [1169, 712], [1171, 965], [762, 940]]
     # warping_point = [
     #     [-1.0, 1.0, 0],
     #     [1.0, 1.0, 0],
@@ -203,6 +204,9 @@ def main():
 
     # 데이터 불러오기
     img_arr = get_picture_from_raspi(is_raspi_connected)
+
+    # 현재 cam3 고장에 대응하기 위한 코드 추가 (cam3 조치완료 시 삭제할 것)
+    img_arr = img_arr[:-1]
 
     # 각 데이터 사진 한 개마다 process 적용
     for i, img in enumerate(img_arr):
@@ -248,6 +252,7 @@ def main():
         )
 
         warping_img.append(img_warp)
+        image_show(img_warp)
         warping_img_segmentation.append(img_segmentation_warp)
 
     # warping segmented image 를 블러 처리 후 합치기
@@ -259,7 +264,7 @@ def main():
     weighted_sum_image = weighted_sum_image.astype(np.uint8)
     image_show(weighted_sum_image)
     cv2.imwrite("./weighted_sum_image.png", weighted_sum_image)
-    thresholded_weighted_sum_image = np.where(weighted_sum_image > int(255 * (image_count - 1 / image_count)), 255, 0)
+    thresholded_weighted_sum_image = np.where(weighted_sum_image > int(255 * ((image_count - 1) / image_count)), 255, 0)
     image_show(thresholded_weighted_sum_image.astype(np.uint8))
     cv2.imwrite("./weighted_sum_thresholded_image.png", thresholded_weighted_sum_image.astype(np.uint8))
 

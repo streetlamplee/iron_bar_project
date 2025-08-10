@@ -57,6 +57,13 @@ def getHomographySift(img1, img2):
         matchesMask = None
         return False, None
 
+
+'''
+@brief point 집합을 Homography Mat M에 맞추어 좌표 변환을 진행하는 함수
+@param points 좌표 변환을 적용할 point의 집합
+@param M 적용할 homography 행렬
+@return 좌표 변환이 완료된 좌표의 집합
+'''
 def perspectiveTransfrom(points:list|np.ndarray, M):
     if type(points) != np.ndarray:
         points = np.float32(points)

@@ -16,13 +16,18 @@ def prev_main():
     '''
     main run method
     '''
-    isShow = False
+    isShow = True
 
     '''
     데이터 위치 선언
     '''
     # data_list = get_picture_from_raspi(False)
-    data_list = target_frame('video_frame', [0, 5, 11, 19])
+    # data_list = target_frame('video_frame', [0, 5, 11, 19])
+    fname_list = ["./data_real/0818/20250818_145135.jpg",
+                  "./data_real/0818/20250818_145131.jpg",
+                  "./data_real/0818/20250818_145136.jpg",
+                  "./data_real/0818/20250818_145140.jpg",]
+    data_list = [cv2.imread(f) for f in fname_list]
     '''
     철근 찾기
     '''
@@ -39,14 +44,18 @@ def prev_main():
     '''
     목표 구역 설정
     '''
-
+    points5 = np.array([[2158,754], [3312, 1168], [2588, 2125], [1301, 1304]])
+    points1 = np.array([[1579, 716], [2542, 1109], [1523, 2020], [556, 1250]])
+    points6 = np.array([[2164, 380], [3551, 685], [2714, 1646], [1143, 866]])
+    points10 = np.array([[1374, 289], [2462, 630], [1113, 1524], [75, 762]])
     if FastDebug:
         # warp_point_list_stack = [[(1760, 1286), (2483, 1236), (2756, 1600), (1796, 1673)], [(1310, 1360), (2056, 1323), (2096, 1720), (1100, 1773)], [(2853, 576), (3343, 869), (2456, 1010), (2133, 663)], [(3066, 1166), (3400, 1560), (2346, 1543), (2276, 1166)], [(2660, 1553), (2763, 1960), (1713, 1896), (1886, 1530)], [(2720, 1400), (2556, 1820), (1613, 1640), (1960, 1310)], [(2023, 1346), (2683, 1320), (3080, 1653), (2236, 1700)], [(1756, 1283), (2486, 1233), (2756, 1600), (1796, 1670)], [(1310, 1360), (2056, 1320), (2093, 1720), (1100, 1776)], [(1960, 1810), (2306, 2150), (1306, 2360), (1196, 1926)], [(3573, 2033), (3916, 2490), (2780, 2410), (2696, 1963)]]
         # data_real 데이터 warp point
         # warp_point_list_stack = [[(2541, 386), (4154, 1399), (899, 2135), (942, 531)], [(2867, 932), (4067, 2377), (341, 2301), (1348, 924)], [(2609, 1323), (2974, 2866), (-228, 2413), (1166, 1287)], [(2883, 1020), (2559, 1824), (1113, 1541), (1920, 950)], [(1488, 790), (3143, 1054), (2320, 2238), (100, 1318)]]
         if isTop:
             # 상부근 철근 좌표 list
-            warp_point_list_stack = [[(751, 240), (1149, 382), (903, 674), (466, 481)], [(789, 144), (1180, 277), (944, 556), (511, 379)], [(621, 36), (996, 158), (755, 426), (341, 266)], [(350, 135), (718, 267), (438, 546), (36, 373)]]
+            # warp_point_list_stack = [[(751, 240), (1149, 382), (903, 674), (466, 481)], [(789, 144), (1180, 277), (944, 556), (511, 379)], [(621, 36), (996, 158), (755, 426), (341, 266)], [(350, 135), (718, 267), (438, 546), (36, 373)]]
+            warp_point_list_stack = [points5, points1, points6, points10]
 
         else:
             # 하부근 철근 좌표 list
@@ -141,13 +150,13 @@ def prev_main():
     점 찾기 이후 선 그리기
     '''
 
-    from find_cross_point_model.predict import predict_one_image as point_predict
-    from n_draw_line import draw_line
-    point_image, point_list = point_predict(result_seg, '/home/user/PycharmProjects/iron_bar_sample_project/find_cross_point_model/models/20250624_170217/epoch02015.pth')
-
-    line_drawing_result = draw_line(point_list)
-
-    cv2.imwrite(f"result_{top_btm}_line.png", line_drawing_result)
+    # from find_cross_point_model.predict import predict_one_image as point_predict
+    # from n_draw_line import draw_line
+    # point_image, point_list = point_predict(result_seg, '/home/user/PycharmProjects/iron_bar_sample_project/find_cross_point_model/models/20250624_170217/epoch02015.pth')
+    #
+    # line_drawing_result = draw_line(point_list)
+    #
+    # cv2.imwrite(f"result_{top_btm}_line.png", line_drawing_result)
 
 
     return
@@ -192,8 +201,13 @@ def main():
     # init
     is_raspi_connected = False
     # points = [[1065, 503], [1393, 559], [1341, 849], [951, 765]]
-    points = [[853, 701], [1169, 712], [1171, 965], [762, 940]]
+    # points = np.array([[853, 701], [1169, 712], [1171, 965], [762, 940]])
+    points5 = np.array([[2158,754], [3312, 1168], [2588, 2125], [1301, 1304]])
+    points1 = np.array([[1579, 716], [2542, 1109], [1523, 2020], [556, 1250]])
+    points6 = np.array([[2164, 380], [3551, 685], [2714, 1646], [1143, 866]])
+    points10 = np.array([[1374, 289], [2462, 630], [1113, 1524], [75, 762]])
     # warping_point = [
+
     #     [-1.0, 1.0, 0],
     #     [1.0, 1.0, 0],
     #     [1.0, -1.0, 0],
@@ -203,10 +217,15 @@ def main():
     warping_img = []
 
     # 데이터 불러오기
-    img_arr = get_picture_from_raspi(is_raspi_connected)
+    # img_arr = get_picture_from_raspi(is_raspi_connected)
+    fname_list = ["./data_real/0818/20250818_145135.jpg",
+                  "./data_real/0818/20250818_145131.jpg",
+                  "./data_real/0818/20250818_145136.jpg",
+                  "./data_real/0818/20250818_145140.jpg",]
+    img_arr = [cv2.imread(f) for f in fname_list]
 
     # 현재 cam3 고장에 대응하기 위한 코드 추가 (cam3 조치완료 시 삭제할 것)
-    img_arr = img_arr[:-1]
+    # img_arr = img_arr[:-1]
 
     # 각 데이터 사진 한 개마다 process 적용
     for i, img in enumerate(img_arr):
@@ -234,6 +253,12 @@ def main():
             else:
                 warping_point_2d = []
 
+        # 디버그용 warp point 찍어보기
+        img_debug = img.copy()
+        for wp in warping_point_2d.reshape(4,2):
+            cv2.circle(img_debug, wp.astype(np.int16), color=(0,0,255), thickness=-1, radius=10)
+        img_debug = cv2.resize(img_debug, (1600, 900))
+        image_show(img_debug, f"{i}")
 
         # 철근 찾기
         img_rgb = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
@@ -270,4 +295,5 @@ def main():
 
 
 if __name__ == '__main__':
-    main()
+    prev_main()
+    # main()

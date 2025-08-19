@@ -39,7 +39,7 @@ def getHomographySift(img1, img2):
         src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
         dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
 
-        M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 5.0)
+        M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 10.0)
         matchesMask = mask.ravel().tolist()
 
         inlier_matches = [m for i, m in enumerate(good) if mask[i]]
@@ -80,10 +80,16 @@ if __name__ == "__main__":
     mask1 = CamArrayIdx(0)
     target_idx = 3
     mask2 = CamArrayIdx(target_idx)
+    fname_list = ["../data_real/0818/20250818_145135.jpg",
+                  "../data_real/0818/20250818_145131.jpg",
+                  "../data_real/0818/20250818_145136.jpg",
+                  "../data_real/0818/20250818_145140.jpg",]
+    # img = cv2.imread("../raspi_image.jpg")
+    # img1 = img[mask1[0]:mask1[1], mask1[2]:mask1[3]]
+    # img2 = img[mask2[0]:mask2[1], mask2[2]:mask2[3]]
 
-    img = cv2.imread("../raspi_image.jpg")
-    img1 = img[mask1[0]:mask1[1], mask1[2]:mask1[3]]
-    img2 = img[mask2[0]:mask2[1], mask2[2]:mask2[3]]
+    img1 = cv2.imread(fname_list[0])
+    img2 = cv2.imread(fname_list[1])
 
     img1 = cv2.cvtColor(img1, cv2.COLOR_BGR2GRAY)
     img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
@@ -106,5 +112,5 @@ if __name__ == "__main__":
         p = p.reshape(2,)
         cv2.circle(result, p, color=(0, 0, 255), thickness=-1, radius=5)
     image_show(result)
-    cv2.imwrite("./target_image0.jpg", img1_bgr)
-    cv2.imwrite(f"./target_image{target_idx}.jpg",result)
+    # cv2.imwrite("./target_image0.jpg", img1_bgr)
+    # cv2.imwrite(f"./target_image{target_idx}.jpg",result)

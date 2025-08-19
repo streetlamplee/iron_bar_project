@@ -3,7 +3,7 @@ import math
 
 
 def nms(input:torch.Tensor, image_size, threshold = 0.5):
-    keypoints = export_point(input, image_size, 1)
+    keypoints = export_point(input, image_size, 4)
     need_to_del = [False] * len(keypoints)
     for i, keypoint in enumerate(keypoints):
         if need_to_del[i]:
@@ -27,7 +27,7 @@ def nms(input:torch.Tensor, image_size, threshold = 0.5):
 
 def export_point(tensor:torch.Tensor, image_size, max_points_per_cell = 4):
     B, C, H, W = tensor.shape
-    assert C == 3, f'Expected tensor got 3 channels, but tensor got {C} channels'
+    assert C == 12, f'Expected tensor got 12 channels, but tensor got {C} channels'
     grid_size = H
     stride = image_size // grid_size
 

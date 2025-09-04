@@ -1,6 +1,6 @@
 import cv2
 from warp_point_finder.calib import findChessboard
-from extension import image_show, CamArrayIdx
+from etc.extension import image_show, CamArrayIdx
 import numpy as np
 
 

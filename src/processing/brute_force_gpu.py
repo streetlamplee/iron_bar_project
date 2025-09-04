@@ -9,8 +9,8 @@ import cv2
 from tqdm import tqdm
 import matplotlib.pyplot as plt
 
-from n_blur import custom_blur
-from n_warp import warp_perspective
+from blur import custom_blur
+from warp import warp_perspective
 from find_cross_point_model.predict import predict_one_image
 
 # --- MAIN BRUTE-FORCE WARPING ---

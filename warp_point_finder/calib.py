@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import os
 import glob
-from extension import image_show, CamArrayIdx
+from etc.extension import image_show, CamArrayIdx
 
 '''
 @brief ./warp_point_finder/images 폴더 내부의 jpg 파일 중, 좌상단의 사진에서 체스보드를 탐지합니다.

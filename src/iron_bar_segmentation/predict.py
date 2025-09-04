@@ -6,7 +6,7 @@ from torchvision.models.resnet import resnet101, ResNet101_Weights
 import torch.nn.functional as F
 from torchvision.transforms import v2
 from iron_bar_segmentation.model import DeepLabv3Plus
-import extension
+import etc.extension as extension
 import os
 
 
@@ -15,9 +15,9 @@ def get_model(num_classes):
     return model
 
 def predict(input):
-    model_file = extension.get_latest_pth_file('/home/user/PycharmProjects/iron_bar_sample_project/iron_bar_segmentation/models', '.pth')
+    model_file = extension.get_latest_pth_file("src/iron_bar_segmentation/models", '.pth')
     # checkpoint = torch.load('/home/user/PycharmProjects/iron_bar_sample_project/iron_bar_segmentation/models/20250616_174956/epoch00231.pth', map_location=torch.device('cpu'))
-    checkpoint = torch.load(os.path.join('/home/user/PycharmProjects/iron_bar_sample_project/iron_bar_segmentation/models', model_file), map_location=torch.device('cpu'))
+    checkpoint = torch.load(os.path.join("src/iron_bar_segmentation/models", model_file), map_location=torch.device('cpu'))
     print(os.path.join('./iron_bar_segmentati1on/models', model_file))
     model = get_model(1)
     model.load_state_dict(checkpoint['model_state_dict'])

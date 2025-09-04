@@ -1,15 +1,21 @@
 import os
 import cv2
 import numpy as np
+import sys
 
-from extension import image_show
-from n_pointClicker import PointClicker
+src_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "src"))
+if src_path not in sys.path:
+    sys.path.append(src_path)
+
+
+from etc.extension import image_show
+from processing.pointClicker import PointClicker
 import iron_bar_segmentation.predict as seg_predict
-from n_warp import warp_perspective
-from get_picture_from_raspi import get_picture_from_raspi
-from video_to_imageset import video_to_frame, target_frame
+from processing.warp import warp_perspective
+from get.get_picture_from_raspi import get_picture_from_raspi
+from processing.video_to_imageset import video_to_frame, target_frame
 
-FastDebug = True
+FastDebug = False
 isTop = True
 
 def prev_main():
@@ -17,28 +23,32 @@ def prev_main():
     main run method
     '''
     isShow = True
+    if not os.path.exists("./output"):
+        os.makedirs("./output", exist_ok=True)
 
     '''
     데이터 위치 선언
     '''
     # data_list = get_picture_from_raspi(False)
     # data_list = target_frame('video_frame', [0, 5, 11, 19])
-    fname_list = ["./data_real/0818/20250818_145135.jpg",
-                  "./data_real/0818/20250818_145131.jpg",
-                  "./data_real/0818/20250818_145136.jpg",
-                  "./data_real/0818/20250818_145140.jpg",]
-    data_list = [cv2.imread(f) for f in fname_list]
+    # fname_list = ["./data_real/0818/20250818_145135.jpg",
+    #               "./data_real/0818/20250818_145131.jpg",
+    #               "./data_real/0818/20250818_145136.jpg",
+    #               "./data_real/0818/20250818_145140.jpg",]
+    folder_name = "./data/input_data/"
+    fname_list = os.listdir(folder_name)
+    data_list = [cv2.imread(os.path.join(folder_name,f)) for f in fname_list]
     '''
     철근 찾기
     '''
     iron_seg_image_list = []
 
-    for real_image in data_list:
+    for i,real_image in enumerate(data_list):
         real_image = cv2.cvtColor(real_image, cv2.COLOR_BGR2RGB)
         iron_seg_image = seg_predict.predict(real_image)
         if isShow:
             image_show(iron_seg_image)
-
+        cv2.imwrite(f"output/2.{i}_seg.png", iron_seg_image)
         iron_seg_image_list.append(iron_seg_image)
 
     '''
@@ -49,29 +59,17 @@ def prev_main():
     points6 = np.array([[2164, 380], [3551, 685], [2714, 1646], [1143, 866]])
     points10 = np.array([[1374, 289], [2462, 630], [1113, 1524], [75, 762]])
     if FastDebug:
-        # warp_point_list_stack = [[(1760, 1286), (2483, 1236), (2756, 1600), (1796, 1673)], [(1310, 1360), (2056, 1323), (2096, 1720), (1100, 1773)], [(2853, 576), (3343, 869), (2456, 1010), (2133, 663)], [(3066, 1166), (3400, 1560), (2346, 1543), (2276, 1166)], [(2660, 1553), (2763, 1960), (1713, 1896), (1886, 1530)], [(2720, 1400), (2556, 1820), (1613, 1640), (1960, 1310)], [(2023, 1346), (2683, 1320), (3080, 1653), (2236, 1700)], [(1756, 1283), (2486, 1233), (2756, 1600), (1796, 1670)], [(1310, 1360), (2056, 1320), (2093, 1720), (1100, 1776)], [(1960, 1810), (2306, 2150), (1306, 2360), (1196, 1926)], [(3573, 2033), (3916, 2490), (2780, 2410), (2696, 1963)]]
-        # data_real 데이터 warp point
-        # warp_point_list_stack = [[(2541, 386), (4154, 1399), (899, 2135), (942, 531)], [(2867, 932), (4067, 2377), (341, 2301), (1348, 924)], [(2609, 1323), (2974, 2866), (-228, 2413), (1166, 1287)], [(2883, 1020), (2559, 1824), (1113, 1541), (1920, 950)], [(1488, 790), (3143, 1054), (2320, 2238), (100, 1318)]]
-        if isTop:
-            # 상부근 철근 좌표 list
-            # warp_point_list_stack = [[(751, 240), (1149, 382), (903, 674), (466, 481)], [(789, 144), (1180, 277), (944, 556), (511, 379)], [(621, 36), (996, 158), (755, 426), (341, 266)], [(350, 135), (718, 267), (438, 546), (36, 373)]]
-            warp_point_list_stack = [points5, points1, points6, points10]
-
-        else:
-            # 하부근 철근 좌표 list
-            warp_point_list_stack = [[(1666, 1313), (3743, 1610), (2613, 2516), (100, 1930)], [(1633, 1140), (3563, 1556), (2570, 2730), (256, 1996)], [(1680, 993), (3413, 1493), (2516, 2696), (490, 1906)], [(1683, 990), (3326, 1493), (2486, 2700), (580, 1943)], [(1710, 1073), (3233, 1563), (2420, 2676), (676, 1953)]]
-
-        print(warp_point_list_stack)
+        warp_point_list_stack = np.array([[(1651, 783), (2579, 913), (2014, 1468), (793, 1141)], [(1746, 825), (2709, 923), (2584, 1643), (1226, 1371)], [(1631, 880), (2479, 1088), (1946, 1754), (865, 1301)], [(2106, 480), (3262, 635), (3070, 1281), (1443, 870)]])
 
         num = 0
         for real_image, warp_point_list in zip(data_list, warp_point_list_stack):
 
             tmp = real_image.copy()
-            tmp = cv2.cvtColor(tmp, cv2.COLOR_RGB2BGR)
+            # tmp = cv2.cvtColor(tmp, cv2.COLOR_RGB2BGR)
             # tmp = cv2.resize(tmp, (1200, 900))
             for warp_point in warp_point_list:
-                tmp = cv2.circle(tmp, warp_point, thickness=-1, radius = 3, color = (0, 0, 255))
-            cv2.imwrite(f'{num}.png', tmp)
+                tmp = cv2.circle(tmp, warp_point, thickness=-1, radius = 7, color = (0, 0, 255))
+            cv2.imwrite(f'output/1.{num}.png', tmp)
             num += 1
             image_show(tmp)
     else:
@@ -98,7 +96,7 @@ def prev_main():
             if isShow:
                 for warp_point in warp_point_list:
                     point_check_image = cv2.circle(cv2.resize(point_check_image, (original_w,original_h)), warp_point, thickness=-1, radius = 3, color = (0, 0, 255))
-                cv2.imwrite(f'{num}.png', point_check_image)
+                cv2.imwrite(f'output/1.{num}.png', point_check_image)
                 num += 1
         print(warp_point_list_stack)
 
@@ -119,8 +117,8 @@ def prev_main():
         if FastDebug:
 
             # image_show(warp_seg_image)
-            cv2.imwrite(f'{num}_seg.png', warp_seg_image)
-            cv2.imwrite(f'{num}_warp.png', warp_real_image)
+            cv2.imwrite(f'output/4.{num}_seg_warp.png', warp_seg_image)
+            cv2.imwrite(f'output/3.{num}_warp.png', warp_real_image)
             num += 1
 
     '''
@@ -128,7 +126,7 @@ def prev_main():
     '''
     target = [0,1,2,3]
     n = 0
-    from n_blur import custom_blur
+    from processing.blur import custom_blur
     result = np.zeros_like(warp_seg_image_list[0]).astype(np.float32)
     for i, warp_seg_image in enumerate(warp_seg_image_list):
         if i not in target:
@@ -138,13 +136,13 @@ def prev_main():
         n += 14
     print(n)
     result_seg = result.astype(np.uint8)
-    cv2.imwrite(f"result_top_before.png", result_seg)
+    cv2.imwrite(f"output/5.result_top_before.png", result_seg)
     result_t = np.where(result_seg > int(255 * (len(target)-1) / len(target)), 255, 0)
     if isShow:
         image_show(result_seg)
         image_show(result_t.astype(np.uint8))
     top_btm = 'top' if isTop else 'btm'
-    cv2.imwrite(f"result_{top_btm}.png", result_t)
+    cv2.imwrite(f"output/6.result_{top_btm}.png", result_t)
 
     '''
     점 찾기 이후 선 그리기
@@ -183,13 +181,13 @@ def prev_main():
 import os
 import cv2
 import numpy as np
-from get_picture_from_raspi import get_picture_from_raspi
-import warp_point_finder.detect_marker
-import warp_point_finder.prjection
+# from get_picture_from_raspi import get_picture_from_raspi
+# import warp_point_finder.detect_marker
+# import warp_point_finder.prjection
 import iron_bar_segmentation.predict as seg_predict
-from n_warp import warp_perspective
-from n_blur import custom_blur
-from extension import image_show
+from processing.warp import warp_perspective
+from processing.blur import custom_blur
+from etc.extension import image_show
 from featureMatching.featureMatching import perspectiveTransfrom, getHomographySift
 
 
@@ -218,10 +216,11 @@ def main():
 
     # 데이터 불러오기
     # img_arr = get_picture_from_raspi(is_raspi_connected)
-    fname_list = ["./data_real/0818/20250818_145135.jpg",
-                  "./data_real/0818/20250818_145131.jpg",
-                  "./data_real/0818/20250818_145136.jpg",
-                  "./data_real/0818/20250818_145140.jpg",]
+    # fname_list = ["./data_real/0818/20250818_145135.jpg",
+    #               "./data_real/0818/20250818_145131.jpg",
+    #               "./data_real/0818/20250818_145136.jpg",
+    #               "./data_real/0818/20250818_145140.jpg",]
+    fname_list = os.listdir("./data/input_data")
     img_arr = [cv2.imread(f) for f in fname_list]
 
     # 현재 cam3 고장에 대응하기 위한 코드 추가 (cam3 조치완료 시 삭제할 것)

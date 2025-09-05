@@ -77,3 +77,36 @@ def smart_json_dump(data, fp, indent=2):
             f.write(cleaned)
     else:
         fp.write(cleaned)
+
+'''
+@brief CamAraayHat을 이용하는 라즈베리파이 이미지를 분류하기 위한 Dict 생성 함수 (warp_point_finder에서 사용)
+@param idx CamArray위치, (0: 좌상단, 1: 우상단, 2: 좌하단, 3: 우하단)
+@return boolean masking 용 (2160, 3840) ndarray
+'''
+def CamArrayIdx(idx):
+    res = [0,0,0,0]
+    if idx == 0:
+        res[0] = 0
+        res[1] = 1080
+        res[2] = 0
+        res[3] = 1920
+    elif idx == 1:
+        res[0] = 0
+        res[1] = 1080
+        res[2] = 1920
+        res[3] = 3840
+    elif idx == 2:
+        res[0] = 1080
+        res[1] = 2160
+        res[2] = 0
+        res[3] = 1920
+    elif idx == 3:
+        res[0] = 1080
+        res[1] = 2160
+        res[2] = 1920
+        res[3] = 3840
+    else:
+        print(f"Not Valid param 'idx', 'idx' Must in range(0, 4)")
+        return res
+
+    return res

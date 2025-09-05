@@ -1,7 +1,7 @@
 import numpy as np
 from tqdm.utils import disp_trim
 
-from n_camera import Camera
+from processing.camera import Camera
 import cv2
 
 

@@ -1,0 +1,509 @@
+{
+  "len": 64,
+  "0": {
+    "filename": "data/image/0.png",
+    "mask": [
+      [
+        226,
+        261
+      ]
+    ]
+  },
+  "1": {
+    "filename": "data/image/1.png",
+    "mask": [
+      [
+        379,
+        369
+      ]
+    ]
+  },
+  "2": {
+    "filename": "data/image/2.png",
+    "mask": [
+      [
+        310,
+        404
+      ]
+    ]
+  },
+  "3": {
+    "filename": "data/image/3.png",
+    "mask": [
+      [
+        359,
+        450
+      ]
+    ]
+  },
+  "4": {
+    "filename": "data/image/4.png",
+    "mask": [
+      [
+        29,
+        423
+      ]
+    ]
+  },
+  "5": {
+    "filename": "data/image/5.png",
+    "mask": [
+      [
+        479,
+        201
+      ]
+    ]
+  },
+  "6": {
+    "filename": "data/image/6.png",
+    "mask": [
+      [
+        397,
+        164
+      ]
+    ]
+  },
+  "7": {
+    "filename": "data/image/7.png",
+    "mask": [
+      [
+        86,
+        422
+      ]
+    ]
+  },
+  "8": {
+    "filename": "data/image/8.png",
+    "mask": [
+      [
+        402,
+        235
+      ]
+    ]
+  },
+  "9": {
+    "filename": "data/image/9.png",
+    "mask": [
+      [
+        478,
+        250
+      ]
+    ]
+  },
+  "10": {
+    "filename": "data/image/10.png",
+    "mask": [
+      [
+        295,
+        445
+      ]
+    ]
+  },
+  "11": {
+    "filename": "data/image/11.png",
+    "mask": [
+      [
+        206,
+        468
+      ]
+    ]
+  },
+  "12": {
+    "filename": "data/image/12.png",
+    "mask": [
+      [
+        496,
+        44
+      ]
+    ]
+  },
+  "13": {
+    "filename": "data/image/13.png",
+    "mask": [
+      [
+        82,
+        6
+      ]
+    ]
+  },
+  "14": {
+    "filename": "data/image/14.png",
+    "mask": [
+      [
+        324,
+        396
+      ]
+    ]
+  },
+  "15": {
+    "filename": "data/image/15.png",
+    "mask": [
+      [
+        148,
+        228
+      ],
+      [
+        163,
+        485
+      ]
+    ]
+  },
+  "16": {
+    "filename": "data/image/16.png",
+    "mask": [
+      [
+        357,
+        361
+      ]
+    ]
+  },
+  "17": {
+    "filename": "data/image/17.png",
+    "mask": [
+      [
+        229,
+        108
+      ]
+    ]
+  },
+  "18": {
+    "filename": "data/image/18.png",
+    "mask": [
+      [
+        99,
+        6
+      ]
+    ]
+  },
+  "19": {
+    "filename": "data/image/19.png",
+    "mask": [
+      [
+        78,
+        108
+      ]
+    ]
+  },
+  "20": {
+    "filename": "data/image/20.png",
+    "mask": [
+      [
+        125,
+        138
+      ]
+    ]
+  },
+  "21": {
+    "filename": "data/image/21.png",
+    "mask": [
+      [
+        367,
+        146
+      ]
+    ]
+  },
+  "22": {
+    "filename": "data/image/22.png",
+    "mask": [
+      [
+        24,
+        492
+      ],
+      [
+        63,
+        51
+      ]
+    ]
+  },
+  "23": {
+    "filename": "data/image/23.png",
+    "mask": [
+      [
+        65,
+        485
+      ]
+    ]
+  },
+  "24": {
+    "filename": "data/image/24.png",
+    "mask": [
+      [
+        9,
+        173
+      ]
+    ]
+  },
+  "25": {
+    "filename": "data/image/25.png",
+    "mask": [
+      [
+        42,
+        131
+      ]
+    ]
+  },
+  "26": {
+    "filename": "data/image/26.png",
+    "mask": [
+      [
+        445,
+        341
+      ],
+      [
+        65,
+        336
+      ],
+      [
+        212,
+        154
+      ]
+    ]
+  },
+  "27": {
+    "filename": "data/image/27.png",
+    "mask": [
+      [
+        396,
+        508
+      ],
+      [
+        278,
+        170
+      ]
+    ]
+  },
+  "28": {
+    "filename": "data/image/28.png",
+    "mask": [
+      [
+        496,
+        287
+      ]
+    ]
+  },
+  "29": {
+    "filename": "data/image/29.png",
+    "mask": [
+      [
+        422,
+        446
+      ]
+    ]
+  },
+  "30": {
+    "filename": "data/image/30.png",
+    "mask": [
+      [
+        186,
+        17
+      ],
+      [
+        189,
+        213
+      ]
+    ]
+  },
+  "31": {
+    "filename": "data/image/31.png",
+    "mask": [
+      [
+        450,
+        243
+      ],
+      [
+        454,
+        495
+      ],
+      [
+        43,
+        474
+      ],
+      [
+        136,
+        233
+      ]
+    ]
+  },
+  "32": {
+    "filename": "data/image/32.png",
+    "mask": [
+      [
+        200,
+        450
+      ]
+    ]
+  },
+  "33": {
+    "filename": "data/image/33.png",
+    "mask": [
+      [
+        181,
+        507
+      ],
+      [
+        171,
+        247
+      ]
+    ]
+  },
+  "34": {
+    "filename": "data/image/34.png",
+    "mask": [
+      [
+        405,
+        144
+      ]
+    ]
+  },
+  "35": {
+    "filename": "data/image/35.png",
+    "mask": [
+      [
+        224,
+        433
+      ]
+    ]
+  },
+  "36": {
+    "filename": "data/image/36.png",
+    "mask": [
+      [
+        343,
+        413
+      ],
+      [
+        32,
+        399
+      ]
+    ]
+  },
+  "37": {
+    "filename": "data/image/37.png",
+    "mask": [
+      [
+        300,
+        458
+      ]
+    ]
+  },
+  "38": {
+    "filename": "data/image/38.png",
+    "mask": [
+      [
+        354,
+        382
+      ]
+    ]
+  },
+  "39": {
+    "filename": "data/image/39.png",
+    "mask": [
+      [
+        283,
+        262
+      ]
+    ]
+  },
+  "40": {
+    "filename": "data/image/40.png",
+    "mask": [
+      [
+        307,
+        406
+      ],
+      [
+        398,
+        169
+      ],
+      [
+        78,
+        165
+      ]
+    ]
+  },
+  "41": {
+    "filename": "data/image/41.png",
+    "mask": [
+      [
+        440,
+        160
+      ]
+    ]
+  },
+  "42": {
+    "filename": "data/image/42.png",
+    "mask": [
+      [
+        399,
+        452
+      ]
+    ]
+  },
+  "43": {
+    "filename": "data/image/43.png",
+    "mask": [
+      [
+        66,
+        239
+      ]
+    ]
+  },
+  "44": {
+    "filename": "data/image/44.png",
+    "mask": [
+      [
+        353,
+        337
+      ]
+    ]
+  },
+  "45": {
+    "filename": "data/image/45.png",
+    "mask": [
+      [
+        312,
+        350
+      ]
+    ]
+  },
+  "46": {
+    "filename": "data/image/46.png",
+    "mask": [
+      [
+        212,
+        354
+      ]
+    ]
+  },
+  "47": {
+    "filename": "data/image/47.png",
+    "mask": [
+      [
+        437,
+        424
+      ],
+      [
+        117,
+        423
+      ]
+    ]
+  },
+  "48": {
+    "filename": "data/image/48.png",
+    "mask": [
+      [
+        163,
+        344
+      ]
+    ]
+  },
+  "49": {
+    "filename": "data/image/49.png",
+    "mask": [
+      [
+        265,
+        440
+      ]
+    ]
+  }
+}

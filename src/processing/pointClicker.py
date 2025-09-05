@@ -17,7 +17,7 @@ class PointClicker:
             cv2.circle(self.image, (x, y), radius=4, color=(0, 0, 255), thickness=-1)
             cv2.imshow(self.window_name, self.image)
 
-    def get_points(self, image, ratio = '4:3'):
+    def get_points(self, image, ratio = '16:9'):
         self.points = []
         if image.shape[0] > 900:
             self.multiplier = image.shape[0] / 900

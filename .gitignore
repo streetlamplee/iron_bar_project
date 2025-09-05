@@ -310,5 +310,10 @@ pyrightconfig.json
 model/
 models/
 *.png
+*.jpg
 del/
 Solus-PDD-Finder/
+*.mp4
+output/
+.idea
+.venv

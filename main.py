@@ -15,16 +15,19 @@ from processing.warp import warp_perspective
 from get.get_picture_from_raspi import get_picture_from_raspi
 from processing.video_to_imageset import video_to_frame, target_frame
 
-FastDebug = False
-isTop = True
+
 
 def prev_main():
     '''
     main run method
     '''
-    isShow = True
+    isShow = False
+    FastDebug = True
+    target = 6
     if not os.path.exists("./output"):
         os.makedirs("./output", exist_ok=True)
+    if not os.path.exists(f"./output/{target}"):
+        os.makedirs(f"./output/{target}", exist_ok=True)
 
     '''
     데이터 위치 선언
@@ -35,8 +38,9 @@ def prev_main():
     #               "./data_real/0818/20250818_145131.jpg",
     #               "./data_real/0818/20250818_145136.jpg",
     #               "./data_real/0818/20250818_145140.jpg",]
-    folder_name = "./data/input_data/"
+    folder_name = f"./data/input_data/{target}/"
     fname_list = os.listdir(folder_name)
+    sorted(fname_list)
     data_list = [cv2.imread(os.path.join(folder_name,f)) for f in fname_list]
     '''
     철근 찾기
@@ -48,7 +52,7 @@ def prev_main():
         iron_seg_image = seg_predict.predict(real_image)
         if isShow:
             image_show(iron_seg_image)
-        cv2.imwrite(f"output/2.{i}_seg.png", iron_seg_image)
+        cv2.imwrite(f"output/{target}/2.{i}_seg.png", iron_seg_image)
         iron_seg_image_list.append(iron_seg_image)
 
     '''
@@ -59,8 +63,21 @@ def prev_main():
     points6 = np.array([[2164, 380], [3551, 685], [2714, 1646], [1143, 866]])
     points10 = np.array([[1374, 289], [2462, 630], [1113, 1524], [75, 762]])
     if FastDebug:
-        warp_point_list_stack = np.array([[(1651, 783), (2579, 913), (2014, 1468), (793, 1141)], [(1746, 825), (2709, 923), (2584, 1643), (1226, 1371)], [(1631, 880), (2479, 1088), (1946, 1754), (865, 1301)], [(2106, 480), (3262, 635), (3070, 1281), (1443, 870)]])
-
+        if target == 1:
+            warp_point_list_stack = np.array([[(1651, 783), (2579, 913), (2014, 1468), (793, 1141)], [(1746, 825), (2709, 923), (2584, 1643), (1226, 1371)], [(1631, 880), (2479, 1088), (1946, 1754), (865, 1301)], [(2106, 480), (3262, 635), (3070, 1281), (1443, 870)]])
+        elif target == 2:
+            warp_point_list_stack = np.array([[(1461, 1005), (2594, 678), (3563, 1100), (2061, 1696)], [(1368, 893), (2739, 833), (3337, 1623), (1095, 1736)], [(1531, 1000), (2850, 918), (3640, 1661), (1523, 1839)], [(1601, 943), (2850, 728), (3770, 1313), (1901, 1746)]])
+        elif target == 3:
+            warp_point_list_stack = np.array([[(1313, 708), (2502, 728), (3022, 1100), (968, 1120)], [(1361, 715), (2522, 718), (3000, 1208), (1085, 1253)], [(1626, 848), (2804, 783), (3668, 1075), (1656, 1241)], [(1441, 678), (2552, 590), (3250, 1003), (1503, 1223)]])
+        elif target == 4:
+            warp_point_list_stack = np.array([[(1884, 628), (2607, 437), (3495, 703), (2727, 1100)], [(1934, 1233), (2509, 993), (3330, 1261), (2757, 1694)], [(2367, 1208), (2887, 923), (3840, 1128), (3365, 1613)], [(2354, 945), (2902, 725), (3913, 888), (3445, 1281)]])
+        elif target == 5:
+            warp_point_list_stack = np.array([[(2041, 410), (3035, 603), (2577, 1045), (1223, 635)], [(2352, 270), (3455, 417), (3357, 875), (1749, 552)], [(2392, 230), (3395, 437), (3142, 1025), (1829, 625)], [(2051, 492), (2970, 753), (2502, 1311), (1233, 850)]])
+        elif target == 6:
+            warp_point_list_stack = np.array([[(813, 968), (1864, 733), (2467, 1241), (1035, 1731)], [(960, 1028), (1986, 755), (2719, 1246), (1423, 1811)], [(1288, 925), (2302, 755), (2817, 1333), (1311, 1643)], [(943, 1143), (1914, 753), (2787, 1148), (1709, 1869)]])
+        else:
+            print(f"not valid target folder value")
+            return
         num = 0
         for real_image, warp_point_list in zip(data_list, warp_point_list_stack):
 
@@ -69,9 +86,10 @@ def prev_main():
             # tmp = cv2.resize(tmp, (1200, 900))
             for warp_point in warp_point_list:
                 tmp = cv2.circle(tmp, warp_point, thickness=-1, radius = 7, color = (0, 0, 255))
-            cv2.imwrite(f'output/1.{num}.png', tmp)
+            cv2.imwrite(f'output/{target}/1.{num}.png', tmp)
             num += 1
-            image_show(tmp)
+            if isShow:
+                image_show(tmp)
     else:
         warping_area_list = []
         warp_point_list_stack = []
@@ -96,7 +114,7 @@ def prev_main():
             if isShow:
                 for warp_point in warp_point_list:
                     point_check_image = cv2.circle(cv2.resize(point_check_image, (original_w,original_h)), warp_point, thickness=-1, radius = 3, color = (0, 0, 255))
-                cv2.imwrite(f'output/1.{num}.png', point_check_image)
+                cv2.imwrite(f'output/{target}/1.{num}.png', point_check_image)
                 num += 1
         print(warp_point_list_stack)
 
@@ -117,32 +135,31 @@ def prev_main():
         if FastDebug:
 
             # image_show(warp_seg_image)
-            cv2.imwrite(f'output/4.{num}_seg_warp.png', warp_seg_image)
-            cv2.imwrite(f'output/3.{num}_warp.png', warp_real_image)
+            cv2.imwrite(f'output/{target}/4.{num}_seg_warp.png', warp_seg_image)
+            cv2.imwrite(f'output/{target}/3.{num}_warp.png', warp_real_image)
             num += 1
 
     '''
     erode dilate로 확인하기
     '''
-    target = [0,1,2,3]
     n = 0
     from processing.blur import custom_blur
     result = np.zeros_like(warp_seg_image_list[0]).astype(np.float32)
     for i, warp_seg_image in enumerate(warp_seg_image_list):
-        if i not in target:
-            continue
+        # if i not in target:
+        #     continue
         warp_seg_image = custom_blur(warp_seg_image)
-        result += warp_seg_image * (1 / len(target))
+        result += warp_seg_image * (1 / 4)
         n += 14
     print(n)
     result_seg = result.astype(np.uint8)
-    cv2.imwrite(f"output/5.result_top_before.png", result_seg)
-    result_t = np.where(result_seg > int(255 * (len(target)-1) / len(target)), 255, 0)
+    cv2.imwrite(f"output/{target}/5.result_before.png", result_seg)
+    result_t = np.where(result_seg > int(255 * (4-1) / 4), 255, 0)
     if isShow:
         image_show(result_seg)
         image_show(result_t.astype(np.uint8))
-    top_btm = 'top' if isTop else 'btm'
-    cv2.imwrite(f"output/6.result_{top_btm}.png", result_t)
+
+    cv2.imwrite(f"output/{target}/6.result.png", result_t.astype(np.uint8))
 
     '''
     점 찾기 이후 선 그리기

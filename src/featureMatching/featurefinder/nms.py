@@ -19,7 +19,8 @@ def nms(input:torch.Tensor, image_size, threshold = 0.5):
     :param threshold: 이 거리보다 가까우면 같은 점으로 본다
     :return: 살아남은 점 목록 [[x, y, objectness], ...]
     """
-    keypoints = export_point(input, image_size, 4)
+    # 현재 모델은 칸당 점 1개(3채널)를 예측하므로 1을 넘긴다.
+    keypoints = export_point(input, image_size, 1)
     # 지울 점을 바로 제거하지 않고 표시만 해둔다 (반복 중 목록이 바뀌지 않도록).
     need_to_del = [False] * len(keypoints)
     for i, keypoint in enumerate(keypoints):
@@ -50,7 +51,10 @@ def export_point(tensor:torch.Tensor, image_size, max_points_per_cell = 4):
     :return: [[x, y, objectness], ...] (아직 중복이 걸러지지 않은 상태)
     """
     B, C, H, W = tensor.shape
-    assert C == 12, f'Expected tensor got 12 channels, but tensor got {C} channels'
+    # 채널 수 = 칸당 점 개수 x 3(rel_x, rel_y, objectness).
+    # 현재 model.py 의 출력이 3채널(칸당 1개)이므로 3을 기대한다.
+    # 칸당 점 개수를 늘리려면 model.py 의 출력 채널과 이 값을 함께 바꿔야 한다.
+    assert C == 3, f'Expected tensor got 3 channels, but tensor got {C} channels'
     grid_size = H
     stride = image_size // grid_size
 

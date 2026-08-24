@@ -1,3 +1,11 @@
+"""
+3D 공간의 점이 카메라 화면 어디에 찍히는지 계산하는 모듈.
+
+관심 영역을 실제 3D 좌표로 정해두고 각 카메라 화면에 투영해 warp point를 얻으려던 접근이다.
+현재 메인 파이프라인에서는 사용하지 않는다.
+(참고: import 하는 n_camera 모듈은 현재 processing/camera.py 로 이름이 바뀌어 있다.)
+"""
+
 from n_camera import Camera
 import numpy as np
 import cv2
@@ -14,6 +22,7 @@ def get_display_coordinate(camera:Camera, rvec, tvec, _3d_point:np.ndarray):
     :return: (N, 2) 형태의 2D 이미지 좌표
     '''
 
+    # 카메라 자체의 성질(초점거리, 렌즈 왜곡)을 꺼낸다. 캘리브레이션으로 미리 구해둔 값이다.
     camera_matrix = camera.camera_matrix
     dist_coeffs = camera.dist_coeffs
 
@@ -22,8 +31,10 @@ def get_display_coordinate(camera:Camera, rvec, tvec, _3d_point:np.ndarray):
     camera_matrix = np.array(camera_matrix, dtype = np.float32)
     dist_coeffs = np.array(dist_coeffs, dtype = np.float32)
 
+    # 카메라의 위치/방향(rvec, tvec)과 렌즈 특성을 반영해 3D 점을 2D 화면 좌표로 투영한다.
     image_points, _ = cv2.projectPoints(_3d_point, rvec, tvec, camera_matrix, dist_coeffs)
 
+    # (N, 1, 2) 형태로 나오므로 다루기 쉽게 (N, 2)로 편다.
     image_points = image_points.reshape(-1, 2)
 
     return image_points

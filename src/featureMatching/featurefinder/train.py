@@ -1,3 +1,12 @@
+"""
+철근 교차점 검출 모델 학습 스크립트.
+
+iron_bar_segmentation/train.py 와 전체 흐름은 같고, 다루는 정답의 형태가 다르다.
+여기서는 마스크 이미지가 아니라 "점 좌표 목록"을 격자 텐서로 바꿔 학습한다.
+
+실행: 이 파일이 있는 폴더에서 실행해야 한다 (경로가 상대경로).
+"""
+
 import datetime
 import gc
 import json
@@ -29,6 +38,7 @@ def main():
     '''
     '''
     데이터 확인 및 없으면 만들기
+    라벨 정보를 담은 data.json 이 없으면 원본 이미지에서 새로 만든다.
     '''
     if not os.path.exists('./data/data.json'):
         make_data(f'warp_image', f'./data')
@@ -50,8 +60,10 @@ def main():
     '''
     데이터 불러오기
     '''
+    # 85%를 학습, 15%를 검증에 사용
     train_dict, valid_dict = train_valid_split('./data/data.json', 0.85, 0.15)
 
+    # 입력 해상도 512 -> 격자는 512/32 = 16칸이 된다.
     train_dataset = PointDataset(train_dict, train_transform, 512)
     valid_dataset = PointDataset(valid_dict, valid_transform, 512)
 
@@ -65,6 +77,7 @@ def main():
     학습에 필요한 요소 선언
     '''
     model = pointFindingModel()
+    # 아래 두 줄의 주석을 풀면 이전 checkpoint에서 이어서 학습할 수 있다.
     # checkpoint = torch.load('/home/user/PycharmProjects/iron_bar_sample_project/find_cross_point_model/models/20250624_161155/epoch00905.pth')
     # model.load_state_dict(checkpoint['model_state_dict'])
     device = "cuda" if torch.cuda.is_available() else "cpu"
@@ -76,6 +89,7 @@ def main():
 
     target_epochs = 99999
     min_val_loss = float('inf')
+    # patience가 매우 커서 사실상 자동 종료되지 않는다. 보통 직접 중단시킨다.
     es = EarlyStopping(patience=5000, mode='min', delta=1e-4)
     print_with(f'device: {device}')
 
@@ -93,6 +107,8 @@ def main():
     if not os.path.exists(model_foldername):
         os.makedirs(model_foldername, exist_ok=True)
     model_list = []
+    # 학습 시작 직후 한 번만, 데이터와 정답이 제대로 짝지어졌는지 창으로 확인한다.
+    # GUI가 없는 환경에서는 False로 두어야 한다.
     image_show_flag = True
     for epoch in range(1, target_epochs+1):
         model.train()
@@ -114,12 +130,16 @@ def main():
             target = target.to(device)
 
             optimizer.zero_grad()
+            # autocast: 일부 연산을 float16으로 처리해 메모리와 시간을 아낀다.
             with autocast(device_type='cuda'):
                 output_logit = model(image)
                 # output = torch.sigmoid(output_logit) # class가 1이 아닌 경우, softmax로 변경할 것
                 # output = torch.sigmoid(output_logit)
+                # criterion은 (전체 loss, 좌표 loss, 존재여부 loss)를 돌려준다.
+                # 여기서는 전체 loss만 사용한다.
                 loss, _, _ = criterion(output_logit, target)
 
+            # float16 연산이 발산해 NaN/Inf가 되면 그 배치는 건너뛴다 (모델이 망가지는 것을 방지).
             if not torch.isfinite(loss):
                 print_with("Loss NaN or Inf")
                 continue
@@ -132,6 +152,7 @@ def main():
         epoch_loss = train_loss / len(train_dataset)
 
 
+        # 검증: 학습에 쓰지 않은 데이터로 성능을 확인한다.
         model.eval()
         valid_loss = 0.0
 
@@ -145,6 +166,7 @@ def main():
                 valid_loss += v_loss.item() * v_image.size(0)
 
         valid_epoch_loss = valid_loss / len(valid_dataset)
+        # 검증 loss가 좋아졌을 때만 checkpoint를 남긴다.
         improved, early_stop = es.step(valid_epoch_loss)
         if early_stop:
             print_with("early stopped")
@@ -159,6 +181,7 @@ def main():
             },
             model_filename
             )
+            # 용량 관리를 위해 최신 5개만 남긴다.
             model_list = os.listdir(model_foldername)
             if len(model_list) > 5:
                 model_list.sort()

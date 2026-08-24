@@ -1,3 +1,13 @@
+"""
+학습된 교차점 검출 모델로 철근 교차점을 찾는 추론 코드.
+
+predict()          : 폴더 안 이미지를 일괄 처리해 result/ 에 결과를 저장
+predict_one_image(): 이미지 한 장을 받아 (교차점 이미지, 좌표 목록)을 돌려준다.
+                     다른 모듈에서 호출하는 쪽은 이 함수다.
+
+주의: 모델 경로가 예전 절대경로/상대경로로 하드코딩되어 있어 그대로는 동작하지 않는다.
+"""
+
 import os
 from torchvision import transforms
 import numpy as np
@@ -9,6 +19,10 @@ import cv2
 from find_cross_point_model.nms import nms
 
 def extract_keypoints_from_tensor(tensor, image_size, max_points_per_cell=4, threshold=0.5):
+    """
+    모델이 낸 격자 텐서를 이미지 좌표 목록으로 되돌린다.
+    (nms.py 의 export_point 와 같은 역할을 하는 사본이다.)
+    """
     B, C, H, W = tensor.shape
     assert B == 1, "배치 크기는 1"
     grid_size = H
@@ -37,10 +51,12 @@ def extract_keypoints_from_tensor(tensor, image_size, max_points_per_cell=4, thr
 
 
 def predict():
+    """폴더 안의 이미지를 모두 처리해, 교차점을 찍은 결과를 result/ 에 저장한다."""
     test_image_folder = '../warp_image'
     test_image_list = os.listdir(test_image_folder)
     model_folder = './models'
     # model_filename = os.path.join(model_folder, extension.get_latest_pth_file(model_folder, '.pth'))
+    # 특정 checkpoint를 직접 지정한다 (위 주석은 최신 파일을 자동 선택하던 방식).
     model_filename = os.path.join(model_folder, '20250527_142708/epoch00808.pth')
     print(model_filename)
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -54,6 +70,7 @@ def predict():
         t_image = cv2.imread(os.path.join(test_image_folder, test_image))
         h, w, _ = t_image.shape
         t_image = cv2.cvtColor(t_image, cv2.COLOR_BGR2RGB)
+        # 학습 때와 같은 전처리: 0~1 스케일 -> ImageNet 정규화 -> (1, C, H, W)
         t_image = torch.tensor(t_image, dtype = torch.float32)
         t_image /= 255
         normalize = transforms.Normalize(mean=(0.485, 0.456, 0.406), std=(0.229, 0.224, 0.225))
@@ -64,12 +81,15 @@ def predict():
             output = model(t_image)
             print(output.shape)
             output = torch.sigmoid(output)
+            # 중복 예측 제거. 여기서는 50픽셀 이내의 점을 같은 점으로 본다.
             keypoints = nms(output, h, 50)
         res = cv2.imread(os.path.join(test_image_folder, test_image))
+        # 주의: 아래에서 변수 h를 좌표로 덮어쓴다. 반복문 위쪽의 이미지 높이 h와 이름이 겹친다.
         for keypoint in keypoints:
             h, w, o = keypoint
             h = int(h)
             w = int(w)
+            # 확신도 0.5 미만은 교차점으로 인정하지 않는다.
             if o >= .5:
                 cv2.circle(res, (h,w), 2, (0,0,255), -1)
         os.makedirs('result', exist_ok=True)
@@ -78,6 +98,13 @@ def predict():
     return
 
 def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_model/models/20250527_142708/epoch00808.pth'
+    """
+    이미지 한 장에서 교차점을 찾는다.
+
+    :param image: 입력 이미지 (grayscale 또는 RGB)
+    :param model_file: 사용할 checkpoint 경로. None이면 models 폴더의 최신 파일을 쓴다.
+    :return: (교차점을 흰 점으로 찍은 이미지, 좌표 목록 [[x, y], ...])
+    """
     model = pointFindingModel()
     device = 'cuda' if torch.cuda.is_available() else 'cpu'
     if model_file is None:
@@ -91,6 +118,8 @@ def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_
         model.load_state_dict(checkpoint['model_state_dict'])
     model.to(device)
     model.eval()
+    # 어떤 형식이 들어와도 되도록 일단 grayscale로 통일해 크기를 얻은 뒤,
+    # 모델 입력에 맞춰 다시 3채널로 되돌린다.
     if len(image.shape) != 2:
         image = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
     h, w = image.shape
@@ -108,8 +137,10 @@ def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_
     with torch.no_grad():
         output_logit = model(image_tensor)
         output = torch.sigmoid(output_logit)
+        # 이쪽은 15픽셀 기준으로 중복을 거른다 (교차점 간격이 더 촘촘한 경우를 위해).
         keypoints = nms(output, h, 15)
 
+    # 원본 위가 아니라 빈 검은 화면에 점만 찍어 돌려준다 (이후 처리에서 쓰기 쉽도록).
     res = np.zeros_like(image, dtype = np.uint8)
     res_point = []
     for key in keypoints:
@@ -121,6 +152,10 @@ def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_
             res_point.append([h, w])
     return res, res_point
 
+    # ------------------------------------------------------------------
+    # 아래 주석 블록은 큰 이미지를 256 조각으로 잘라 한 번에 추론하던 이전 방식이다.
+    # 현재는 이미지 전체를 한 번에 넣는 방식으로 대체되었다.
+    # ------------------------------------------------------------------
     # res_points = []
     # res = np.zeros_like(image)
     # h, w = image.shape
@@ -174,6 +209,7 @@ def predict_one_image(image:np.ndarray, model_file = None): # 'find_cross_point_
 
 
 if __name__ == "__main__":
+    # 단독 실행 확인용: 4분할 사진에서 일부 영역만 잘라 교차점을 찍어본다.
     for i in range(3):
         image = cv2.imread('./test.jpg')
         image = cv2.cvtColor(image, cv2.COLOR_BGR2RGB)

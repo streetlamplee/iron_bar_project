@@ -1,3 +1,11 @@
+"""
+두 사진 사이의 특징점을 매칭해 좌표를 옮기는 모듈.
+
+사진마다 관심 영역 4점을 일일이 클릭하지 않고,
+한 장에만 찍어둔 좌표를 나머지 사진으로 자동 전달하기 위해 만들었다.
+main.py 의 run_sift_warp_pipeline() 에서 사용한다.
+"""
+
 import cv2
 import numpy as np
 from etc.extension import image_show, CamArrayIdx
@@ -15,30 +23,39 @@ def getHomographySift(img1, img2):
     if len(img2.shape) != 2:
         img2 = cv2.cvtColor(img2, cv2.COLOR_BGR2GRAY)
 
+    # SIFT: 크기와 회전이 달라도 같은 지점을 찾아내는 특징점 추출기.
+    # kp = 특징점 위치, des = 그 지점의 생김새를 숫자로 표현한 값(비교에 사용)
     sift = cv2.SIFT.create()
 
     kp1, des1 = sift.detectAndCompute(img1, None)
     kp2, des2 = sift.detectAndCompute(img2, None)
 
+    # FLANN: 특징점 수가 많을 때 가장 비슷한 짝을 빠르게 찾아주는 근사 매칭기
     flann_idx_kdtree = 1
     idx_params = dict(algorithm = flann_idx_kdtree, trees = 5)
     search_params = dict(checks = 50)
 
     flann = cv2.FlannBasedMatcher(idx_params,search_params)
 
+    # 각 특징점마다 가장 비슷한 후보 2개를 찾는다.
     matches = flann.knnMatch(des1, des2, k=2)
 
     good = []
 
+    # Lowe's ratio test: 1등이 2등보다 뚜렷하게 가까울 때만 믿을 만한 매칭으로 본다.
+    # 비슷비슷한 무늬(철근이 반복되는 배경)에서 잘못 짝지어지는 것을 걸러낸다.
     for m,n in matches:
         if m.distance < 0.7 * n.distance:
             good.append(m)
 
+    # 신뢰할 매칭이 이 수보다 적으면 변환 행렬을 믿을 수 없다고 보고 실패 처리한다.
     MIN_MATCH_COUNT = 30
     if len(good) > MIN_MATCH_COUNT:
         src_pts = np.float32([kp1[m.queryIdx].pt for m in good]).reshape(-1, 1, 2)
         dst_pts = np.float32([kp2[m.trainIdx].pt for m in good]).reshape(-1, 1, 2)
 
+        # RANSAC: 잘못 짝지어진 매칭이 섞여 있어도, 다수가 동의하는 변환만 채택한다.
+        # 10.0은 몇 픽셀까지 오차를 허용할지의 기준값.
         M, mask = cv2.findHomography(src_pts, dst_pts, cv2.RANSAC, 10.0)
         matchesMask = mask.ravel().tolist()
 
@@ -65,6 +82,7 @@ def getHomographySift(img1, img2):
 @return 좌표 변환이 완료된 좌표의 집합
 '''
 def perspectiveTransfrom(points:list|np.ndarray, M):
+    # cv2.perspectiveTransform은 float32 형식과 (N, 1, 2) 모양을 요구하므로 맞춰준다.
     if type(points) != np.ndarray:
         points = np.float32(points)
     if points.dtype != np.float32 and points.dtype != np.float64:
@@ -77,6 +95,7 @@ def perspectiveTransfrom(points:list|np.ndarray, M):
     return result
 
 if __name__ == "__main__":
+    # 단독 실행 시 확인용: 첫 사진에 찍은 점 4개가 두 번째 사진의 어디로 옮겨지는지 그려본다.
     mask1 = CamArrayIdx(0)
     target_idx = 3
     mask2 = CamArrayIdx(target_idx)
